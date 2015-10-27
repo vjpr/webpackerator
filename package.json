@@ -1,0 +1,12 @@
+{
+  "name": "webpackerator",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run gulp test",
+    "gulp": "./node_modules/gulp/bin/gulp.js"
+  },
+  "author": "Vaughan Rouesnel <vrouesnel@gmail.com> (http://vaughan.io)",
+  "license": "ISC"
+}
