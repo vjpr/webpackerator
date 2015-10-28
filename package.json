@@ -5,10 +5,11 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "npm run gulp test",
-    "gulp": "./node_modules/gulp/bin/gulp.js"
+    "gulp": "./node_modules/gulp/bin/gulp.js",
+    "prepublish": "npm run gulp prepublish"
   },
   "author": "Vaughan Rouesnel <vrouesnel@gmail.com> (http://vaughan.io)",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "babel-runtime": "^5.8.29",
     "chalk": "^1.1.1",
