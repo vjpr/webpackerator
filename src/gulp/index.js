@@ -1,16 +1,8 @@
-//region Imports
-const gutil = require('gulp-util')
-const webpack = require('webpack')
-const _ = require('lodash')
-const cwd = require('cwd')
-const replaceFile = require('./util/replaceFile')
-const webpackerator = require('../webpack')
-//endregion
-
 const files = {}
 
 function cliArgs(opts) {
 
+  const _ = require('lodash')
   const yargs = require('yargs')
 
   // TODO(vjpr): List gulp tasks for webpack. Maybe use yargs commands.
@@ -37,19 +29,25 @@ export default function(gulp, opts = {}) {
   let webpackConfig = null
 
   gulp.task('webpack:get-config', (done) => {
+    const webpackeratorUtils = require('../webpack')
+
     opts = cliArgs(opts)
-    opts = webpackerator.parseOpts(opts)
-    webpackConfig = webpackerator.getConfig(opts)
-    compiler = webpackerator.getCompiler(webpackConfig)
+    opts = webpackeratorUtils.parseOpts(opts)
+    webpackConfig = webpackeratorUtils.getConfig(opts)
+    compiler = webpackeratorUtils.getCompiler(webpackConfig)
     done()
   })
 
   gulp.task('webpack:dev-server', gulp.series('webpack:get-config', function webpackDevServer(done) {
-    webpackerator.startWebpackDevServer(compiler, webpackConfig.devServer, opts, done)
+    const webpackeratorUtils = require('../webpack')
+
+    webpackeratorUtils.startWebpackDevServer(compiler, webpackConfig.devServer, opts, done)
   }))
 
   gulp.task('webpack:build', gulp.series('webpack:get-config', function webpackBuild(done) {
-    webpackerator.build(compiler, opts, done)
+    const webpackeratorUtils = require('../webpack')
+
+    webpackeratorUtils.build(compiler, opts, done)
   }))
 
   // TODO(vjpr)
@@ -65,6 +63,9 @@ export default function(gulp, opts = {}) {
   }))
 
   gulp.task('webpack:bootstrap', (done) => {
+    const replaceFile = require('./util/replaceFile')
+    const cwd = require('cwd')
+
     async.forEachOf(files, function (value, key, done) {
       const dest = cwd(key)
       replaceFile(dest, value, done)

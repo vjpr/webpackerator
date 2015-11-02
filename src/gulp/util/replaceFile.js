@@ -1,11 +1,6 @@
-//region Imports
-const fs = require('fs')
-const diff = require('diff')
-const confirm = require('inquirer-confirm')
-const chalk = require('chalk')
-//endregion
-
 function printDiff(delta) {
+  const chalk = require('chalk')
+
   //console.log(delta)
   delta.forEach(function(part) {
     // green for additions, red for deletions
@@ -16,6 +11,10 @@ function printDiff(delta) {
 }
 
 module.exports = (dest, newContents, done) => {
+  const chalk = require('chalk')
+  const diff = require('diff')
+  const confirm = require('inquirer-confirm')
+  const fs = require('fs')
 
   let contents = ''
   if (fs.existsSync(dest)) {

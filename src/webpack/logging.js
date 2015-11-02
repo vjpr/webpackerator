@@ -7,7 +7,7 @@ module.exports = function(compiler, opts) {
   opts = _.defaultsDeep({}, opts, {
     webpack: {
       logging: {
-        progressBar: true,
+        progressBar: false,
         verbose: false,
         timings: false,
       }
