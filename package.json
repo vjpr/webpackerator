@@ -11,7 +11,7 @@
   "author": "Vaughan Rouesnel <vrouesnel@gmail.com> (http://vaughan.io)",
   "license": "MIT",
   "dependencies": {
-    "babel-runtime": "^5.8.29",
+    "babel-runtime": "^6.2.0",
     "chalk": "^1.1.1",
     "cwd": "^0.8.4",
     "diff": "^2.1.3",
@@ -25,5 +25,10 @@
     "webpack-configurator": "^0.3.0",
     "webpack-dev-server": "^1.12.1",
     "yargs": "^3.29.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "babel-preset-stage-0": "^6.1.18"
   }
 }

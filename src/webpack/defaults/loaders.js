@@ -74,14 +74,14 @@ module.exports = (webpack, opts) => {
 
   config.loader('fonts', {
     test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-    loader: "url-loader?limit=10000&minetype=application/font-woff"
+    loader: 'url-loader?limit=10000&minetype=application/font-woff',
   })
 
   //////////////////////////////////////////////////////////////////////////////
 
   config.loader('files', {
     test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-    loader: "file-loader"
+    loader: 'file-loader',
   })
 
   //////////////////////////////////////////////////////////////////////////////

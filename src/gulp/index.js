@@ -12,7 +12,7 @@ function cliArgs(opts) {
       alias: 'e',
       choices: ['production', 'development'],
       default: 'development',
-    }
+    },
   }).argv
 
   opts = _.defaultsDeep({}, opts, {
@@ -23,6 +23,13 @@ function cliArgs(opts) {
 
 }
 
+// Allow a task to set the environment.
+// TODO(vjpr): This is crazy. Must be a better way.
+function gulpTaskArgs(gulp, opts) {
+  const _ = require('lodash')
+  return _.defaultsDeep({}, opts, {env: gulp.env})
+}
+
 export default function(gulp, opts = {}) {
 
   let compiler = null
@@ -31,6 +38,8 @@ export default function(gulp, opts = {}) {
   gulp.task('webpack:get-config', (done) => {
     const webpackeratorUtils = require('../webpack')
 
+    opts = gulpTaskArgs(gulp, opts)
+    console.log(opts)
     opts = cliArgs(opts)
     opts = webpackeratorUtils.parseOpts(opts)
     webpackConfig = webpackeratorUtils.getConfig(opts)
