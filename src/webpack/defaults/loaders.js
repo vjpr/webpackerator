@@ -22,6 +22,7 @@ module.exports = (webpack, opts) => {
     let out = []
     if (DEV) out = out.concat(['react-hot'])
     out = out.concat([
+      // TODO(vjpr): Update to Babel 6.
       //ReactStylePlugin.loader(),
       'babel-loader?stage=0&optional[]=runtime&blacklist=flow'
       //'flowcheck'
