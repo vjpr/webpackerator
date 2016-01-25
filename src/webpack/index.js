@@ -15,6 +15,7 @@ class WebpackeratorUtils {
 
     const requireSource = chalk.bold(`require('${cwd('webpackerator.js')}').config`)
     console.log(`Reading webpackerator config from:`, requireSource)
+
     opts = _.defaultsDeep({}, opts, require(cwd('webpackerator.js')).config)
 
     // Gulp-specific config.
