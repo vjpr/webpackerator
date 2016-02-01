@@ -39,7 +39,6 @@ export default function(gulp, opts = {}) {
     const webpackeratorUtils = require('../webpack')
 
     opts = gulpTaskArgs(gulp, opts)
-    console.log(opts)
     opts = cliArgs(opts)
     opts = webpackeratorUtils.parseOpts(opts)
     webpackConfig = webpackeratorUtils.getConfig(opts)

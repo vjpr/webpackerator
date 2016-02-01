@@ -5,17 +5,19 @@ const logging = require('./logging')
 const _ = require('lodash')
 const webpack = require('webpack')
 const chalk = require('chalk')
+const debug = require('debug')('webpackerator:debug')
+const log = require('debug')('webpackerator:log')
 //endregion
 
 class WebpackeratorUtils {
 
+  // TODO(vjpr): Make static.
   parseOpts(opts) {
 
-    // webpackerator.js config
+    // `process.cwd/webpackerator.js` config.
 
     const requireSource = chalk.bold(`require('${cwd('webpackerator.js')}').config`)
-    console.log(`Reading webpackerator config from:`, requireSource)
-
+    log(`Reading webpackerator config from:`, requireSource)
     opts = _.defaultsDeep({}, opts, require(cwd('webpackerator.js')).config)
 
     // Gulp-specific config.
@@ -48,14 +50,14 @@ class WebpackeratorUtils {
     // `webpackerator.js`.
     ////////////////////////////////////////////////////////////////////////////
 
-    console.log('Using webpackerator:', cwd('webpackerator.js'))
+    log('Using webpackerator:', cwd('webpackerator.js'))
     const module = require(cwd('webpackerator.js'))
     const webpackConfig = module(webpack, opts)
 
     // Print resolved config.
     ////////////////////////////////////////////////////////////////////////////
 
-    console.log(this.prettifyWebpackConfig(webpackConfig))
+    debug(this.prettifyWebpackConfig(webpackConfig))
 
     return webpackConfig
 
@@ -74,7 +76,7 @@ class WebpackeratorUtils {
     new WebpackDevServer(compiler, devServerConfig)
       .listen(devServerConfig.port, devServerConfig.host, (e, stats)  => {
         if (e) throw new gutil.PluginError('webpack:dev-server', e)
-        return console.log('[webpack-dev-server]', `http://${devServerConfig.host}:${devServerConfig.port}/${devServerConfig.displayUrl}`)
+        return log('[webpack-dev-server]', `http://${devServerConfig.host}:${devServerConfig.port}/${devServerConfig.displayUrl}`)
         //done() // Never finish.
       })
 
@@ -85,7 +87,7 @@ class WebpackeratorUtils {
     opts.beforeCompile(compiler)
     compiler.run((e, stats) => {
       if (e) throw new gutil.PluginError('webpack:compile', e)
-      console.log('webpack:compile', stats.toString({colors: true}))
+      log('webpack:compile', stats.toString({colors: true}))
       done()
     })
 
@@ -99,6 +101,7 @@ class WebpackeratorUtils {
     return require('prettyjson').render(prettyConfig)
   }
 
+  // TODO(vjpr): Refactor these away! They are from legacy webpack configs.
   getHelpers(opts) {
     return {
       DEV: opts.env === 'development',
