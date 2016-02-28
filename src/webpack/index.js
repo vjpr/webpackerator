@@ -7,6 +7,7 @@ const webpack = require('webpack')
 const chalk = require('chalk')
 const debug = require('debug')('webpackerator:debug')
 const log = require('debug')('webpackerator:log')
+const gutil = require('gulp-util')
 //endregion
 
 class WebpackeratorUtils {
@@ -25,7 +26,7 @@ class WebpackeratorUtils {
     opts = _.defaultsDeep({}, opts, {
       moduleDirectories: ['modules', 'node_modules', 'bower_components'],  // TODO(vjpr): Should be taken from .liverc.
       // TODO(vjpr): Deprecate - should use plugins instead.
-      //beforeCompile: (compiler) => logging(compiler, opts.webpack),
+      //beforeCompile: (compiler) => logging(compiler, opts),
       beforeCompile: (compiler) => {},
       env: null,
       hmr: true,
@@ -33,6 +34,8 @@ class WebpackeratorUtils {
       devServerUrl: 'http://localhost:8081',
       buildDir: 'build',
       filesToCopy: ['./index.html', './assets/**/*.*'],
+      stats: {colors: true},
+      showStatsAfterBuild: true, // We must always show errors!
     })
 
     return opts
@@ -87,7 +90,10 @@ class WebpackeratorUtils {
     opts.beforeCompile(compiler)
     compiler.run((e, stats) => {
       if (e) throw new gutil.PluginError('webpack:compile', e)
-      log('webpack:compile', stats.toString({colors: true}))
+      if (opts.showStatsAfterBuild) {
+        console.log(stats.toString(opts.stats))
+      }
+      log('webpack:compile', stats.toString(opts.stats))
       done()
     })
 
