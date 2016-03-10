@@ -173,6 +173,7 @@ class WebpackeratorUtils {
 
   prettifyWebpackConfig(config) {
     const prettyConfig = _.clone(config, true)
+    // TODO(vjpr): This function needs to be ignored by eslint because IntelliJ auto-format messes it up.
     prettyConfig.plugins = config.plugins && config.plugins.map(p => {
       return {name: p.constructor.name, settings: p}
     })
