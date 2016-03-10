@@ -10,8 +10,9 @@ function cliArgs(opts) {
     env: {
       description: 'Environment',
       alias: 'e',
-      choices: ['production', 'development'],
-      default: 'development',
+      choices: ['production', 'development', 'test'],
+      // No default because we will use process.env.NODE_ENV, process.env.TEST, etc. in parseOpts.
+      //default: 'development',
     },
   }).argv
 
