@@ -174,8 +174,8 @@ class WebpackeratorUtils {
   prettifyWebpackConfig(config) {
     const prettyConfig = _.clone(config, true)
     prettyConfig.plugins = config.plugins && config.plugins.map(p => {
-        return {name: p.constructor.name, settings: p}
-      })
+      return {name: p.constructor.name, settings: p}
+    })
     return require('prettyjson').render(prettyConfig)
   }
 

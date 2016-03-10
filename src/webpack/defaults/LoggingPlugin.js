@@ -38,45 +38,45 @@ class LoggingPlugin {
 
       time = +new Date
 
-      compilation.plugin("seal", function() {
+      compilation.plugin('seal', function() {
         console.log('seal', +new Date - time)
         time = +new Date
-      });
-      compilation.plugin("optimize", function() {
+      })
+      compilation.plugin('optimize', function() {
         console.log('optimize', +new Date - time)
         time = +new Date
-      });
-      compilation.plugin("before-hash", function() {
+      })
+      compilation.plugin('before-hash', function() {
         console.log('before-hash', +new Date - time)
         time = +new Date
-      });
-      compilation.plugin("before-chunk-assets", function() {
+      })
+      compilation.plugin('before-chunk-assets', function() {
         console.log('before-chunk-assets', +new Date - time)
         time = +new Date
-      });
-      compilation.plugin("additional-chunk-assets", function() {
+      })
+      compilation.plugin('additional-chunk-assets', function() {
         console.log('additional-chunk-assets', +new Date - time)
         time = +new Date
-      });
-      compilation.plugin("optimize-chunk-assets", function(chunks, callback) {
+      })
+      compilation.plugin('optimize-chunk-assets', function(chunks, callback) {
         console.log('optimize-chunk-assets', +new Date - time)
         time = +new Date
-        callback();
-      });
-      compilation.plugin("optimize-assets", function(assets, callback) {
+        callback()
+      })
+      compilation.plugin('optimize-assets', function(assets, callback) {
         console.log('optimize-assets', +new Date - time)
         time = +new Date
-        callback();
-      });
+        callback()
+      })
 
 
     })
 
-    compiler.plugin("emit", function(compilation, callback) {
+    compiler.plugin('emit', function(compilation, callback) {
       console.log('emit', +new Date - time)
       time = +new Date
-      callback();
-    });
+      callback()
+    })
 
     compiler.plugin('done', () => {
       console.log('done', +new Date - time)
