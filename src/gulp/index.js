@@ -94,6 +94,7 @@ module.exports = function(webpack, opts) {
   const {Config} = require('webpackerator')
   const config = new Config
   require('webpackerator/defaults/webpackerator.js')(webpack, opts, config)
+  //require('webpackerator/lib/webpack/defaults/extras/live')(webpack, opts, config)
   // TODO: Customize config here. See https://github.com/lewie9021/webpack-configurator.
   const json = config.resolve()
   return json
@@ -103,6 +104,10 @@ module.exports = function(webpack, opts) {
 // You can also modify opts in the above function.
 // See \`webpackerator/src/webpack/index\`.
 module.exports.config = {
+
+  // See \`webpackerator/src/webpack/index.js#parseOpts\`.
+
+  liveLocator: require('live/locator'),
 
 }
 `
