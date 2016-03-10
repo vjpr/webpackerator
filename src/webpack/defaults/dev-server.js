@@ -1,33 +1,35 @@
-module.exports = function(webpack, opts) {
+//region Imports
+import _ from 'lodash'
+//endregion
 
-  //var Config = require('webpack-configurator')
-  //var config = new Config
+module.exports = function(webpack, opts, config) {
 
-  const {CWD, HMR} = opts.helpers
+  opts = _.defaults({}, opts, {
+    devServerPort: 8081,
+    devServerHost: 'localhost',
+    devServerDisplayUrl: 'webpack-dev-server/index.html',
+    devServerContentBase: opts.cwd,
+  })
 
-  return {
+  config.merge({
 
     devServer: {
 
       // http server options
       ////////////////////////////////////////////////////////////////////////////
 
-      port: 8081,
-      host: 'localhost',
-      displayUrl: 'webpack-dev-server/index.html',
+      port: opts.devServerPort,
+      host: opts.devServerHost,
+      displayUrl: opts.devServerDisplayUrl,
 
       // general options
       ////////////////////////////////////////////////////////////////////////////
 
       //contentBase: join CWD, 'build/' // TODO(vjpr): Why?
-      contentBase: CWD,
+      contentBase: opts.devServerContentBase,
       // or: contentBase: 'http://localhost/',
 
-      hot: HMR,
-      // Enable special support for Hot Module Replacement
-      // Page is no longer updated, but a 'webpackHotUpdate' message is send to the content
-      // Use 'webpack/hot/dev-server' as additional module in your entry point
-      // Note: this does _not_ add the `HotModuleReplacementPlugin` like the CLI option does.
+      hot: undefined, // See `./react-hot.js`.
 
       // Set this as true if you want to access dev server from arbitrary url.
       // This is handy if you are using a html5 router.
@@ -38,7 +40,7 @@ module.exports = function(webpack, opts) {
       // This is useful if you want to get rid of 'http://localhost:8080/' in script[src],
       // and has many other use cases (see https://github.com/webpack/webpack-dev-server/pull/127 ).
       //proxy: {
-      //  '*': 'http://localhost:9090',
+      //  '*': 'http://localhost:3000',
       //},
 
       // webpack-dev-middleware options
@@ -51,28 +53,41 @@ module.exports = function(webpack, opts) {
       // to see success build.
       noInfo: false,
 
-      lazy: true,
+      //lazy: true,
 
-      filename: 'bundle.js',
+      //filename: 'bundle.js',
 
+      // See https://github.com/webpack/watchpack#api.
       watchOptions: {
-        aggregateTimeout: 300,
-        poll: 1000,
+        //aggregateTimeout: 300,
+        poll: undefined, // Use native watching methods.
       },
 
-      publicPath: '/assets/',
+      // E.g.
+      // http://<host>:<port>/<publicPath>/foo.js -> (from filesystem) <contentBase>/foo.js
+      publicPath: '/build/',
 
       headers: {'X-Custom-Header': 'yes'},
 
       // Config for minimal console.log mess.
+      //stats: 'errors-only',
+
       stats: {
         colors: true,
         timings: true,
         chunks: true,
+
+        // Disable logs.
         chunkModules: false,
         version: false,
         assets: false,
         hash: false,
+
+        // Enable logs.
+        //chunkModules: true,
+        //version: true,
+        //assets: true,
+        //hash: true,
       },
 
       // other options
@@ -88,6 +103,6 @@ module.exports = function(webpack, opts) {
 
     }
 
-  }
+  })
 
 }

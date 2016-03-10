@@ -90,11 +90,12 @@ process.exit()
 files['webpackerator.js'] = `
 // The default webpackerator gulp tasks call this function to get the config.
 module.exports = function(webpack, opts) {
-  var w = require('webpackerator')()
-  var defaultConfig = require('webpackerator/defaults/webpackerator.js')(webpack, opts)
-  w.merge(defaultConfig)
-  // TODO: Customize here...
-  return w.resolve()
+  const {Config} = require('webpackerator')
+  const config = new Config
+  require('webpackerator/defaults/webpackerator.js')(webpack, opts, config)
+  // TODO: Customize config here. See https://github.com/lewie9021/webpack-configurator.
+  const json = config.resolve()
+  return json
 }
 
 // The default webpackerator gulp tasks use this for common configuration.

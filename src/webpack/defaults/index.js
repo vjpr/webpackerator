@@ -1,11 +1,27 @@
-module.exports = function(webpack, opts) {
-  var {Config} = require('../..')
-  var config = new Config
-  config.merge(require('./dev-server')(webpack, opts))
-  config.merge(require('./plugins')(webpack, opts))
-  config.merge(require('./loaders')(webpack, opts))
-  config.merge(require('./style-loaders')(webpack, opts))
-  config.merge(require('./main')(webpack, opts))
-  const merged = config.resolve()
-  return merged
+module.exports = function(webpack, opts, config) {
+
+  require('./dev-server')(webpack, opts, config)
+  require('./plugins')(webpack, opts, config)
+  require('./optimize')(webpack, opts, config)
+  require('./babel')(webpack, opts, config)
+  require('./main')(webpack, opts, config)
+  require('./vendor')(webpack, opts, config)
+  require('./bootstrap-loader')(webpack, opts, config)
+
+  require('./style').default(webpack, opts, config)
+  require('./css')(webpack, opts, config)
+  require('./scss')(webpack, opts, config)
+  require('./less')(webpack, opts, config)
+
+  require('./json')(webpack, opts, config)
+  require('./images')(webpack, opts, config)
+  require('./globals')(webpack, opts, config)
+  require('./progress-bar')(webpack, opts, config)
+  require('./react-hot')(webpack, opts, config)
+  require('./fonts')(webpack, opts, config)
+
+  require('./webpackerator')(webpack, opts, config)
+  require('./react')(webpack, opts, config)
+  require('./redux')(webpack, opts, config)
+
 }

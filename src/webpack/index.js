@@ -15,27 +15,105 @@ class WebpackeratorUtils {
   // TODO(vjpr): Make static.
   parseOpts(opts) {
 
-    // `process.cwd/webpackerator.js` config.
+    // `[process.cwd]/webpackerator.js` config.
+    ////////////////////////////////////////////////////////////////////////////
 
     const requireSource = chalk.bold(`require('${cwd('webpackerator.js')}').config`)
     log(`Reading webpackerator config from:`, requireSource)
     opts = _.defaultsDeep({}, opts, require(cwd('webpackerator.js')).config)
 
+    // Environment
+    ////////////////////////////////////////////////////////////////////////////
+
+    if (_(['production', 'development', 'test']).includes(opts.env)) {
+
+      // 1. Try set from `opts` parameter.
+      // This may be from cli, gulp global, or direct call of `parseOpts` from a test.
+
+      console.log('Setting env from opts (cli, `gulp.env`, or `parseOpts(opts)`):', opts.env)
+
+    } else if (process.env.NODE_ENV && _(['production', 'development', 'test']).includes(process.env.NODE_ENV)) {
+
+      // 2. process.env.NODE_ENV
+      // TODO(vjpr): If we are using `.env`, process.env.NODE_ENV might be set inside that file.
+
+      opts.env = process.env.NODE_ENV
+      console.log('Setting env from `process.env.NODE_ENV`:', opts.env)
+
+    } else if (Boolean(process.env.TEST)) { // TODO(vjpr): Deprecate.
+
+      // 3. process.env.TEST
+
+      opts.env = 'test'
+      console.log('Setting env from `process.env.TEST`:', opts.env)
+
+    } else {
+
+      // 4. If env is not set, set to `development`.
+
+      opts.env = 'development'
+      console.log('No env specified. Setting default:', opts.env)
+
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // process.env.NODE_ENV
+    ////////////////////////////////////////////////////////////////////////////
+
+    process.env.NODE_ENV = opts.env
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Convenience
+    ////////////////////////////////////////////////////////////////////////////
+
+    const isProd = opts.env === 'production'
+    const notProd = !isProd
+    const isTest = opts.env === 'test'
+    const notTest = !isTest
+    const isDev = opts.env === 'development'
+    const notDev = !isDev
+
+    ////////////////////////////////////////////////////////////////////////////
+
     // Gulp-specific config.
+    // TODO(vjpr): Does this still make sense?
+    ////////////////////////////////////////////////////////////////////////////
+
+    const makeDll = process.env.MAKE_DLL
 
     opts = _.defaultsDeep({}, opts, {
-      moduleDirectories: ['modules', 'node_modules', 'bower_components'],  // TODO(vjpr): Should be taken from .liverc.
-      // TODO(vjpr): Deprecate - should use plugins instead.
-      //beforeCompile: (compiler) => logging(compiler, opts),
-      beforeCompile: (compiler) => {},
+      notProd, // TODO(vjpr): NODE_ENV should be set automatically.
+      isProd,
+      isTest,
+      notTest,
       env: null,
-      hmr: true,
       cwd: cwd(),
-      devServerUrl: 'http://localhost:8081',
+      beforeCompile: (compiler) => {},
       buildDir: 'build',
+      buildPath: cwd('build/'),
+      roots: ['modules', 'node_modules', 'bower_components'],  // TODO(vjpr): Should be taken from .liverc.
+
+      devServerUrl: '/webpack-dev-server-proxy/sockjs-node',
+      // Uses relative server path.
+      // Used for setting webpack hot module reloading socket.io path.
+      //devServerUrl: ''
+
       filesToCopy: ['./index.html', './assets/**/*.*'],
-      stats: {colors: true},
-      showStatsAfterBuild: true, // We must always show errors!
+      reactDevTools: true,
+      stats: {colors: true, chunks: true},
+      showStatsAfterBuild: true, // Not dev-server. // We must always show errors!
+      liveLocator: null,
+      minifyJs: isProd,
+      minifyCss: isProd,
+      compileVendorDll: notTest && makeDll,
+      vendorChunkOrDll: (notProd && notTest) ? 'dll' : 'chunk', // dll or chunk
+      enableHotModuleReplacement: notProd,
+      //devServerUrl: 'http://localhost:8081',
+      //webpack: {logging: {timings: true}},
+      //cacheDirectory: null,
+      // TODO(vjpr): Deprecate - should use plugins instead.
+      //beforeCompile: (compiler) => logging(compiler, opts.webpack),
+      //beforeCompile: (compiler) => {},
     })
 
     return opts
@@ -43,12 +121,6 @@ class WebpackeratorUtils {
   }
 
   getConfig(opts) {
-
-    // Create helpers.
-    ////////////////////////////////////////////////////////////////////////////
-    // TODO(vjpr): Share across code base.
-
-    _.defaultsDeep(opts, {helpers: this.getHelpers(opts)})
 
     // `webpackerator.js`.
     ////////////////////////////////////////////////////////////////////////////
@@ -102,25 +174,9 @@ class WebpackeratorUtils {
   prettifyWebpackConfig(config) {
     const prettyConfig = _.clone(config, true)
     prettyConfig.plugins = config.plugins && config.plugins.map(p => {
-      return {name: p.constructor.name, settings: p}
-    })
+        return {name: p.constructor.name, settings: p}
+      })
     return require('prettyjson').render(prettyConfig)
-  }
-
-  // TODO(vjpr): Refactor these away! They are from legacy webpack configs.
-  getHelpers(opts) {
-    return {
-      DEV: opts.env === 'development',
-      TEST: opts.env === 'test',
-      PROD: opts.env === 'production',
-
-      HMR: opts.hmr,
-      CWD: opts.cwd,
-      DEV_SERVER_URL: opts.devServerUrl,
-      MODULE_DIRS: opts.moduleDirectories,
-      ALIAS: {},
-      BUILD_DIR: opts.buildDir
-    }
   }
 
 }
