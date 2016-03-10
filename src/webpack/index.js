@@ -105,7 +105,7 @@ class WebpackeratorUtils {
       liveLocator: null,
       minifyJs: isProd,
       minifyCss: isProd,
-      compileVendorDll: notTest && makeDll,
+      compileVendorDll: Boolean(notTest && makeDll),
       vendorChunkOrDll: (notProd && notTest) ? 'dll' : 'chunk', // dll or chunk
       enableHotModuleReplacement: notProd,
       //devServerUrl: 'http://localhost:8081',

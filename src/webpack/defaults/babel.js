@@ -40,7 +40,7 @@ module.exports = (webpack, opts, config) => {
 
     // We must manually include when using `npm link`ed packages, otherwise it will attempt to transpile these linked packages.
     // See more: https://github.com/gaearon/react-hot-loader/blob/master/docs/Troubleshooting.md#module-not-found-error-cannot-resolve-module-react-hot
-    include: babelIncludeDirs(opts),
+    include: babelIncludeDirs(opts).filter(v => !v.endsWith('node_modules')),
 
   })
 
