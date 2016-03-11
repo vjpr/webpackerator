@@ -8,17 +8,17 @@ const prettyjson = require('prettyjson')
 const repeat = require('core-js/fn/string/repeat.js')
 const moment = require('moment')
 const debug = require('debug')('webpackerator:debug')
+const mkdirp = require('mkdirp')
 //endregion
 
 // locator - to avoid having `live` as a dependency when npm linking.
 module.exports = function(opts) {
 
   opts = _.defaults({}, opts, {
-    // TODO(vjpr): Change to just `generated`.
     liveLocator: null,
-    livePluginManifestFileName: './modules/generated/live-browser-plugin-requires-generated.js',
+    livePluginManifestFileName: './generated/live-browser-plugin-requires-generated.js',
     roots: [],
-    watchLivePluginFiles: false,
+    watchLivePluginFiles: opts.notTest,
   })
 
   if (!opts.liveLocator) {
@@ -75,6 +75,7 @@ function loadPlugins(locator, livePluginManifestFileName) {
   debug('Found browser plugin files')
   debug(prettyjson.render(files))
   debug(repeat('-', 80))
+  mkdirp.sync(path.dirname(livePluginManifestFileName))
   writePluginRequiresToFile(livePluginManifestFileName, files)
   return livePluginManifestFileName
 }

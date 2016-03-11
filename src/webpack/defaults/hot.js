@@ -1,37 +1,27 @@
 //region Imports
 import _ from 'lodash'
+const {addVendor} = require('./util')
 //endregion
 
 module.exports = (webpack, opts, config) => {
 
   if (opts.enableHotModuleReplacement) {
 
-    config.merge({
-      entry: {
-        main: [
-          // This will try to GET hot updates from the `opts.devServerUrl`.
-          `webpack-dev-server/client?${opts.devServerUrl}`
-        ]
-      }
-    })
 
-    config.merge({
-      entry: {
-        main: [
-          // necessary for hot reloading with IE.
-          'eventsource-polyfill',
-        ]
-      }
-    })
+    // Necessary for hot reloading with IE.
+    // TODO(vjpr): Need to resolve it. Otherwise it won't be found unless in app's node_modules.
+    //config.merge({entry: {main: ['eventsource-polyfill']}})
+    //addVendor(config, ['eventsource-polyfill'])
+
+    // This will try to GET hot updates from the `opts.devServerUrl`.
+    config.merge({entry: {main: [`webpack-dev-server/client?${opts.devServerUrl}`]}})
 
     config.plugin('HotModuleReplacementPlugin', webpack.HotModuleReplacementPlugin)
 
-    config.merge({
-      entry: {
-        main: ['webpack/hot/only-dev-server'], // Do not reload page if hot update fails.
-        //main: ['webpack/hot/dev-server'], // Do reload on fail.
-      }
-    })
+    // a. Do not reload page if hot update fails.
+    config.merge({entry: {main: ['webpack/hot/only-dev-server']}})
+    // b. Do reload on fail.
+    //config.merge({entry: {main: ['webpack/hot/dev-server']}})
 
     config.merge({
       devServer: {

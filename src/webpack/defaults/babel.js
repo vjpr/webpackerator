@@ -46,6 +46,18 @@ module.exports = (webpack, opts, config) => {
 
   addVendor(config, 'babel-preset-react-hmre')
 
+  addVendor(config, 'babel-polyfill')
+
+  addVendor(config, [
+    //'babel-runtime/helpers', // TODO: This throws an error but it is actually fine...
+    'babel-runtime/core-js/number/is-integer.js',
+    'babel-runtime/helpers/defineProperty.js',
+    'babel-runtime/helpers/objectWithoutProperties.js',
+    'babel-runtime/helpers/slicedToArray.js',
+    'babel-runtime/core-js/is-iterable.js',
+    'babel-runtime/helpers/toConsumableArray.js',
+  ])
+
   config.merge({entry: {main: ['babel-polyfill']}})
 
 }

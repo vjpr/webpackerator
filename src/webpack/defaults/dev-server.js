@@ -1,5 +1,6 @@
 //region Imports
 import _ from 'lodash'
+const {addVendor} = require('./util')
 //endregion
 
 module.exports = function(webpack, opts, config) {
@@ -10,6 +11,13 @@ module.exports = function(webpack, opts, config) {
     devServerDisplayUrl: 'webpack-dev-server/index.html',
     devServerContentBase: opts.cwd,
   })
+
+  addVendor(config, [
+    'webpack-dev-server',
+    'webpack-dev-server/client',
+    'webpack-dev-server/client?/webpack-dev-server-proxy/sockjs-node',
+    //'webpack/hot/only-dev-server', // NOTE: Including this will break hot-updates!
+  ])
 
   config.merge({
 

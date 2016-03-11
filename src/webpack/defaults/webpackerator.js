@@ -6,21 +6,8 @@ export default function(webpack, opts, config) {
 
   // Webpackerator defaults.
   addVendor(config, [
-    'socket.io-client',
     'webpackerator',
-    'webpack-dev-server',
-    'webpack-dev-server/client',
-    'webpack-dev-server/client?/webpack-dev-server-proxy/sockjs-node',
-    //'webpack/hot/only-dev-server', // NOTE: Including this will break hot-updates!
-    //'babel-runtime/helpers', // TODO: This throws an error but it is actually fine...
-    'babel-runtime/core-js/number/is-integer.js',
-    'babel-runtime/helpers/defineProperty.js',
-    'babel-runtime/helpers/objectWithoutProperties.js',
-    'babel-runtime/helpers/slicedToArray.js',
-    'babel-runtime/core-js/is-iterable.js',
-    'babel-runtime/helpers/toConsumableArray.js',
-    'babel-polyfill', // maybe
-    'eventsource-polyfill', // maybe
+    'socket.io-client',
     'core-js',
     'core-js/library',
     'core-js/library/es6/reflect',
