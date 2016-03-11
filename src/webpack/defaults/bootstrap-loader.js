@@ -24,8 +24,6 @@ module.exports = function(webpack, opts, config) {
     sassResources: ['./modules/bootstrap-config/variables.scss'],
   })
 
-  addVendor(config, [(opts.notProd ? 'bootstrap-loader' : 'bootstrap-loader/extractStyles')])
-
   addVendor(config, [
     'bootstrap-sass',
     'bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss',
@@ -37,14 +35,20 @@ module.exports = function(webpack, opts, config) {
     'bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.svg',
   ])
 
-  //config.merge({
-  //  entry: {
-  //    main: [
-  //      // NOTE(vjpr): bootstrap-loader is now in vendor bundle, and your project's `src/client`.
-  //      //(DEV ? 'bootstrap-loader' : 'bootstrap-loader/extractStyles'),
-  //    ]
-  //  }
-  //})
+  //////////////////////////////////////////////////////////////////////////////
+  // How is bootstrap-loader initialized?
+  //////////////////////////////////////////////////////////////////////////////
 
+  // NOTE(vjpr): `bootstrap-loader` is in the vendor bundle, and should be in your project's main entry point like so:-
+  //
+  //     process.env.NODE_ENV === 'production' ? require('bootstrap-loader/extractStyles') : require('bootstrap-loader')
+  //
+
+  // NOTE(vjpr): When `webpackerator` is `npm linked`, an error will be thrown saying that `extract-text-webpack-plugin` must be used with ExtractTextWebpackPlugin installed in config.
+  // Not sure exactly what causes this, but be careful.
+
+  //config.merge({entry: {main: [(opts.notProd ? 'bootstrap-loader' : 'bootstrap-loader/extractStyles')]}})
+
+  addVendor(config, [(opts.notProd ? 'bootstrap-loader' : 'bootstrap-loader/extractStyles')])
 
 }
