@@ -57,7 +57,7 @@ export function parseStyleLoaders(opts) {
   return (config) => {
     if (opts.useExtractTextPlugin) _(config.queries).remove(([name]) => name === 'style').value()
     const loaders = makeLoadersQueryString(config.queries).join('!')
-    config.loader = opts.useExtractTextPlugin ? extractTextPlugin.extract('style', loaders) : loaders
+    config.loader = opts.useExtractTextPlugin ? opts.extractTextPlugin.extract('style', loaders) : loaders
     return config
   }
 
