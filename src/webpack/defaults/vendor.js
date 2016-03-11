@@ -17,7 +17,7 @@ type Opts = {
 
 function getOpts(opts): Opts {
   return _.defaults({}, opts, {
-    compileVendorDll:  null,
+    compileVendorDll:  false,
     vendorChunkOrDll: null, // dll or chunk
     buildPath: null,
     localProjectPath: opts.cwd,

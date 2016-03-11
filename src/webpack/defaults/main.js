@@ -154,7 +154,7 @@ module.exports = function(webpack, opts, config) {
       //
       packageAlias: 'browser',
       // Allows us to require without extensions.
-      extensions: ['', '.js', '.coffee'],
+      extensions: ['', '.js'],
       // NOTE: Shared with node.js. using `app-module-path` module.
       root: opts.roots.map(v => cwd(v)),
       modulesDirectories: ['node_modules'],

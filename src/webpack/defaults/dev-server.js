@@ -10,6 +10,7 @@ module.exports = function(webpack, opts, config) {
     devServerHost: 'localhost',
     devServerDisplayUrl: 'webpack-dev-server/index.html',
     devServerContentBase: opts.cwd,
+    devServerShowAllLogs: false,
   })
 
   addVendor(config, [
@@ -85,17 +86,11 @@ module.exports = function(webpack, opts, config) {
         timings: true,
         chunks: true,
 
-        // Disable logs.
-        chunkModules: false,
-        version: false,
-        assets: false,
-        hash: false,
+        chunkModules: opts.devServerShowAllLogs,
+        version: opts.devServerShowAllLogs,
+        assets: opts.devServerShowAllLogs,
+        hash: opts.devServerShowAllLogs,
 
-        // Enable logs.
-        //chunkModules: true,
-        //version: true,
-        //assets: true,
-        //hash: true,
       },
 
       // other options

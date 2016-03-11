@@ -127,7 +127,7 @@ class WebpackeratorUtils {
       filesToCopy: ['./index.html', './assets/**/*.*'],
       reactDevTools: true,
       stats: {colors: true, chunks: true},
-      showStatsAfterBuild: true, // Not dev-server. // We must always show errors!
+      showStatsAfterBuild: false, // Not dev-server. // We must always show errors!
       liveLocator: null,
       minifyJs: isProd,
       minifyCss: isProd,
