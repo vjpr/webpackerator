@@ -15,6 +15,15 @@ module.exports = (webpack, opts, config) => {
       }
     })
 
+    config.merge({
+      entry: {
+        main: [
+          // necessary for hot reloading with IE.
+          'eventsource-polyfill',
+        ]
+      }
+    })
+
     config.plugin('HotModuleReplacementPlugin', webpack.HotModuleReplacementPlugin)
 
     config.merge({

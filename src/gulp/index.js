@@ -74,26 +74,33 @@ export default function(gulp, opts = {}) {
   gulp.task('webpack:bootstrap', (done) => {
     const replaceFile = require('./util/replaceFile')
     const cwd = require('cwd')
+    const async = require('async')
 
     async.forEachOf(files, function (value, key, done) {
       const dest = cwd(key)
       replaceFile(dest, value, done)
     }, done)
+
+    // TODO(vjpr): Install webpack, webpack-dev-server, etc.
+    // defaults/babel -> babel-core
+    // defaults/webpackerator -> webpack, webpack-dev-server
+    // Will need to install modules that all the defaults depend on. Prob use something similar to babelator.
+
   })
 
 }
 
-files['webpack.config.js'] = `
-console.warn('Please use webpackerator.js instead. It allows config variables to be passed in.')
-process.exit()
+// NOTE: There is something that accesses webpack.config.js which I forgot right now.
+files['webpack.config.js'] = `console.warn('Something tried to access webpack.config.js. Please use webpackerator.js instead. It allows config variables to be passed in.')
+//process.exit()
 `
 
-files['webpackerator.js'] = `
-// The default webpackerator gulp tasks call this function to get the config.
+files['webpackerator.js'] = `// The default webpackerator gulp tasks call this function to get the config.
 module.exports = function(webpack, opts) {
-  const {Config} = require('webpackerator')
+  const Config = require('webpackerator').Config
   const config = new Config
   require('webpackerator/defaults/webpackerator.js')(webpack, opts, config)
+  // Uncomment if you use \`live\`.
   //require('webpackerator/lib/webpack/defaults/extras/live')(webpack, opts, config)
   // TODO: Customize config here. See https://github.com/lewie9021/webpack-configurator.
   const json = config.resolve()
@@ -101,13 +108,9 @@ module.exports = function(webpack, opts) {
 }
 
 // The default webpackerator gulp tasks use this for common configuration.
-// You can also modify opts in the above function.
-// See \`webpackerator/src/webpack/index\`.
+// You can also modify opts in the \`module.exports\` function.
+// See \`webpackerator/src/webpack/index.js#parseOpts\`.
 module.exports.config = {
-
-  // See \`webpackerator/src/webpack/index.js#parseOpts\`.
-
-  liveLocator: require('live/locator'),
 
 }
 `

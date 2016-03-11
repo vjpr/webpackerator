@@ -1,4 +1,6 @@
+/* @flow weak */
 //region Imports
+const _ = require('lodash')
 const cwd = require('cwd')
 const path = require('path')
 const fs = require('fs')
@@ -11,40 +13,70 @@ const debug = require('debug')('webpackerator:debug')
 // locator - to avoid having `live` as a dependency when npm linking.
 module.exports = function(opts) {
 
+  opts = _.defaults({}, opts, {
+    // TODO(vjpr): Change to just `generated`.
+    liveLocator: null,
+    livePluginManifestFileName: './modules/generated/live-browser-plugin-requires-generated.js',
+    roots: [],
+    watchLivePluginFiles: false,
+  })
+
   if (!opts.liveLocator) {
     console.error('You must set `opts.liveLocator` to `require("live/locator")` when using `webpackerator/lib/webpack/defaults/extras/live`')
     process.exit(1)
   }
 
-  const pluginIndex = loadPlugins(opts.liveLocator)
+  const locator = getLocator(opts, opts.liveLocator)
+  const loadPluginsPartial = _.partial(loadPlugins, locator, opts.livePluginManifestFileName)
+  const livePluginManifestFileName = loadPluginsPartial()
 
-  return [
-    'eventsource-polyfill', // necessary for hot reloading with IE
-    'babel-polyfill',
-    // NOTE(vjpr): bootstrap-loader is now in vendor bundle.
-    //(DEV ? 'bootstrap-loader' : 'bootstrap-loader/extractStyles'),
-    pluginIndex, // We require the file from `live/pluginLoader`.
-    './lib/client.js',
-  ]
+  if (opts.watchLivePluginFiles) watchLiveFiles(locator.getGlob(), loadPluginsPartial)
+
+  return [livePluginManifestFileName]
 
 }
 
-function loadPlugins(liveLocator) {
+function watchLiveFiles(glob, loadPlugins) {
 
-  // TODO(vjpr): Change to just `generated`.
-  const filename = './modules/generated/live-browser-plugin-requires-generated.js'
+  const chokidar = require('chokidar')
+  const log = console.log.bind(console)
+  //const log = debug.bind(debug)
+
+  const watcher = chokidar.watch(glob, {ignoreInitial: true})
+  watcher.on('add', path => {
+    log(`Live plugin ${path} has been added`)
+    loadPlugins()
+  })
+  watcher.on('unlink', path => {
+    log(`Live plugin ${path} has been removed`)
+    loadPlugins()
+  })
+
+  log('Watching for new live plugins:', glob)
+
+}
+
+function getLocator(opts, liveLocator) {
+  const {PluginLocator} = liveLocator
+  const locator = new PluginLocator({
+    files: ['live.browser'],
+    folders: opts.roots,
+    exts: ['json', 'cson', 'js'],
+    rootDir: process.cwd(),
+  })
+  return locator
+}
+
+function loadPlugins(locator, livePluginManifestFileName) {
   // TODO: Allow specifying a chunk name (when using multiple entry points).
   // Some config setting from the module. E.g. `config.get(module).entry`.
-  const files = liveLocator({
-    files: ['live.browser'],
-  })
+  const files = locator.locate()
   debug(repeat('-', 80))
   debug('Found browser plugin files')
   debug(prettyjson.render(files))
   debug(repeat('-', 80))
-  writePluginRequiresToFile(filename, files)
-  return filename
-
+  writePluginRequiresToFile(livePluginManifestFileName, files)
+  return livePluginManifestFileName
 }
 
 // Write require file.
@@ -58,6 +90,7 @@ function writePluginRequiresToFile(filename, files) {
     relFile = getModuleDirectoriesRelativePath(relFile)
     return `window.livePlugins['${relFile}'] = require('${relFile}')`
   }).join(';\n')
+  body += `;\nif (module.hot) { module.hot.accept() }\n`
   fs.writeFileSync(dest, body)
 
   // Change modified timestamp back 10 seconds to prevent it triggering a
@@ -77,3 +110,6 @@ function getModuleDirectoriesRelativePath(filename) {
   const [firstDir, ...rest] = filename.split(path.sep)
   return rest.join(path.sep)
 }
+
+//module.exports.loadPlugins = loadPlugins
+//module.exports.getLocator = getLocator

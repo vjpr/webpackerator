@@ -81,11 +81,37 @@ class WebpackeratorUtils {
 
     const makeDll = process.env.MAKE_DLL
 
+    ////////////////////////////////////////////////////////////////////////////
+    // dev-server defaults
+    ////////////////////////////////////////////////////////////////////////////
+
+    const devServerHost = 'localhost'
+
+    // TODO(vjpr): Find next available dev-server port.
+    // However, this may mean we have to recompile dll...
+    const devServerPort = 8081
+
+    //const devServerUrl = devServerHost + ':' + devServerPort
+
+    // This is the default path webpack-dev-server uses.
+    const devServerUrl = '/sockjs-node'
+
+    // If using our dev-server proxying module.
+    //const devServerUrl = '/webpack-dev-server-proxy/sockjs-node'
+
+    // Uses relative server path.
+    // Used for setting webpack hot module reloading socket.io path.
+    //const devServerUrl = ''
+
+    ////////////////////////////////////////////////////////////////////////////
+
     opts = _.defaultsDeep({}, opts, {
       notProd, // TODO(vjpr): NODE_ENV should be set automatically.
       isProd,
       isTest,
       notTest,
+      isDev,
+      notDev,
       env: null,
       cwd: cwd(),
       beforeCompile: (compiler) => {},
@@ -93,10 +119,9 @@ class WebpackeratorUtils {
       buildPath: cwd('build/'),
       roots: ['modules', 'node_modules', 'bower_components'],  // TODO(vjpr): Should be taken from .liverc.
 
-      devServerUrl: '/webpack-dev-server-proxy/sockjs-node',
-      // Uses relative server path.
-      // Used for setting webpack hot module reloading socket.io path.
-      //devServerUrl: ''
+      devServerHost,
+      devServerPort,
+      devServerUrl,
 
       filesToCopy: ['./index.html', './assets/**/*.*'],
       reactDevTools: true,

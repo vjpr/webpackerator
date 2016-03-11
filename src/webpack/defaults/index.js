@@ -17,7 +17,7 @@ module.exports = function(webpack, opts, config) {
   require('./images')(webpack, opts, config)
   require('./globals')(webpack, opts, config)
   require('./progress-bar')(webpack, opts, config)
-  require('./react-hot')(webpack, opts, config)
+  require('./hot')(webpack, opts, config)
   require('./fonts')(webpack, opts, config)
 
   require('./webpackerator')(webpack, opts, config)

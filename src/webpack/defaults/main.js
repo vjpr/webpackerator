@@ -16,7 +16,8 @@ function getOpts(opts) {
     //sourceMap: 'cheap-source-map',
     //sourceMap: 'cheap-module-source-map',
     //sourceMap: 'eval-cheap-module-source-map',
-    sourceMap: 'inline-eval-cheap-source-map',
+    // NOTE: The `#` prefix is for https://github.com/webpack/webpack/issues/91.
+    sourceMap: '#inline-eval-cheap-source-map',
     //sourceMap: '#inline-source-map',
     roots: [],
     resolveAlias: {},

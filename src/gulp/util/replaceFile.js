@@ -13,7 +13,7 @@ function printDiff(delta) {
 module.exports = (dest, newContents, done) => {
   const chalk = require('chalk')
   const diff = require('diff')
-  const confirm = require('inquirer-confirm')
+  const inquirer = require('inquirer-promise')
   const fs = require('fs')
 
   let contents = ''
@@ -33,11 +33,13 @@ module.exports = (dest, newContents, done) => {
 
   printDiff(delta)
 
-  confirm('Write?').then(() => {
-    fs.writeFileSync(dest, newContents, 'utf8')
-    done()
-  }, () => {
-    done('Cancelled.')
+  inquirer.confirm('Write?').then((answer) => {
+    if (answer) {
+      fs.writeFileSync(dest, newContents, 'utf8')
+      done()
+    } else {
+      done('Cancelled.')
+    }
   })
 
 }

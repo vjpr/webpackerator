@@ -12,6 +12,10 @@ export default function(webpack, opts, config) {
 
   config.merge({entry: {main: getEntryPoints(opts)}})
 
+  // TODO(vjpr): Does this need to be in lib, and not in modules?
+  //   I think its here just because we want it next to `server.js`.
+  config.merge({entry: {main: ['./lib/client.js']}})
+
   // Live
   addVendor(config, [
     'live',

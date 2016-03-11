@@ -46,6 +46,8 @@ module.exports = (webpack, opts, config) => {
 
   addVendor(config, 'babel-preset-react-hmre')
 
+  config.merge({entry: {main: ['babel-polyfill']}})
+
 }
 
 function getBabelQueryString(opts) {

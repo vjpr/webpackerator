@@ -37,4 +37,14 @@ module.exports = function(webpack, opts, config) {
     'bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.svg',
   ])
 
+  //config.merge({
+  //  entry: {
+  //    main: [
+  //      // NOTE(vjpr): bootstrap-loader is now in vendor bundle, and your project's `src/client`.
+  //      //(DEV ? 'bootstrap-loader' : 'bootstrap-loader/extractStyles'),
+  //    ]
+  //  }
+  //})
+
+
 }
