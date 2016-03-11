@@ -40,6 +40,7 @@ module.exports = function(webpack, opts, config) {
     context: cwd(),
     devtool: opts.notProd ? opts.sourceMap : null,
     debug: opts.notProd,
+    // TODO(vjpr): Make this a flag.
     profile: true // DEBUG
   })
 
@@ -80,9 +81,8 @@ module.exports = function(webpack, opts, config) {
       path: addTrailingSlash(opts.buildPath), // TODO(vjpr): Not sure if trailing slash needed or not.
 
       // Show require paths in comments in the code.
-      // TODO(vjpr): Does this slow down the build?
-      pathinfo: opts.notProd,
-      //pathinfo: false,
+      // This slows down the build.
+      pathinfo: false,
 
       // Web server will serve files in the `devServer.contentBase` at this endpoint URL.
       // NOTE(vjpr): We must set this when running dev server otherwise
