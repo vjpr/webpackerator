@@ -7,11 +7,17 @@ module.exports = (webpack, opts, config) => {
 
   if (opts.enableHotModuleReplacement) {
 
-
     // Necessary for hot reloading with IE.
     // TODO(vjpr): Need to resolve it. Otherwise it won't be found unless in app's node_modules.
     //config.merge({entry: {main: ['eventsource-polyfill']}})
     //addVendor(config, ['eventsource-polyfill'])
+
+    addVendor(config, [
+      //'webpack-dev-server', // NOTE: This brings in `express`. We don't want that.
+      'webpack-dev-server/client',
+      `webpack-dev-server/client?${opts.devServerUrl}`, // TODO(vjpr): This seems redundant. Having it in main entry point and here.
+      //'webpack/hot/only-dev-server', // NOTE: Including this will break hot-updates!
+    ])
 
     // This will try to GET hot updates from the `opts.devServerUrl`.
     config.merge({entry: {main: [`webpack-dev-server/client?${opts.devServerUrl}`]}})

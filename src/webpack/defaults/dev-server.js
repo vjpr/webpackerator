@@ -13,13 +13,6 @@ module.exports = function(webpack, opts, config) {
     devServerShowAllLogs: false,
   })
 
-  addVendor(config, [
-    //'webpack-dev-server', // NOTE: This brings in `express`. We don't want that.
-    'webpack-dev-server/client',
-    'webpack-dev-server/client?/webpack-dev-server-proxy/sockjs-node',
-    //'webpack/hot/only-dev-server', // NOTE: Including this will break hot-updates!
-  ])
-
   config.merge({
 
     devServer: {
