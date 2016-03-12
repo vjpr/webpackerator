@@ -25,7 +25,9 @@
     "eventsource-polyfill": "0.9.6",
     "extract-text-webpack-plugin": "1.0.1",
     "gulp-util": "3.0.7",
+    "inquirer": "0.12.0",
     "inquirer-promise": "0.0.3",
+    "jsondiffpatch": "0.1.41",
     "loader-utils": "0.2.12",
     "lodash": "^4.5.1",
     "mkdirp": "0.5.1",
@@ -38,7 +40,8 @@
     "webpack": "webpack/webpack#3c23ec3dde11a71f90a5424afeea0ed99be8a6ed",
     "webpack-configurator": "0.3.1",
     "webpack-dev-server": "1.14.1",
-    "yargs": "3.32.0"
+    "yargs": "3.32.0",
+    "npm-install-prompt": "^0.1.0"
   },
   "devDependencies": {
     "babel-preset-live": "0.0.3",

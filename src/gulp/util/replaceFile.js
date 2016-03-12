@@ -1,8 +1,68 @@
-function printDiff(delta) {
-  const chalk = require('chalk')
+// TODO(vjpr): Use https://github.com/slushjs/gulp-conflict/blob/master/index.js
 
+//region Imports
+const fs = require('fs')
+const chalk = require('chalk')
+const {log} = console
+const path = require('path')
+const cwd = require('cwd')
+//endregion
+
+module.exports = (dest, newContents, done) => {
+  const diff = require('diff')
+
+  if (!fs.existsSync(dest)) {
+    fs.writeFileSync(dest, newContents, 'utf8')
+    log('Created new file: %s', dest)
+    log()
+    log(chalk.green(newContents))
+    log()
+    return done()
+  }
+
+  const contents = fs.readFileSync(dest, 'utf8')
+
+  const delta = diff.diffChars(contents, newContents)
+
+  //log({contents, newContents, delta})
+  if (delta.length <= 1) {
+    log('Skipping ' + chalk.magenta(path.relative(cwd(), dest)) + ' (identical)')
+    return done()
+  }
+
+  log('Proposed changes to:', dest)
+
+  log()
+  printDiff(delta)
+  log()
+
+  prompt([{type: 'confirm', name: 'confirm', message: 'Write?'}]).then(() => {
+    fs.writeFileSync(dest, newContents, 'utf8')
+    log(chalk.green('Wrote file.'))
+    done()
+  }, (e) => {
+    console.log(e)
+    done('Cancelled.')
+  })
+
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Utilities
+////////////////////////////////////////////////////////////////////////////////
+
+function prompt(qs) {
+  const inquirer = require('inquirer')
+  return new Promise((resolve, reject) => {
+    inquirer.prompt(qs, (answers) => {
+      resolve(answers)
+    })
+  })
+}
+
+function printDiff(delta) {
   //console.log(delta)
-  delta.forEach(function(part) {
+  delta.forEach(function (part) {
     // green for additions, red for deletions
     // grey for common parts
     var color = part.added ? 'green' : part.removed ? 'red' : 'grey'
@@ -10,36 +70,16 @@ function printDiff(delta) {
   })
 }
 
-module.exports = (dest, newContents, done) => {
-  const chalk = require('chalk')
-  const diff = require('diff')
-  const inquirer = require('inquirer-promise')
-  const fs = require('fs')
-
-  let contents = ''
-  if (fs.existsSync(dest)) {
-    contents = fs.readFileSync(dest, 'utf8')
-    fs.writeFileSync(dest, newContents, 'utf8')
-    console.log('Created new file:', dest)
-    return done()
-  }
-
-  const delta = diff.diffChars(contents, newContents)
-
-  //console.log({contents, newContents, delta})
-  //if (delta.length <= 1) return done()
-
-  console.log('\n' + chalk.underline('Proposed changes to:'), dest)
-
-  printDiff(delta)
-
-  inquirer.confirm('Write?').then((answer) => {
-    if (answer) {
-      fs.writeFileSync(dest, newContents, 'utf8')
-      done()
-    } else {
-      done('Cancelled.')
-    }
-  })
-
+function padlog(...args) {
+  log()
+  log(...args)
+  log()
 }
+
+function logHeading(str) {
+  log()
+  log(c.underline(str))
+  log()
+}
+
+////////////////////////////////////////////////////////////////////////////////

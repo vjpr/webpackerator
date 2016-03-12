@@ -123,7 +123,7 @@ class WebpackeratorUtils {
       devServerPort,
       devServerUrl,
 
-      mainEntryPoint: './lib/client.js',
+      mainEntryPoint: null,
       filesToCopy: ['./index.html', './assets/**/*.*'],
       reactDevTools: true,
       stats: {colors: true, chunks: true},

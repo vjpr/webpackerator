@@ -8,7 +8,7 @@ const {addVendor, addAlias} = require('../util')
 export default function(webpack, opts, config) {
 
   opts = _.defaults({}, opts, {
-    mainEntryPoint: './lib/client',
+    mainEntryPoint: null,
   })
 
   if (!opts.liveLocator) {
@@ -18,7 +18,7 @@ export default function(webpack, opts, config) {
 
   config.merge({entry: {main: getEntryPoints(opts)}})
 
-  if (opts.mainEntryPoint !== false)
+  if (opts.mainEntryPoint)
     config.merge({entry: {main: [opts.mainEntryPoint]}})
 
   // Live

@@ -1,5 +1,5 @@
 //region Imports
-const {addVendor, addAlias} = require('./util')
+const {addVendor, addAlias} = require('../util')
 //endregion
 
 // redux-starter.

@@ -6,7 +6,8 @@ module.exports = function(webpack, opts, config) {
   require('./babel')(webpack, opts, config)
   require('./main')(webpack, opts, config)
   require('./vendor')(webpack, opts, config)
-  require('./bootstrap-loader')(webpack, opts, config)
+  // TODO(vjpr): Ordering!
+  //require('./bootstrap-loader')(webpack, opts, config)
 
   require('./style').default(webpack, opts, config)
   require('./css')(webpack, opts, config)
@@ -20,8 +21,8 @@ module.exports = function(webpack, opts, config) {
   require('./hot')(webpack, opts, config)
   require('./fonts')(webpack, opts, config)
 
-  require('./webpackerator')(webpack, opts, config)
-  require('./react')(webpack, opts, config)
-  require('./redux')(webpack, opts, config)
+  //require('./webpackerator')(webpack, opts, config)
+  //require('./react')(webpack, opts, config)
+  //require('./redux')(webpack, opts, config)
 
 }
