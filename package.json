@@ -41,7 +41,7 @@
     "webpack-configurator": "0.3.1",
     "webpack-dev-server": "1.14.1",
     "yargs": "3.32.0",
-    "npm-install-prompt": "^0.1.0"
+    "npm-install-prompt": "0.0.2"
   },
   "devDependencies": {
     "babel-preset-live": "0.0.3",
