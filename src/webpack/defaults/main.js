@@ -92,9 +92,8 @@ module.exports = function(webpack, opts, config) {
       //publicPath: opts.notProd ? opts.buildDir : opts.buildDir,
       publicPath: opts.notProd ? `/${opts.buildDir}/` : `/${opts.buildDir}/`, // NOTE: Must have trailing slash!
 
-      filename: !opts.compileVendorDll ? '[name].bundle.js' : '[name].dll.js',
-
-      library: '[name]_library',
+      // See `./vendor#finalize` where we use a different name for vendor dll.
+      filename: '[name].bundle.js',
 
       // IGNORE
       // When using a dll (i think?), the `hot` is missing. This makes everything serve from the same dir, which we can proxy to the webpack-dev-server.

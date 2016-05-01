@@ -10,3 +10,7 @@ export function addVendor(config, obj) {
 export function addAlias(config, obj) {
   config.merge(_.set({}, 'resolve.alias', obj))
 }
+
+export function getVendor(config, obj) {
+  return config._config.entry.vendor
+}

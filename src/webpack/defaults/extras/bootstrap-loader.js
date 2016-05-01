@@ -4,7 +4,7 @@ const {addVendor} = require('../util')
 
 // For the `bootstrap-loader` module.
 
-module.exports = function(webpack, opts, config) {
+export default function(webpack, opts, config) {
 
   // bootstrap-sass@3
   const boostrapJavascriptRegex = /bootstrap-sass\/assets\/javascripts\//
@@ -51,5 +51,19 @@ module.exports = function(webpack, opts, config) {
   //config.merge({entry: {main: [(opts.notProd ? 'bootstrap-loader' : 'bootstrap-loader/extractStyles')]}})
 
   addVendor(config, [(opts.notProd ? 'bootstrap-loader' : 'bootstrap-loader/extractStyles')])
+
+}
+
+export function finalize(webpack, opts, config) {
+
+  // Move bootstrap-loader to the top.
+  config.merge(current => {
+    const el = 'bootstrap-loader/extractStyles'
+    if (current.entry.vendor.some(item => item === el)) {
+      current.entry.vendor = current.entry.vendor.filter(item => item !== el)
+      current.entry.vendor.unshift(el)
+    }
+    return current
+  })
 
 }

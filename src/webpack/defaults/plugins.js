@@ -32,20 +32,6 @@ module.exports = (webpack, opts, config) => {
 
   //////////////////////////////////////////////////////////////////////////////
 
-  // Write stats file for debugging.
-  //function() {
-  //  //const id = require('uniqueid')
-  //  const callback = function(stats) {
-  //    require('fs').writeFileSync(
-  //      //require('path').join(process.cwd(), `tmp/${id({prefix: 'stats'})}.json`),
-  //      require('path').join(process.cwd(), `tmp/stats.json`),
-  //      JSON.stringify(stats.toJson()))
-  //  }
-  //  this.plugin('done', _.once(callback))
-  //}
-
-  //////////////////////////////////////////////////////////////////////////////
-
   //config.plugin(webpack.WatchIgnorePlugin, [[/\.json$/]])
 
   //////////////////////////////////////////////////////////////////////////////
