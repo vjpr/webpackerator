@@ -1,8 +1,9 @@
 //region Imports
 const _ = require('lodash')
 const cwd = require('cwd')
-const getEntryPoints = require('./get-live-framework-entry-points')
+const getEntryPoints = require('../../util/get-live-framework-entry-points')
 const {addVendor, addAlias} = require('../util')
+const configurize = require('configurize')
 //endregion
 
 export default function(webpack, opts, config) {
@@ -26,9 +27,6 @@ export default function(webpack, opts, config) {
     'live',
     'live/init',
   ])
-
-  // Configurize
-  addAlias(config, {'configurize.browser.js': cwd('configurize.browser.js')})
 
   config.plugin('DefinePlugin', webpack.DefinePlugin, (current) => {
     if (!current.length) return current[0] = {}

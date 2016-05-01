@@ -21,6 +21,7 @@ module.exports = function(webpack, opts, config) {
   })
 
   config.merge({
+    // TODO(vjpr): This is a bad dependency.
     sassResources: ['./modules/bootstrap-config/variables.scss'],
   })
 

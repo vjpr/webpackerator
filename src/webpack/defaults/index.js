@@ -6,6 +6,7 @@ module.exports = function(webpack, opts, config) {
   require('./babel')(webpack, opts, config)
   require('./main')(webpack, opts, config)
   require('./vendor')(webpack, opts, config)
+  require('./configurize')(webpack, opts, config)
   // TODO(vjpr): Ordering!
   //require('./bootstrap-loader')(webpack, opts, config)
 
@@ -20,6 +21,7 @@ module.exports = function(webpack, opts, config) {
   require('./progress-bar')(webpack, opts, config)
   require('./hot')(webpack, opts, config)
   require('./fonts')(webpack, opts, config)
+  require('./stats')(webpack, opts, config)
 
   //require('./webpackerator')(webpack, opts, config)
   //require('./react')(webpack, opts, config)

@@ -22,6 +22,7 @@
     "cwd": "0.9.1",
     "debug": "2.2.0",
     "diff": "2.2.1",
+    "empty": "0.10.1",
     "eventsource-polyfill": "0.9.6",
     "extract-text-webpack-plugin": "1.0.1",
     "gulp-util": "3.0.7",
@@ -32,6 +33,8 @@
     "lodash": "^4.5.1",
     "mkdirp": "0.5.1",
     "moment": "2.12.0",
+    "npm-install-prompt": "0.0.2",
+    "parent-require": "1.0.0",
     "postcss-loader": "0.8.0",
     "prettyjson": "1.1.3",
     "progress-bar-webpack-plugin": "1.3.0",
@@ -40,8 +43,7 @@
     "webpack": "webpack/webpack#3c23ec3dde11a71f90a5424afeea0ed99be8a6ed",
     "webpack-configurator": "0.3.1",
     "webpack-dev-server": "1.14.1",
-    "yargs": "3.32.0",
-    "npm-install-prompt": "0.0.2"
+    "yargs": "3.32.0"
   },
   "devDependencies": {
     "babel-preset-live": "0.0.3",

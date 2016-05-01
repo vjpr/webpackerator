@@ -154,6 +154,7 @@ module.exports = function(webpack, opts, config) {
       //
       packageAlias: 'browser',
       // Allows us to require without extensions.
+      // TODO(vjpr): Does it? Or does it make us scan unneccessary files.
       extensions: ['', '.js'],
       // NOTE: Shared with node.js. using `app-module-path` module.
       root: opts.roots.map(v => cwd(v)),

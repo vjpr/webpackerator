@@ -25,7 +25,11 @@ module.exports = (webpack, opts, config) => {
     config.plugin('HotModuleReplacementPlugin', webpack.HotModuleReplacementPlugin)
 
     // a. Do not reload page if hot update fails.
-    config.merge({entry: {main: ['webpack/hot/only-dev-server']}})
+    // NOTE: We use require.resolve because we want to use the local
+    //   node_modules instead of the root.
+    const onlyDevServer = require.resolve('webpack/hot/only-dev-server')
+    config.merge({entry: {main: [onlyDevServer]}})
+
     // b. Do reload on fail.
     //config.merge({entry: {main: ['webpack/hot/dev-server']}})
 

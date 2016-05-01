@@ -15,7 +15,8 @@ function cliArgs(opts) {
   }).argv
 
   opts = _.defaultsDeep({}, opts, {
-    env: argv.env
+    env: argv.env,
+    devServerPort: argv.port,
   })
 
   return opts
@@ -68,13 +69,5 @@ export default function(gulp, opts = {}) {
     yargs.showHelp()
     done()
   }))
-
-  gulp.task('webpackerator:bootstrap', (done) => {
-    require('./bootstrap').makeFiles().then(done)
-  })
-
-  //gulp.task('webpackerator:bootstrap:install-modules', (done) => {
-  //  require('./bootstrap').installModules().then(done)
-  //})
 
 }

@@ -50,11 +50,6 @@ module.exports = (webpack, opts, config) => {
 
   //////////////////////////////////////////////////////////////////////////////
 
-  //if (DEV) {
-  //  const {StatsWriterPlugin} = require('webpack-stats-plugin')
-  //  config.plugin('StatsWriterPlugin', StatsWriterPlugin, [{filename: 'webpack-stats.json', fields: null}])
-  //}
-
   ////////////////////////////////////////////////////////////////////////////////
 
   // TODO(vjpr)

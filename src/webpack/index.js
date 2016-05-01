@@ -8,6 +8,8 @@ const chalk = require('chalk')
 const debug = require('debug')('webpackerator:debug')
 const log = require('debug')('webpackerator:log')
 const gutil = require('gulp-util')
+const getConfig = require('../root-config/getConfig')
+const getEnvironment = require('./util/getEnvironment')
 //endregion
 
 class WebpackeratorUtils {
@@ -15,46 +17,21 @@ class WebpackeratorUtils {
   // TODO(vjpr): Make static.
   parseOpts(opts) {
 
-    // `[process.cwd]/webpackerator.js` config.
+    // Config
     ////////////////////////////////////////////////////////////////////////////
 
-    const requireSource = chalk.bold(`require('${cwd('webpackerator.js')}').config`)
-    log(`Reading webpackerator config from:`, requireSource)
-    opts = _.defaultsDeep({}, opts, require(cwd('webpackerator.js')).config)
+    const {config, configPath} = getConfig('webpackerator')
+    if (configPath) {
+      log(`Reading webpackerator config from:`, chalk.bold(configPath) + '#config')
+      opts = _.defaultsDeep({}, opts, config.config)
+    } else {
+      log(`Using default webpackerator config from:`, chalk.bold(__filename))
+    }
 
     // Environment
     ////////////////////////////////////////////////////////////////////////////
 
-    if (_(['production', 'development', 'test']).includes(opts.env)) {
-
-      // 1. Try set from `opts` parameter.
-      // This may be from cli, gulp global, or direct call of `parseOpts` from a test.
-
-      console.log('Setting env from opts (cli, `gulp.env`, or `parseOpts(opts)`):', opts.env)
-
-    } else if (process.env.NODE_ENV && _(['production', 'development', 'test']).includes(process.env.NODE_ENV)) {
-
-      // 2. process.env.NODE_ENV
-      // TODO(vjpr): If we are using `.env`, process.env.NODE_ENV might be set inside that file.
-
-      opts.env = process.env.NODE_ENV
-      console.log('Setting env from `process.env.NODE_ENV`:', opts.env)
-
-    } else if (Boolean(process.env.TEST)) { // TODO(vjpr): Deprecate.
-
-      // 3. process.env.TEST
-
-      opts.env = 'test'
-      console.log('Setting env from `process.env.TEST`:', opts.env)
-
-    } else {
-
-      // 4. If env is not set, set to `development`.
-
-      opts.env = 'development'
-      console.log('No env specified. Setting default:', opts.env)
-
-    }
+    opts.env = getEnvironment(opts.env)
 
     ////////////////////////////////////////////////////////////////////////////
     // process.env.NODE_ENV
@@ -151,8 +128,9 @@ class WebpackeratorUtils {
     // `webpackerator.js`.
     ////////////////////////////////////////////////////////////////////////////
 
-    log('Using webpackerator:', cwd('webpackerator.js'))
-    const module = require(cwd('webpackerator.js'))
+    // TODO(vjpr): This should be synchronized with parseOpts.
+    const {config, configPath} = getConfig('webpackerator')
+    const module = require(configPath)
     const webpackConfig = module(webpack, opts)
 
     // Print resolved config.
