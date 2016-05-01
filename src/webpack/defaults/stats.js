@@ -4,9 +4,14 @@ import path, {join} from 'path'
 
 export default function(webpack, opts, config) {
 
-  const filename = opts.compileVendorDll
-    ? 'webpack-assets-vendor-dll.json'
-    : 'webpack-assets.json'
+  let filename
+  if (opts.compileVendorDll) {
+    filename = 'webpack-assets-vendor-dll.json'
+  } else if (opts.isDebug) {
+    filename = 'webpack-assets.json'
+  } else if (opts.isProd) {
+    filename = 'webpack-assets.prod.json'
+  }
 
   const AssetsPlugin = require('assets-webpack-plugin')
   config.plugin('AssetsPlugin', AssetsPlugin, [{
