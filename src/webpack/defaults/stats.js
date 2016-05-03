@@ -4,6 +4,7 @@ import path, {join} from 'path'
 
 export default function(webpack, opts, config) {
 
+  // TODO(vjpr): Test.
   let filename
   if (opts.compileVendorDll) {
     filename = 'webpack-assets-vendor-dll.json'
