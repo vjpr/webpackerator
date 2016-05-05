@@ -3,7 +3,6 @@ const _ = require('lodash')
 const cwd = require('cwd')
 const getEntryPoints = require('../../util/get-live-framework-entry-points')
 const {addVendor, addAlias} = require('../util')
-const configurize = require('configurize')
 //endregion
 
 export default function(webpack, opts, config) {

@@ -28,6 +28,7 @@ class WebpackeratorUtils {
       log(`Using default webpackerator config from:`, chalk.bold(__filename))
     }
 
+
     // Environment
     ////////////////////////////////////////////////////////////////////////////
 
@@ -129,7 +130,8 @@ class WebpackeratorUtils {
     ////////////////////////////////////////////////////////////////////////////
 
     // TODO(vjpr): This should be synchronized with parseOpts.
-    const {config, configPath} = getConfig('webpackerator')
+    const {configPath} = getConfig('webpackerator')
+
     const module = require(configPath)
     const webpackConfig = module(webpack, opts)
 

@@ -30,13 +30,19 @@ module.exports = function(opts) {
   const loadPluginsPartial = _.partial(loadPlugins, locator, opts.livePluginManifestFileName)
   const livePluginManifestFileName = loadPluginsPartial()
 
+  // TODO(vjpr): When we try to resolve the config for use elsewhere like in our web server
+  //   we don't want to do this...or do we?
   if (opts.watchLivePluginFiles) watchLiveFiles(locator.getGlob(), loadPluginsPartial)
 
   return [livePluginManifestFileName]
 
 }
 
+let watching = false
+
 function watchLiveFiles(glob, loadPlugins) {
+
+  if (watching) return
 
   const chokidar = require('chokidar')
   const log = console.log.bind(console)
@@ -53,6 +59,8 @@ function watchLiveFiles(glob, loadPlugins) {
   })
 
   log('Watching for new live plugins:', glob)
+
+  watching = true
 
 }
 

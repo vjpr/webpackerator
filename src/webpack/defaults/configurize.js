@@ -2,11 +2,11 @@ let configurize
 
 try {
   global.__CLIENT__ = false
-  configurize = require('configurize')
+  configurize = require('configurize').config
 } catch (e) {
   // workaround when `npm link`'ed for development
   const prequire = require('parent-require')
-  configurize = prequire('configurize')
+  configurize = prequire('configurize').config
 }
 
 const {addVendor, addAlias} = require('./util')

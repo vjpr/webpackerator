@@ -59,6 +59,7 @@ export default function(webpack, opts, config) {
       context: undefined,
     }])
 
+    fse.ensureFileSync(vendorModuleNamesPath)
     fse.writeJsonSync(vendorModuleNamesPath, getVendorModules(config))
 
   } else if (opts.vendorChunkOrDll === 'chunk') {
