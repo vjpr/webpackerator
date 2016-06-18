@@ -1,8 +1,6 @@
-//region Imports
 const _ = require('lodash')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer')
-//endregion
 
 function getOpts(opts) {
   return _.defaults({}, opts, {

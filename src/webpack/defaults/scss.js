@@ -1,8 +1,6 @@
-//region Imports
 const _ = require('lodash')
 const {parseStyleLoaders} = require('./style')
 const autoprefixer = require('autoprefixer')
-//endregion
 
 const getOpts = (opts) =>
   _.defaultsDeep({}, opts, {

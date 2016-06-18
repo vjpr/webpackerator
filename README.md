@@ -1,4 +1,4 @@
-# webpackerator
+# ![webpackerator](https://cloud.githubusercontent.com/assets/281413/15651676/75bd2886-26c4-11e6-8f2e-959ef7f1d6f0.jpg)
 
 - Gulp tasks for common operations.
 - Return different configs depending on different settings (env vars, cli, etc.)

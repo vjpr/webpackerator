@@ -1,7 +1,5 @@
-//region Imports
 const _ = require('lodash')
 const {addVendor, addAlias} = require('../util')
-//endregion
 
 export default function(webpack, opts, config) {
 

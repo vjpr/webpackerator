@@ -1,6 +1,4 @@
-//region Imports
 const _ = require('lodash')
-//endregion
 
 export function addVendor(config, obj) {
   if (!Array.isArray(obj)) obj = [obj]

@@ -1,12 +1,10 @@
 // TODO(vjpr): Use https://github.com/slushjs/gulp-conflict/blob/master/index.js
 
-//region Imports
 const fs = require('fs')
 const chalk = require('chalk')
 const {log} = console
 const path = require('path')
 const cwd = require('cwd')
-//endregion
 
 module.exports = (dest, newContents, done) => {
   const diff = require('diff')

@@ -1,11 +1,9 @@
-//region Imports
 const webpack = require('webpack')
 const cwd = require('cwd')
 const {join} = require('path')
 const _ = require('lodash')
 const prettyjson = require('prettyjson')
 const debug = require('debug')('webpackerator:debug')
-//endregion
 
 function getOpts(opts) {
   return _.defaults({}, opts, {

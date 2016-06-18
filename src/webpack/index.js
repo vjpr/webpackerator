@@ -1,4 +1,3 @@
-//region Imports
 const WebpackDevServer = require('webpack-dev-server')
 const cwd = require('cwd')
 const logging = require('./logging')
@@ -10,7 +9,6 @@ const log = require('debug')('webpackerator:log')
 const gutil = require('gulp-util')
 const getConfig = require('../root-config/getConfig')
 const getEnvironment = require('./util/getEnvironment')
-//endregion
 
 class WebpackeratorUtils {
 
@@ -104,7 +102,13 @@ class WebpackeratorUtils {
       mainEntryPoint: null,
       filesToCopy: ['./index.html', './assets/**/*.*'],
       reactDevTools: true,
-      stats: {colors: true, chunks: true},
+      stats: {
+        colors: true,
+        chunks: true,
+        errorDetails: true,
+        //reasons: true,
+        //modules: true,
+      },
       showStatsAfterBuild: false, // Not dev-server. // We must always show errors!
       liveLocator: null,
       minifyJs: isProd,
@@ -155,7 +159,7 @@ class WebpackeratorUtils {
 
     opts.beforeCompile(compiler)
     new WebpackDevServer(compiler, devServerConfig)
-      .listen(devServerConfig.port, devServerConfig.host, (e, stats)  => {
+      .listen(devServerConfig.port, devServerConfig.host, (e, stats) => {
         if (e) throw new gutil.PluginError('webpack:dev-server', e)
         return log('[webpack-dev-server]', `http://${devServerConfig.host}:${devServerConfig.port}/${devServerConfig.displayUrl}`)
         //done() // Never finish.
@@ -171,6 +175,16 @@ class WebpackeratorUtils {
       if (opts.showStatsAfterBuild) {
         console.log(stats.toString(opts.stats))
       }
+      const jsonStats = stats.toJson()
+      if (stats.hasErrors()) {
+        // "soft errors" - module not found, etc.
+        // TODO(vjpr): `stats.errorDetails` enabled should print when using toString.
+        //   But we should show an error message here too.
+        throw new Error(jsonStats.errors)
+      }
+      if (stats.hasWarnings()) {
+        console.warn('WARNING:', jsonStats.warnings)
+      }
       log('webpack:compile', stats.toString(opts.stats))
       done()
     })
@@ -181,8 +195,8 @@ class WebpackeratorUtils {
     const prettyConfig = _.clone(config, true)
     // TODO(vjpr): This function needs to be ignored by eslint because IntelliJ auto-format messes it up.
     prettyConfig.plugins = config.plugins && config.plugins.map(p => {
-      return {name: p.constructor.name, settings: p}
-    })
+        return {name: p.constructor.name, settings: p}
+      })
     return require('prettyjson').render(prettyConfig)
   }
 

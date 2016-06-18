@@ -1,3 +1,5 @@
+import exit from 'exit'
+
 function cliArgs(opts) {
 
   const _ = require('lodash')
@@ -55,7 +57,11 @@ export default function(gulp, opts = {}) {
   gulp.task('webpack:build', gulp.series('webpack:get-config', function webpackBuild(done) {
     const webpackeratorUtils = require('../webpack')
 
-    webpackeratorUtils.build(compiler, opts, done)
+    webpackeratorUtils.build(compiler, opts, () => {
+      done()
+      // TODO(vjpr): Temp fix because task doesn't finish.
+      exit()
+    })
   }))
 
   // TODO(vjpr)

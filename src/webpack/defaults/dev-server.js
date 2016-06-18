@@ -1,7 +1,5 @@
-//region Imports
 import _ from 'lodash'
 const {addVendor} = require('./util')
-//endregion
 
 module.exports = function(webpack, opts, config) {
 

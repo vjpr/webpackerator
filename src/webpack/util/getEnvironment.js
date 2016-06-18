@@ -1,6 +1,4 @@
-//region Imports
 const _ = require('lodash')
-//endregion
 
 export default function getEnvironment(env) {
 

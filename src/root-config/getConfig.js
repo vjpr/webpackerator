@@ -1,10 +1,8 @@
-//region Imports
 const _ = require('lodash')
 const {join} = require('path')
 const cwd = require('cwd')
 const fs = require('fs')
 const debug = require('debug')('root-config')
-//endregion
 
 // Try to get the config from some preset locations.
 function getConfigPath(configName) {
@@ -28,7 +26,7 @@ function getConfigPath(configName) {
   }
 
   {
-    const file = join(cwd(), 'tools', configName + '.js') // tools/foo.js
+    const file = join(cwd(), 'tools', '.' + configName + '.js') // tools/foo.js
     debug('Trying:', file)
     if (fs.existsSync(file)) return file
   }

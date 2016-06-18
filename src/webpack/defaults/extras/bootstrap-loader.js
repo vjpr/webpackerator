@@ -1,6 +1,4 @@
-//region Imports
 const {addVendor} = require('../util')
-//endregion
 
 // For the `bootstrap-loader` module.
 

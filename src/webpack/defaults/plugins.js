@@ -1,8 +1,6 @@
-//region Imports
 import _ from 'lodash'
 import path from 'path'
 import cwd from 'cwd'
-//endregion
 
 module.exports = (webpack, opts, config) => {
 

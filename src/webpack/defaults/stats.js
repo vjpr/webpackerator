@@ -1,19 +1,20 @@
-//region Imports
 import path, {join} from 'path'
-//endregion
+
+// TODO(vjpr): Should be shared with `live-frontend`.
+function getAssetManifestFilename({compileVendorDll, vendorChunkOrDll, env}) {
+  let filename = `webpack-assets`
+  if (compileVendorDll) {
+    filename += '.vendor-dll'
+  } else {
+    filename += `.vendor-as-${vendorChunkOrDll}`
+  }
+  filename += `.${env}.json`
+  return filename
+}
 
 export default function(webpack, opts, config) {
 
-  // TODO(vjpr): Test.
-  let filename
-  if (opts.compileVendorDll) {
-    filename = 'webpack-assets-vendor-dll.json'
-  } else if (opts.isDebug) {
-    filename = 'webpack-assets.json'
-  } else if (opts.isProd) {
-    filename = 'webpack-assets.prod.json'
-  }
-
+  const filename = getAssetManifestFilename(opts)
   const AssetsPlugin = require('assets-webpack-plugin')
   config.plugin('AssetsPlugin', AssetsPlugin, [{
     path: opts.buildDir,

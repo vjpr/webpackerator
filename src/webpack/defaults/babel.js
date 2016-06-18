@@ -1,9 +1,7 @@
-//region Imports
 const _ = require('lodash')
 const qs = require('qs')
 const cwd = require('cwd')
 const {addVendor} = require('./util')
-//endregion
 
 function getOpts(opts) {
   return _.defaults({}, opts, {
@@ -46,7 +44,6 @@ module.exports = (webpack, opts, config) => {
 
   addVendor(config, 'babel-preset-react-hmre')
 
-  addVendor(config, 'babel-polyfill')
 
   addVendor(config, [
     //'babel-runtime/helpers', // TODO: This throws an error but it is actually fine...
@@ -58,7 +55,10 @@ module.exports = (webpack, opts, config) => {
     'babel-runtime/helpers/toConsumableArray.js',
   ])
 
-  config.merge({entry: {main: ['babel-polyfill']}})
+  // This can only be included once. Should not be included in libraries.
+  // DEBUG
+  //addVendor(config, 'babel-polyfill')
+  //config.merge({entry: {main: ['babel-polyfill']}})
 
 }
 

@@ -1,7 +1,5 @@
-//region Imports
 const _ = require('lodash')
 const {parseStyleLoaders} = require('./style')
-//endregion
 
 const getOpts = (opts) =>
   _.defaults({}, opts, {

@@ -1,5 +1,4 @@
 // @flow weak
-//region Imports
 import path, {join} from 'path'
 import cwd from 'cwd'
 import _ from 'lodash'
@@ -7,7 +6,10 @@ import fs from 'fs'
 import fse from 'fs-extra'
 import {getVendor} from './util'
 import hash from 'object-hash'
-//endregion
+import {error} from 'zog'
+import c from 'chalk'
+import dedent from 'dedent-js'
+import exit from 'exit'
 
 type Opts = {
   helpers: Object;
@@ -28,7 +30,8 @@ function getOpts(opts): Opts {
   })
 }
 
-const pleaseRebuildMessage = 'Run `MAKE_DLL=1 gulp webpack:build`'
+const pleaseRebuildMessage = (env) =>
+  `Run: ${c.dim(`NODE_ENV=${env} MAKE_DLL=1 gulp webpack:build`)}`
 
 export default function(webpack, opts, config) {
 
@@ -94,8 +97,13 @@ export default function(webpack, opts, config) {
         manifest = JSON.parse(fs.readFileSync(opts.vendorManifestPath, 'utf8'))
       } catch (e) {
         // TODO(vjpr): Maybe throw a warning or error that build needs to be run with MAKE_DLL.
-        console.error(`Cannot find manifest for vendor dll (${opts.vendorManifestPath}) not found. ` + pleaseRebuildMessage)
-        process.exit(1)
+        const msg = dedent`
+          Cannot find manifest for vendor dll
+            Missing file: ${c.dim(opts.vendorManifestPath)}
+            ${pleaseRebuildMessage(opts.env)}
+        `
+        error(msg)
+        exit(1)
         manifest = undefined
       }
 

@@ -1,7 +1,5 @@
-//region Imports
 import _ from 'lodash'
 const debug = require('debug')('webpackerator:debug')
-//endregion
 
 module.exports = (webpack, opts, config) => {
 

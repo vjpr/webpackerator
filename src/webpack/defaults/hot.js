@@ -1,7 +1,5 @@
-//region Imports
 import _ from 'lodash'
 const {addVendor} = require('./util')
-//endregion
 
 module.exports = (webpack, opts, config) => {
 
@@ -14,8 +12,8 @@ module.exports = (webpack, opts, config) => {
 
     addVendor(config, [
       //'webpack-dev-server', // NOTE: This brings in `express`. We don't want that.
-      'webpack-dev-server/client',
-      `webpack-dev-server/client?${opts.devServerUrl}`, // TODO(vjpr): This seems redundant. Having it in main entry point and here.
+      //'webpack-dev-server/client',
+      //`webpack-dev-server/client?${opts.devServerUrl}`, // TODO(vjpr): This seems redundant. Having it in main entry point and here.
       //'webpack/hot/only-dev-server', // NOTE: Including this will break hot-updates!
     ])
 

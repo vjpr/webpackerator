@@ -1,5 +1,4 @@
 /* @flow weak */
-//region Imports
 const _ = require('lodash')
 const cwd = require('cwd')
 const path = require('path')
@@ -9,7 +8,6 @@ const repeat = require('core-js/fn/string/repeat.js')
 const moment = require('moment')
 const debug = require('debug')('webpackerator:debug')
 const mkdirp = require('mkdirp')
-//endregion
 
 // locator - to avoid having `live` as a dependency when npm linking.
 module.exports = function(opts) {

@@ -1,6 +1,4 @@
-//region Imports
 const {addVendor, addAlias} = require('../util')
-//endregion
 
 // redux-starter.
 export default function(webpack, opts, config) {
