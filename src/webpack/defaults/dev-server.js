@@ -77,6 +77,14 @@ module.exports = function(webpack, opts, config) {
         timings: true,
         chunks: true,
 
+        reasons: true,
+
+        // Shows details about the errors. Very useful, do not disable.
+        errorDetails: true,
+
+        // Shows very detailed info about modules being compiled. Quite verbose.
+        //modules: true,
+
         chunkModules: opts.devServerShowAllLogs,
         version: opts.devServerShowAllLogs,
         assets: opts.devServerShowAllLogs,

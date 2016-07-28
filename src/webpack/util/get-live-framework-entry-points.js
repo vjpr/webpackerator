@@ -98,6 +98,7 @@ function writePluginRequiresToFile(filename, files) {
     return `window.livePlugins['${relFile}'] = require('${relFile}')`
   }).join(';\n')
   body += `;\nif (module.hot) { module.hot.accept() }\n`
+
   fs.writeFileSync(dest, body)
 
   // Change modified timestamp back 10 seconds to prevent it triggering a

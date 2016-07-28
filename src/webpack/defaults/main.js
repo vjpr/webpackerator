@@ -157,7 +157,16 @@ module.exports = function(webpack, opts, config) {
       root: opts.roots.map(v => cwd(v)),
       modulesDirectories: ['node_modules'],
       alias: Object.assign({}, opts.resolveAlias),
+
+      fallback: cwd('node_modules/webpackerator/node_modules'),
+
     },
+
+    // TODO(vjpr): Split the loaders out of webpackerator as plugins so
+    //   webpackerator doesn't have ot be so big.
+    resolveLoader: {
+      fallback: cwd('node_modules/webpackerator/node_modules'),
+    }
 
   })
 

@@ -136,7 +136,7 @@ function warnIfVendoredPackagesHaveChanged(config, vendorModuleNamesPath) {
   const last = fse.readJsonSync(vendorModuleNamesPath)
   const current = getVendorModules(config)
   if (_.difference(last, current).length) {
-    console.error('Your vendor packages have changed (see diff below). ', pleaseRebuildMessage)
+    console.error('Your vendor packages have changed (see diff below). ', pleaseRebuildMessage()) // TODO(vjpr): Pass in env.
     const delta = jsondiffpatch.diff(last, current)
     jsondiffpatch.console.log(delta)
     process.exit(1)

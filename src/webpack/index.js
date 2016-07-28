@@ -106,8 +106,8 @@ class WebpackeratorUtils {
         colors: true,
         chunks: true,
         errorDetails: true,
-        //reasons: true,
-        //modules: true,
+        reasons: true,
+        modules: true, // TODO(vjpr): This was disabled before...does it impact performance?
       },
       showStatsAfterBuild: false, // Not dev-server. // We must always show errors!
       liveLocator: null,
