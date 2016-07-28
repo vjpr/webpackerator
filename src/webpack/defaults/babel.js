@@ -44,7 +44,6 @@ module.exports = (webpack, opts, config) => {
 
   addVendor(config, 'babel-preset-react-hmre')
 
-
   addVendor(config, [
     //'babel-runtime/helpers', // TODO: This throws an error but it is actually fine...
     'babel-runtime/core-js/number/is-integer.js',

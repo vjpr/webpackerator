@@ -31,7 +31,7 @@ export default function(webpack, opts, config) {
     //
     sassResources: [
       join(process.cwd(), './modules/bootstrap-config/pre-customizations.scss'),
-      'node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss',
+      require.resolve('bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss'),
       //'node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins',
       join(process.cwd(), './modules/bootstrap-config/variables.scss'), // TODO(vjpr): Remove this.
       join(process.cwd(), './modules/bootstrap-config/customizations.scss'),

@@ -182,6 +182,7 @@ module.exports = function(webpack, opts, config) {
       global: 'window',
       // For webpack-dev-server vendor bundle errors.
       tls: 'empty',
+      child_process: 'empty',
     },
 
   })

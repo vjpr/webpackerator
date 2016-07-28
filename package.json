@@ -66,6 +66,10 @@
     "babelator": "0.2.19",
     "gulp": "gulpjs/gulp.git#4.0"
   },
+  "peerDependencies": {
+    "redux-devtools": "*",
+    "babel-preset-react-hmre": "*"
+  },
   "pre-push": [],
   "shipmate": {
     "skip": [
