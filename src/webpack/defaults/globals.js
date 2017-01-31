@@ -18,7 +18,15 @@ module.exports = (webpack, opts, config) => {
       'process.env': {
         // NOTE: Lots of libs like react depend on this. This is why we should not set it to `test`.
         NODE_ENV: JSON.stringify(opts.isProd ? 'production' : 'development')
-      }
+      },
+      // For `chalkline` module which depends on `process.stdout.isTTY`.
+      'process.stdout': {
+
+      },
+      // For compatibility with Node.js.
+      // TODO(vjpr): Could probably do it better if we thought about it for a bit.
+      'global.__CLIENT__': true,
+      'global.__LIVE_DISABLE_BABEL__': true,
     })
     debug('Defining globals: ', current[0])
     return current

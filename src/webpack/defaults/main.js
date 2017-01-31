@@ -8,15 +8,6 @@ const debug = require('debug')('webpackerator:debug')
 function getOpts(opts) {
   return _.defaults({}, opts, {
     buildPath: null,
-    //sourceMap: null,
-    //sourceMap: 'eval',
-    //sourceMap: 'source-map',
-    //sourceMap: 'cheap-source-map',
-    //sourceMap: 'cheap-module-source-map',
-    //sourceMap: 'eval-cheap-module-source-map',
-    // NOTE: The `#` prefix is for https://github.com/webpack/webpack/issues/91.
-    sourceMap: '#inline-eval-cheap-source-map',
-    //sourceMap: '#inline-source-map',
     roots: [],
     resolveAlias: {},
   })
@@ -36,7 +27,6 @@ module.exports = function(webpack, opts, config) {
     cache: opts.notProd,
     watch: opts.notProd,
     context: cwd(),
-    devtool: opts.notProd ? opts.sourceMap : null,
     debug: opts.notProd,
     // TODO(vjpr): Make this a flag.
     profile: true // DEBUG
@@ -183,6 +173,7 @@ module.exports = function(webpack, opts, config) {
       // For webpack-dev-server vendor bundle errors.
       tls: 'empty',
       child_process: 'empty',
+      process: 'mock',
     },
 
   })

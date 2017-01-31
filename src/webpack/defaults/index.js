@@ -6,6 +6,7 @@ module.exports = function(webpack, opts, config) {
   require('./babel')(webpack, opts, config)
   require('./main')(webpack, opts, config)
   require('./configurize')(webpack, opts, config)
+  require('./source-maps')(webpack, opts, config)
   // TODO(vjpr): Ordering!
   //require('./bootstrap-loader')(webpack, opts, config)
 

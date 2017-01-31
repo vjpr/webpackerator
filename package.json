@@ -11,10 +11,12 @@
   "license": "MIT",
   "dependencies": {
     "@vjpr/bootstrap-loader": "1.0.10-hotfix",
+    "app-root-path": "1.3.0",
     "assets-webpack-plugin": "3.4.0",
     "autoprefixer": "6.3.6",
     "babel-core": "6.10.4",
     "babel-loader": "6.2.4",
+    "babel-preset-live": "^0.1.0",
     "bootstrap-sass": "3.3.6",
     "chalk": "1.1.3",
     "chokidar": "1.5.2",
@@ -49,6 +51,7 @@
     "resolve-url-loader": "1.6.0",
     "sass-loader": "4.0.0",
     "sass-resources-loader": "1.0.2",
+    "source-map-loader": "0.1.5",
     "string": "3.3.1",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
@@ -60,7 +63,7 @@
   },
   "devDependencies": {
     "babel-preset-live": "0.0.6",
-    "babelator": "0.2.19",
+    "babelator": "^0.2.21",
     "gulp": "gulpjs/gulp.git#4.0"
   },
   "peerDependencies": {

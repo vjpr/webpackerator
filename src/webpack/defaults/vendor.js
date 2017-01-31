@@ -18,15 +18,17 @@ type Opts = {
   buildPath: string;
   localProjectPath: string;
   vendorManifestPath: string;
+  env: string;
 }
 
-function getOpts(opts): Opts {
+function getOpts(opts):Opts {
   return _.defaults({}, opts, {
-    compileVendorDll:  false,
+    compileVendorDll: false,
     vendorChunkOrDll: null, // dll or chunk
     buildPath: null,
     localProjectPath: opts.cwd,
     vendorManifestPath: join(opts.buildPath, 'vendor-manifest.json'),
+    env: process.env.NODE_ENV || 'development',
   })
 }
 
@@ -107,7 +109,7 @@ export default function(webpack, opts, config) {
         manifest = undefined
       }
 
-      warnIfVendoredPackagesHaveChanged(config, vendorModuleNamesPath)
+      warnIfVendoredPackagesHaveChanged(config, vendorModuleNamesPath, opts)
 
       config.plugin('DllReferencePlugin', webpack.DllReferencePlugin, [{
         //scope: undefined,
@@ -129,14 +131,17 @@ export default function(webpack, opts, config) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// We need to warn user to rebuild vendor dll if any of there
-// dependencies change. We need to check versions of vendored deps.
-function warnIfVendoredPackagesHaveChanged(config, vendorModuleNamesPath) {
+// We need to warn user to rebuild vendor dll if any of their
+// dependencies change.
+// TODO(vjpr): We need to check versions of vendored deps.
+function warnIfVendoredPackagesHaveChanged(config, vendorModuleNamesPath, opts) {
+  const {env} = opts
   const jsondiffpatch = require('jsondiffpatch')
   const last = fse.readJsonSync(vendorModuleNamesPath)
   const current = getVendorModules(config)
   if (_.difference(last, current).length) {
-    console.error('Your vendor packages have changed (see diff below). ', pleaseRebuildMessage()) // TODO(vjpr): Pass in env.
+    console.error('Your vendor packages have changed (see diff below).',
+      pleaseRebuildMessage(env)) // TODO(vjpr): Pass in env.
     const delta = jsondiffpatch.diff(last, current)
     jsondiffpatch.console.log(delta)
     process.exit(1)

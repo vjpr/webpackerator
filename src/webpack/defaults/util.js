@@ -7,7 +7,10 @@ export function addVendor(config, obj) {
   // Resolve vendor to paths.
   obj = obj.map((p) => {
     try {
+      // NOTE: When using `live-perf` to dedupe, this can cause `require.resolve` to resolve differently than when `gulp webpack:build` was called.
+      global.__live_perf_dedupe_disable__ = true
       const out = require.resolve(p)
+      global.__live_perf_dedupe_disable__ = false
       return out
     } catch (e) {
       throw new Error(`Could not resolve module '${p}' from context '${module.filename}'`)

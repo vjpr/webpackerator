@@ -158,6 +158,11 @@ class WebpackeratorUtils {
   startWebpackDevServer(compiler, devServerConfig, opts, done) {
 
     opts.beforeCompile(compiler)
+
+    // TODO(vjpr): `webpack/lib/RequestShortener` adds tildes for `node_modules`.
+    //   This breaks clickable terminal links. We should override it.
+    //   Actually, its okay, it provides un unshortened link too.
+
     new WebpackDevServer(compiler, devServerConfig)
       .listen(devServerConfig.port, devServerConfig.host, (e, stats) => {
         if (e) throw new gutil.PluginError('webpack:dev-server', e)
