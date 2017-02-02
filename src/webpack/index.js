@@ -20,7 +20,8 @@ class WebpackeratorUtils {
 
     const {config, configPath} = getConfig('webpackerator')
     if (configPath) {
-      log(`Reading webpackerator config from:`, chalk.bold(configPath) + '#config')
+      log(`Reading webpackerator config from:`,
+        chalk.bold(configPath) + '#config')
       opts = _.defaultsDeep({}, opts, config.config)
     } else {
       log(`Using default webpackerator config from:`, chalk.bold(__filename))
@@ -166,7 +167,8 @@ class WebpackeratorUtils {
     new WebpackDevServer(compiler, devServerConfig)
       .listen(devServerConfig.port, devServerConfig.host, (e, stats) => {
         if (e) throw new gutil.PluginError('webpack:dev-server', e)
-        return log('[webpack-dev-server]', `http://${devServerConfig.host}:${devServerConfig.port}/${devServerConfig.displayUrl}`)
+        return log('[webpack-dev-server]',
+          `http://${devServerConfig.host}:${devServerConfig.port}/${devServerConfig.displayUrl}`)
         //done() // Never finish.
       })
 
@@ -176,21 +178,35 @@ class WebpackeratorUtils {
 
     opts.beforeCompile(compiler)
     compiler.run((e, stats) => {
-      if (e) throw new gutil.PluginError('webpack:compile', e)
+      // FATAL
+      if (e) {
+        throw new gutil.PluginError('webpack:compile', e)
+      }
+      // WARNING
+      const jsonStats = stats.toJson()
+      console.log('errors', jsonStats.errors)
+      if (stats.hasWarnings()) {
+        // TODO(vjpr): Always show warnings regardless of settings.
+        console.warn('WARNING:')
+        jsonStats.warnings.map(w => console.log(w, '\n'))
+      }
+      // STATS
+      // TODO(vjpr): Duplication.
+      log('webpack:compile', stats.toString(opts.stats))
       if (opts.showStatsAfterBuild) {
+        // Stats are the timings, chunks emitted, etc.
+        // It can be pretty verbose
         console.log(stats.toString(opts.stats))
       }
-      const jsonStats = stats.toJson()
+      // SOFT ERRORS
       if (stats.hasErrors()) {
         // "soft errors" - module not found, etc.
         // TODO(vjpr): `stats.errorDetails` enabled should print when using toString.
         //   But we should show an error message here too.
+        console.log(jsonStats.errors)
         throw new Error(jsonStats.errors)
       }
-      if (stats.hasWarnings()) {
-        console.warn('WARNING:', jsonStats.warnings)
-      }
-      log('webpack:compile', stats.toString(opts.stats))
+
       done()
     })
 

@@ -36,7 +36,8 @@ module.exports = (webpack, opts, config) => {
 
     exclude: /(bower_components|node_modules)/,
 
-    // We must manually include when using `npm link`ed packages, otherwise it will attempt to transpile these linked packages.
+    // We must manually include when using `npm link`ed packages,
+    // otherwise it will attempt to transpile these linked packages.
     // See more: https://github.com/gaearon/react-hot-loader/blob/master/docs/Troubleshooting.md#module-not-found-error-cannot-resolve-module-react-hot
     include: babelIncludeDirs(opts).filter(v => !v.endsWith('node_modules')),
 

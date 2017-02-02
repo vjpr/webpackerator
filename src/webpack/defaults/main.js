@@ -174,6 +174,7 @@ module.exports = function(webpack, opts, config) {
       tls: 'empty',
       child_process: 'empty',
       process: 'mock',
+
     },
 
   })
