@@ -59,12 +59,12 @@
     "webpack-configurator": "0.3.1",
     "webpack-dev-server": "1.14.1",
     "yargs": "4.7.1",
-    "zog": "0.0.0"
+    "zog": "0.1.2"
   },
   "devDependencies": {
     "babel-preset-live": "0.0.6",
     "babelator": "^0.2.21",
-    "gulp": "gulpjs/gulp.git#4.0"
+    "gulp4": "^4.0.1"
   },
   "peerDependencies": {
     "redux-devtools": "*",
