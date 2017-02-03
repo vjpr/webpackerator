@@ -18,7 +18,8 @@ module.exports = function(webpack, opts, config) {
   opts = getOpts(opts)
 
   function printConfig() {
-    debug('Webpack environment settings:', {isProd: opts.isProd, notProd: opts.notProd, isTest: opts.isTest})
+    debug('Webpack environment settings:',
+      {isProd: opts.isProd, notProd: opts.notProd, isTest: opts.isTest})
   }
 
   printConfig()
@@ -131,6 +132,24 @@ module.exports = function(webpack, opts, config) {
   // Resolve
   //////////////////////////////////////////////////////////////////////////////
 
+  /*
+
+  This is needed because we need to support support pnpm@0.51.1 dir structure:
+
+  your-app/node_modules/.resolutions/registry.npmjs.org/webpackerator/0.2.0-beta.0
+    /package (we must walk out of this dir)
+    /node_modules <--
+
+  When npm linked, this will resolve to `<webpackerator git repo>/node_modules`.
+
+  TODO(vjpr): It then needs to fallback to the app's `node_modules` dir.
+    The issue will be the ordering. It should look in the symlinked `node_modules` first.
+    Webpack 2.0 solves this with `resolve.modules`.
+
+  */
+  const findUp = require('findup-sync')
+  const webpackeratorNodeModulesDir = findUp('node_modules', {cwd: __dirname})
+
   config.merge({
 
     resolve: {
@@ -148,14 +167,14 @@ module.exports = function(webpack, opts, config) {
       modulesDirectories: ['node_modules'],
       alias: Object.assign({}, opts.resolveAlias),
 
-      fallback: cwd('node_modules/webpackerator/node_modules'),
+      fallback: [webpackeratorNodeModulesDir],
 
     },
 
     // TODO(vjpr): Split the loaders out of webpackerator as plugins so
-    //   webpackerator doesn't have ot be so big.
+    //   webpackerator doesn't have to be so big.
     resolveLoader: {
-      fallback: cwd('node_modules/webpackerator/node_modules'),
+      fallback: [webpackeratorNodeModulesDir],
     }
 
   })

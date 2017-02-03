@@ -32,6 +32,7 @@
     "empty": "0.10.1",
     "exit": "0.1.2",
     "file-loader": "0.9.0",
+    "findup-sync": "^0.4.3",
     "fs-extra": "0.30.0",
     "gulp-util": "3.0.7",
     "imports-loader": "0.6.5",
