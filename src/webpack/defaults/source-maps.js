@@ -18,8 +18,10 @@ module.exports = function(webpack, opts, config) {
 
   // Source maps for user code.
 
+  const devtool = opts.notProd ? opts.sourceMap : null
+
   config.merge({
-    devtool: opts.notProd ? opts.sourceMap : null,
+    devtool,
   })
 
   // Source maps for library code.
@@ -27,14 +29,19 @@ module.exports = function(webpack, opts, config) {
   // NOTE: If you see "Cannot resolve file or dir..." then it could be
   //   because the sourceRoot inside the `.map` files is incorrect.
 
-  config.preLoader('source-map', {
-    test: /\.js$/,
-    // TODO(vjpr): This may affect performance so only use for source files
-    //   that have source maps we care about. E.g. `live-*`.
-    include: [/node_modules/],
-    //include: (p) => {},
-    loader: 'source-map-loader',
-  })
+  // NOTE: If we try to run this without source maps enabled we get an error from `source-map` module.
+  if (devtool) {
+
+    config.preLoader('source-map', {
+      test: /\.js$/,
+      // TODO(vjpr): This may affect performance so only use for source files
+      //   that have source maps we care about. E.g. `live-*`.
+      include: [/node_modules/],
+      //include: (p) => {},
+      loader: 'source-map-loader',
+    })
+
+  }
 
   // Use this plugin for configuring how source maps are generated.
 

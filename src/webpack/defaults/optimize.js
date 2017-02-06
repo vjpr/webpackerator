@@ -3,7 +3,10 @@ export default function(webpack, opts, config) {
   // TODO(vjpr): Use proper config var.
   if (opts.minifyJs) {
     config.plugin('DedupePlugin', webpack.optimize.DedupePlugin)
-    config.plugin('UglifyJsPlugin', webpack.optimize.UglifyJsPlugin) // TODO(vjpr): Review issue with `__.type.global()` bug.
+    // TODO(vjpr): Review issue with `__.type.global()` bug.
+    config.plugin('UglifyJsPlugin', webpack.optimize.UglifyJsPlugin, [{
+      sourcemap: true,
+    }])
     config.plugin('AggressiveMergingPlugin', webpack.optimize.AggressiveMergingPlugin)
   }
 

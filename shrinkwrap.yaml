@@ -2232,6 +2232,10 @@ findup-sync@^0.4.2:
   id: registry.npmjs.org/findup-sync/0.4.3
   shasum: 40043929e7bc60adf0b7f4827c4c6e75a0deca12
   tarball: 'https://registry.npmjs.org/findup-sync/-/findup-sync-0.4.3.tgz'
+findup-sync@^0.4.3:
+  id: registry.npmjs.org/findup-sync/0.4.3
+  shasum: 40043929e7bc60adf0b7f4827c4c6e75a0deca12
+  tarball: 'https://registry.npmjs.org/findup-sync/-/findup-sync-0.4.3.tgz'
 findup-sync@~0.3.0:
   id: registry.npmjs.org/findup-sync/0.3.0
   shasum: 37930aa5d816b777c03445e1966cc6790a4c0b16
