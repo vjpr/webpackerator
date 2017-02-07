@@ -8,6 +8,11 @@
   shasum: 6f1e5e7824f58f5ec0adec616ab0bc258ea57374
   tarball: >-
     https://registry.npmjs.org/@vjpr/webpack-configurator/-/webpack-configurator-0.3.1.tgz
+'@vjpr/webpack-configurator@0.3.1':
+  id: registry.npmjs.org/@vjpr/webpack-configurator/0.3.1
+  shasum: 6f1e5e7824f58f5ec0adec616ab0bc258ea57374
+  tarball: >-
+    https://registry.npmjs.org/@vjpr/webpack-configurator/-/webpack-configurator-0.3.1.tgz
 Base64@~0.2.0:
   id: registry.npmjs.org/Base64/0.2.1
   shasum: ba3a4230708e186705065e66babdd4c35cf60028
@@ -4348,6 +4353,14 @@ pkg-conf@^1.1.2:
   id: registry.npmjs.org/pkg-conf/1.1.3
   shasum: 378e56d6fd13e88bfb6f4a25df7a83faabddba5b
   tarball: 'https://registry.npmjs.org/pkg-conf/-/pkg-conf-1.1.3.tgz'
+pkg-dir:
+  id: registry.npmjs.org/pkg-dir/1.0.0
+  shasum: 7a4b508a8d5bb2d629d447056ff4e9c9314cf3d4
+  tarball: 'https://registry.npmjs.org/pkg-dir/-/pkg-dir-1.0.0.tgz'
+pkg-up:
+  id: registry.npmjs.org/pkg-up/1.0.0
+  shasum: 3e08fb461525c4421624a33b9f7e6d0af5b05a26
+  tarball: 'https://registry.npmjs.org/pkg-up/-/pkg-up-1.0.0.tgz'
 pluralize@^1.2.1:
   id: registry.npmjs.org/pluralize/1.2.1
   shasum: d1a21483fd22bb41e58a12fa3421823140897c45
