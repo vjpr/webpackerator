@@ -147,7 +147,7 @@ module.exports = function(webpack, opts, config) {
     Webpack 2.0 solves this with `resolve.modules`.
 
   */
-  //const findUp = require('findup-sync')
+  const findUp = require('findup-sync')
   const path = require('path')
   const pkgDir = require('pkg-dir')
   // NOTE: We need both of these because pnpm@0.53.0 will create a `node_modules/.bin` dir which will only contain bins, and no modules. We want to find the adjacent node_modules dir.
@@ -156,8 +156,15 @@ module.exports = function(webpack, opts, config) {
     path.join(pkgDirPath, 'node_modules')
   // NOTE: This will resolve to `~/dev-live/node_modules` when symlinked.
   // TODO(vjpr): Probably a little dangerous.
-  const webpackeratorPnpmNodeModulesDir =
-    path.resolve(pkgDirPath, '../node_modules')
+
+  // pnpm could be in two locations in 0.51.1 and 0.53.0
+  // node_modules/foo/index.js
+  // node_modules/foo/node_modules
+  // package/index.js
+
+  const webpackeratorPnpmNodeModulesDir = findUp('node_modules', {
+    cwd: path.resolve(pkgDirPath, '..'),
+  })
 
   console.log('Looking for webpackerator defaults in:\n',{webpackeratorLocalNodeModulesDir, webpackeratorPnpmNodeModulesDir})
 
