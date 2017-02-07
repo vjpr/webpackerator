@@ -147,8 +147,19 @@ module.exports = function(webpack, opts, config) {
     Webpack 2.0 solves this with `resolve.modules`.
 
   */
-  const findUp = require('findup-sync')
-  const webpackeratorNodeModulesDir = findUp('node_modules', {cwd: __dirname})
+  //const findUp = require('findup-sync')
+  const path = require('path')
+  const pkgDir = require('pkg-dir')
+  // NOTE: We need both of these because pnpm@0.53.0 will create a `node_modules/.bin` dir which will only contain bins, and no modules. We want to find the adjacent node_modules dir.
+  const pkgDirPath = pkgDir.sync(__dirname)
+  const webpackeratorLocalNodeModulesDir =
+    path.join(pkgDirPath, 'node_modules')
+  // NOTE: This will resolve to `~/dev-live/node_modules` when symlinked.
+  // TODO(vjpr): Probably a little dangerous.
+  const webpackeratorPnpmNodeModulesDir =
+    path.resolve(pkgDirPath, '../node_modules')
+
+  console.log('Looking for webpackerator defaults in:\n',{webpackeratorLocalNodeModulesDir, webpackeratorPnpmNodeModulesDir})
 
   config.merge({
 
@@ -167,14 +178,20 @@ module.exports = function(webpack, opts, config) {
       modulesDirectories: ['node_modules'],
       alias: Object.assign({}, opts.resolveAlias),
 
-      fallback: [webpackeratorNodeModulesDir],
+      fallback: [
+        webpackeratorLocalNodeModulesDir,
+        webpackeratorPnpmNodeModulesDir,
+      ],
 
     },
 
     // TODO(vjpr): Split the loaders out of webpackerator as plugins so
     //   webpackerator doesn't have to be so big.
     resolveLoader: {
-      fallback: [webpackeratorNodeModulesDir],
+      fallback: [
+        webpackeratorLocalNodeModulesDir,
+        webpackeratorPnpmNodeModulesDir,
+      ],
     }
 
   })
