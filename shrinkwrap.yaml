@@ -3,6 +3,11 @@
   shasum: 566c6427d2d205a3cb0d9afb7eed514b5bfbc558
   tarball: >-
     https://registry.npmjs.org/@vjpr/bootstrap-loader/-/bootstrap-loader-1.0.10-hotfix.tgz
+'@vjpr/bootstrap-loader@2.0.0-beta.19-vjpr.2':
+  id: registry.npmjs.org/@vjpr/bootstrap-loader/2.0.0-beta.19-vjpr.2
+  shasum: f7e1f5b5840a721fe61b43ba26b2c7ea5e19c7a5
+  tarball: >-
+    https://registry.npmjs.org/@vjpr/bootstrap-loader/-/bootstrap-loader-2.0.0-beta.19-vjpr.2.tgz
 '@vjpr/style-loader':
   id: registry.npmjs.org/@vjpr/style-loader/0.13.1-vjpr.1
   shasum: ceee558939887c2c4177abf8359cb47994596737

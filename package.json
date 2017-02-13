@@ -13,6 +13,8 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@vjpr/bootstrap-loader": "^2.0.0-beta.19-vjpr.2",
+    "@vjpr/style-loader": "0.13.1-vjpr.1",
     "@vjpr/webpack-configurator": "0.3.1-vjpr.1",
     "assets-webpack-plugin": "3.4.0",
     "autoprefixer": "6.3.6",
@@ -33,6 +35,7 @@
     "dedent-js": "1.0.1",
     "empty": "0.10.1",
     "exit": "0.1.2",
+    "extract-text-webpack-plugin": "2.0.0-rc.3",
     "file-loader": "0.9.0",
     "findup-sync": "^0.4.3",
     "fs-extra": "0.30.0",
@@ -59,13 +62,11 @@
     "sass-resources-loader": "^1.2.0",
     "source-map-loader": "0.1.5",
     "string": "3.3.1",
-    "@vjpr/style-loader": "0.13.1-vjpr.1",
     "url-loader": "0.5.7",
     "webpack": "^2.2.1",
     "webpack-dev-server": "1.14.1",
     "yargs": "4.7.1",
-    "zog": "0.1.2",
-    "extract-text-webpack-plugin": "2.0.0-rc.3"
+    "zog": "0.1.2"
   },
   "devDependencies": {
     "babel-preset-live": "0.0.6",
@@ -82,9 +83,8 @@
       "lint",
       "test"
     ],
-    "depcheck": {
-    }
+    "depcheck": {}
   },
   "readme": "ERROR: No README data found!",
-  "_id": "webpackerator@0.2.0-beta.4"
+  "_id": "webpackerator@0.2.0-beta.5"
 }
