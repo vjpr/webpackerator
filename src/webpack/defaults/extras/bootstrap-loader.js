@@ -3,10 +3,8 @@ import path, {join} from 'path'
 
 // For the `bootstrap-loader` module.
 
-//const bootstrapLoaderName = 'bootstrap-loader'
-const bootstrapLoaderName = 'bootstrap-loader/lib/bootstrap.loader'
-// TODO(vjpr): We hotfixed this - why?
-//const bootstrapLoaderName = '@vjpr/bootstrap-loader'
+const boostrapLoaderModuleName = '@vjpr/bootstrap-loader'
+const bootstrapLoaderName = `${boostrapLoaderModuleName}/lib/bootstrap.loader`
 
 const configFilePath = join(process.cwd(), '.bootstraprc')
 
@@ -71,8 +69,8 @@ export default function(webpack, opts, config) {
   //config.merge({entry: {main: [(opts.notProd ? 'bootstrap-loader' : 'bootstrap-loader/extractStyles')]}})
 
   addVendor(config, [(opts.notProd
-    ? `${bootstrapLoaderName}?configFilePath=${configFilePath}!bootstrap-loader/no-op.js`
-    : `${bootstrapLoaderName}/extractStyles?configFilePath=${configFilePath}!bootstrap-loader/no-op.js`)])
+    ? `${bootstrapLoaderName}?configFilePath=${configFilePath}!${boostrapLoaderModuleName}/no-op.js`
+    : `${bootstrapLoaderName}/extractStyles?configFilePath=${configFilePath}!${boostrapLoaderModuleName}/no-op.js`)])
 
 }
 
