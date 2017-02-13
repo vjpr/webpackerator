@@ -68,9 +68,20 @@ export default function(webpack, opts, config) {
   // Instead of the following we include the file using a require statement in code.
   //config.merge({entry: {main: [(opts.notProd ? 'bootstrap-loader' : 'bootstrap-loader/extractStyles')]}})
 
+  function getBootstrapPath() {
+    const pkgDir = require('pkg-dir')
+    const resolveFrom = require('resolve-from')
+    const webpackeratorPath = pkgDir.sync(require.resolve('webpackerator'))
+    const bootstrapPath = pkgDir.sync(
+      resolveFrom(webpackeratorPath, 'bootstrap-sass'))
+    return bootstrapPath
+  }
+
+  const bootstrapPath = getBootstrapPath()
+
   addVendor(config, [(opts.notProd
-    ? `${bootstrapLoaderName}?configFilePath=${configFilePath}!${boostrapLoaderModuleName}/no-op.js`
-    : `${bootstrapLoaderName}/extractStyles?configFilePath=${configFilePath}!${boostrapLoaderModuleName}/no-op.js`)])
+    ? `${bootstrapLoaderName}?configFilePath=${configFilePath}&bootstrapPath=${bootstrapPath}!${boostrapLoaderModuleName}/no-op.js`
+    : `${bootstrapLoaderName}/extractStyles?configFilePath=${configFilePath}&bootstrapPath=${bootstrapPath}!${boostrapLoaderModuleName}/no-op.js`)])
 
 }
 
