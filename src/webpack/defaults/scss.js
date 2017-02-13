@@ -1,6 +1,8 @@
 const _ = require('lodash')
 const {parseStyleLoaders} = require('./style')
 const autoprefixer = require('autoprefixer')
+import path, {join} from 'path'
+const styleLoaderName = require('./style-loader-name')
 
 const getOpts = (opts) =>
   _.defaultsDeep({}, opts, {
@@ -24,8 +26,21 @@ export default function(webpack, opts, config) {
     importLoaders: 3,
   }
 
+  ////////////////////////////////////////////////////////////////////////////////
+
+  // TODO(vjpr): Should be in bootstrap-loader.
+  const sassResources = [
+      join(process.cwd(), './modules/bootstrap-config/pre-customizations.scss'),
+      require.resolve('bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss'),
+      //'node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins',
+      join(process.cwd(), './modules/bootstrap-config/variables.scss'), // TODO(vjpr): Remove this.
+      join(process.cwd(), './modules/bootstrap-config/customizations.scss'),
+    ]
+
+  ////////////////////////////////////////////////////////////////////////////////
+
   let queries = [
-    ['style', {}],
+    [styleLoaderName, {}],
     //
     // TODO(vjpr)
     // Note: For prerendering with extract-text-webpack-plugin you should use
@@ -33,14 +48,15 @@ export default function(webpack, opts, config) {
     // bundle. It doesn't embed CSS but only exports the identifier mappings.
     //
     // TODO(vjpr): importLoaders might have to be adjusted if we remove loaders.
-    ['css', _.merge({}, cssOpts, {importLoaders: 3})],
+    ['css-loader', _.merge({}, cssOpts, {importLoaders: 3})],
     ['postcss-loader', {}],
-    ['sass', {}],
-    ['sass-resources', {}],
+    ['sass-loader', {}],
+    // TODO(vjpr): Not sure...
+    ['sass-resources-loader', {resources: sassResources}],
   ]
 
   if (opts.useSassResources) {
-    queries = changeLoaderOpts(queries, 'sass-resources', null)
+    queries = changeLoaderOpts(queries, 'sass-resources-loader', null)
   }
 
   if (opts.usePostCss) {
@@ -59,15 +75,15 @@ export default function(webpack, opts, config) {
 
   config.loader('module.scss', {
     test: /\.module\.scss$/,
-    exclude: null,
-    queries: changeLoaderOpts(queries, 'css', [null, {module: true}]),
+    exclude: undefined,
+    queries: changeLoaderOpts(queries, 'css-loader', [null, {module: true}]),
   }, parseStyleLoaders({useExtractTextPlugin: opts.useExtractTextPlugin}))
 
   // https://github.com/webpack/style-loader#reference-counted-api
   config.loader('useable.scss', {
     test: /\.useable\.scss$/,
-    exclude: null,
-    queries: changeLoaderOpts(queries, 'style', ['style/useable', {}]),
+    exclude: undefined,
+    queries: changeLoaderOpts(queries, styleLoaderName, [`${styleLoaderName}/useable`, {}]),
   }, parseStyleLoaders({useExtractTextPlugin: opts.useExtractTextPlugin}))
 
 

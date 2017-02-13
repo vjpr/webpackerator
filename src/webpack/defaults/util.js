@@ -9,8 +9,15 @@ export function addVendor(config, obj) {
     try {
       // NOTE: When using `live-perf` to dedupe, this can cause `require.resolve` to resolve differently than when `gulp webpack:build` was called.
       global.__live_perf_dedupe_disable__ = true
-      const out = require.resolve(p)
+
+      // TODO(vjpr): Remove query string.
+      const [a, b] = p.split('?')
+
+      let out = require.resolve(a)
       global.__live_perf_dedupe_disable__ = false
+
+      if (b) out = out + '?' + b
+
       return out
     } catch (e) {
       throw new Error(`Could not resolve module '${p}' from context '${module.filename}'`)

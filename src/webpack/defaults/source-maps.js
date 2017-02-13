@@ -32,14 +32,29 @@ module.exports = function(webpack, opts, config) {
   // NOTE: If we try to run this without source maps enabled we get an error from `source-map` module.
   if (devtool) {
 
-    config.preLoader('source-map', {
-      test: /\.js$/,
-      // TODO(vjpr): This may affect performance so only use for source files
-      //   that have source maps we care about. E.g. `live-*`.
-      include: [/node_modules/],
-      //include: (p) => {},
-      loader: 'source-map-loader',
-    })
+    // TODO(vjpr): This was not working - I think it overrides existing loaders.
+
+    // TODO(vjpr): Merge arrays properly.
+    //config.merge({
+    //  module: {
+    //    rules: [{
+    //      test: /\.js$/,
+    //      enforce: 'pre',
+    //      include: [/node_modules/],
+    //      loader: 'source-map-loader',
+    //    }]
+    //  }
+    //})
+
+    //config.loader('source-map', {
+    //  test: /\.js$/,
+    //  enforce: 'pre',
+    //  // TODO(vjpr): This may affect performance so only use for source files
+    //  //   that have source maps we care about. E.g. `live-*`.
+    //  include: [/node_modules/],
+    //  //include: (p) => {},
+    //  loader: 'source-map-loader',
+    //})
 
   }
 

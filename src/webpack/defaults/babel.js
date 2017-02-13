@@ -31,10 +31,11 @@ module.exports = (webpack, opts, config) => {
 
     loaders: [
       opts.hotReload ? 'react-hot' : null,
-      'babel?' + getBabelQueryString(opts),
+      'babel-loader?' + getBabelQueryString(opts),
     ].filter(Boolean),
 
-    exclude: /(bower_components|node_modules)/,
+    //exclude: /(bower_components|node_modules)/,
+    exclude: 'node_modules',
 
     // We must manually include when using `npm link`ed packages,
     // otherwise it will attempt to transpile these linked packages.

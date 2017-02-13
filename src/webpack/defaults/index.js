@@ -15,7 +15,6 @@ module.exports = function(webpack, opts, config) {
   require('./scss')(webpack, opts, config)
   require('./less')(webpack, opts, config)
 
-  require('./json')(webpack, opts, config)
   require('./images')(webpack, opts, config)
   require('./globals')(webpack, opts, config)
   require('./progress-bar')(webpack, opts, config)

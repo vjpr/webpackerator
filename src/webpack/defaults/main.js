@@ -28,7 +28,7 @@ module.exports = function(webpack, opts, config) {
     cache: opts.notProd,
     watch: opts.notProd,
     context: cwd(),
-    debug: opts.notProd,
+    //debug: opts.notProd, // Removed in v2.
     // TODO(vjpr): Make this a flag.
     profile: true // DEBUG
   })
@@ -176,29 +176,45 @@ module.exports = function(webpack, opts, config) {
       // If a module misuses browser key this causes problems:
       //   E.g. [projDir]/node_modules/webpack-dev-server/node_modules/serve-index/node_modules/batch
       //
-      packageAlias: 'browser',
-      // Allows us to require without extensions.
-      // TODO(vjpr): Does it? Or does it make us scan unneccessary files.
-      extensions: ['', '.js'],
-      // NOTE: Shared with node.js. using `app-module-path` module.
-      root: opts.roots.map(v => cwd(v)),
-      modulesDirectories: ['node_modules'],
+      aliasFields: ['browser'],
+
+      extensions: ['.js'],
+
+      // TODO(vjpr): Does it make us scan unneccessary files.
+      enforceExtension: false,
+
       alias: Object.assign({}, opts.resolveAlias),
 
-      fallback: [
+      //////////////////////////////////////////////////////////////////////////
+      // Webpack@^1
+      //modulesDirectories: ['node_modules'],
+      //// NOTE: Shared with node.js. using `app-module-path` module.
+      //root: opts.roots.map(v => cwd(v)),
+      //fallback: [
+      //  webpackeratorLocalNodeModulesDir,
+      //  webpackeratorPnpmNodeModulesDir,
+      //],
+      //////////////////////////////////////////////////////////////////////////
+
+
+      modules: [
         webpackeratorLocalNodeModulesDir,
+        // TODO(vjpr): This might cause issues as it will sometimes point to a wierd place if npm linked.
         webpackeratorPnpmNodeModulesDir,
-      ],
+        ...opts.roots.map(v => cwd(v)),
+        'node_modules',
+      ].filter(Boolean),
 
     },
 
     // TODO(vjpr): Split the loaders out of webpackerator as plugins so
     //   webpackerator doesn't have to be so big.
     resolveLoader: {
-      fallback: [
+      modules: [
         webpackeratorLocalNodeModulesDir,
         webpackeratorPnpmNodeModulesDir,
-      ],
+        'node_modules',
+      ].filter(Boolean),
     }
 
   })
@@ -212,7 +228,8 @@ module.exports = function(webpack, opts, config) {
       fs: 'empty',
       // Because of problems with `debug` module.
       net: 'empty',
-      global: 'window',
+      //global: 'window',
+      global: true, // Changed for v2.
       // For webpack-dev-server vendor bundle errors.
       tls: 'empty',
       child_process: 'empty',

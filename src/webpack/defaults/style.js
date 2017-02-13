@@ -1,6 +1,7 @@
 const _ = require('lodash')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer')
+const styleLoaderName = require('./style-loader-name')
 
 function getOpts(opts) {
   return _.defaults({}, opts, {
@@ -15,8 +16,9 @@ export default function(webpack, opts, config) {
 
   opts = getOpts(opts)
 
-  extractTextPlugin = new ExtractTextPlugin('[name].bundle.css', {
-    id: 1,
+  extractTextPlugin = new ExtractTextPlugin({
+    filename: '[name].bundle.css',
+    //id: 1, // Deprecated in v2.
     allChunks: true,
     //allChunks: false,
     //disable: !DEV,
@@ -53,9 +55,15 @@ export function parseStyleLoaders(opts) {
   })
 
   return (config) => {
-    if (opts.useExtractTextPlugin) _(config.queries).remove(([name]) => name === 'style').value()
-    const loaders = makeLoadersQueryString(config.queries).join('!')
-    config.loader = opts.useExtractTextPlugin ? opts.extractTextPlugin.extract('style', loaders) : loaders
+    if (opts.useExtractTextPlugin)
+      _(config.queries).remove(([name]) => name === styleLoaderName).value()
+    const loaders = makeLoadersQueryString(config.queries)
+    config.loader = opts.useExtractTextPlugin
+      ? opts.extractTextPlugin.extract({
+        fallback: styleLoaderName,
+        use: loaders,
+      })
+      : loaders
     return config
   }
 

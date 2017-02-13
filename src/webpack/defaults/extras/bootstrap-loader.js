@@ -3,7 +3,12 @@ import path, {join} from 'path'
 
 // For the `bootstrap-loader` module.
 
-const bootstrapLoaderName = '@vjpr/bootstrap-loader'
+//const bootstrapLoaderName = 'bootstrap-loader'
+const bootstrapLoaderName = 'bootstrap-loader/lib/bootstrap.loader'
+// TODO(vjpr): We hotfixed this - why?
+//const bootstrapLoaderName = '@vjpr/bootstrap-loader'
+
+const configFilePath = join(process.cwd(), '.bootstraprc')
 
 export default function(webpack, opts, config) {
 
@@ -18,25 +23,26 @@ export default function(webpack, opts, config) {
 
   config.loader('bootstrap-webpack:import-jquery', {
     test: boostrapJavascriptRegex,
-    loader: 'imports?jQuery=jquery',
+    loader: 'imports-loader?jQuery=jquery',
   })
 
+  // NOTE: Disabled in webpack@2.
   // TODO(vjpr): Should sass-resource-loader use webpack resolve settings?
-  config.merge({
-    // TODO(vjpr): These are bad dependency. Revisit.
-    //
-    // From https://github.com/shakacode/sass-resources-loader:
-    //  - Do not include anything that will be actually rendered in CSS, because it will be added to every imported SASS file.
-    //  - Do not use SASS @import inside resources files. Add imported files directly in sassResources array in webpack config instead.
-    //
-    sassResources: [
-      join(process.cwd(), './modules/bootstrap-config/pre-customizations.scss'),
-      require.resolve('bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss'),
-      //'node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins',
-      join(process.cwd(), './modules/bootstrap-config/variables.scss'), // TODO(vjpr): Remove this.
-      join(process.cwd(), './modules/bootstrap-config/customizations.scss'),
-    ],
-  })
+  //config.merge({
+  //  // TODO(vjpr): These are bad dependency. Revisit.
+  //  //
+  //  // From https://github.com/shakacode/sass-resources-loader:
+  //  //  - Do not include anything that will be actually rendered in CSS, because it will be added to every imported SASS file.
+  //  //  - Do not use SASS @import inside resources files. Add imported files directly in sassResources array in webpack config instead.
+  //  //
+  //  sassResources: [
+  //    join(process.cwd(), './modules/bootstrap-config/pre-customizations.scss'),
+  //    require.resolve('bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss'),
+  //    //'node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins',
+  //    join(process.cwd(), './modules/bootstrap-config/variables.scss'), // TODO(vjpr): Remove this.
+  //    join(process.cwd(), './modules/bootstrap-config/customizations.scss'),
+  //  ],
+  //})
 
   addVendor(config, [
     'bootstrap-sass',
@@ -64,15 +70,19 @@ export default function(webpack, opts, config) {
   // Instead of the following we include the file using a require statement in code.
   //config.merge({entry: {main: [(opts.notProd ? 'bootstrap-loader' : 'bootstrap-loader/extractStyles')]}})
 
-  addVendor(config, [(opts.notProd ? bootstrapLoaderName : `${bootstrapLoaderName}/extractStyles`)])
+  addVendor(config, [(opts.notProd
+    ? `${bootstrapLoaderName}?configFilePath=${configFilePath}!bootstrap-loader/no-op.js`
+    : `${bootstrapLoaderName}/extractStyles?configFilePath=${configFilePath}!bootstrap-loader/no-op.js`)])
 
 }
 
 export function finalize(webpack, opts, config) {
 
+  // TODO(vjpr): addVendor runs require.resolve so I'm not sure this will work.
+
   // Move bootstrap-loader to the top.
   config.merge(current => {
-    const el = `${bootstrapLoaderName}/extractStyles`
+    const el = `${bootstrapLoaderName}/extractStyles?configFilePath=${configFilePath}`
     if (current.entry.vendor.some(item => item === el)) {
       current.entry.vendor = current.entry.vendor.filter(item => item !== el)
       current.entry.vendor.unshift(el)

@@ -1,5 +1,6 @@
 const _ = require('lodash')
 const {parseStyleLoaders} = require('./style')
+const styleLoaderName = require('./style-loader-name')
 
 const getOpts = (opts) =>
   _.defaults({}, opts, {
@@ -21,9 +22,9 @@ export default function(webpack, opts, config) {
   config.loader('less', {
     test: /\.less$/,
     queries: [
-      ['style', {}],
-      ['css', cssOpts],
-      ['less', {}]
+      [styleLoaderName, {}],
+      ['css-loader', cssOpts],
+      ['less-loader', {}]
     ]
   }, parseStyleLoaders({useExtractTextPlugin: opts.useExtractTextPlugin}))
 
