@@ -18,7 +18,7 @@ module.exports = function(webpack, opts, config) {
 
   // Source maps for user code.
 
-  const devtool = opts.notProd ? opts.sourceMap : null
+  const devtool = opts.notProd ? opts.sourceMap : false
 
   config.merge({
     devtool,

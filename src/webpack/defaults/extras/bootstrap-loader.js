@@ -78,10 +78,12 @@ export default function(webpack, opts, config) {
   }
 
   const bootstrapPath = getBootstrapPath()
+  console.log({bootstrapPath})
 
+  // TODO(vjpr): Sync this!
   addVendor(config, [(opts.notProd
     ? `${bootstrapLoaderName}?configFilePath=${configFilePath}&bootstrapPath=${bootstrapPath}!${boostrapLoaderModuleName}/no-op.js`
-    : `${bootstrapLoaderName}/extractStyles?configFilePath=${configFilePath}&bootstrapPath=${bootstrapPath}!${boostrapLoaderModuleName}/no-op.js`)])
+    : `${bootstrapLoaderName}?extractStyles&configFilePath=${configFilePath}&bootstrapPath=${bootstrapPath}!${boostrapLoaderModuleName}/no-op.js`)])
 
 }
 
@@ -91,7 +93,7 @@ export function finalize(webpack, opts, config) {
 
   // Move bootstrap-loader to the top.
   config.merge(current => {
-    const el = `${bootstrapLoaderName}/extractStyles?configFilePath=${configFilePath}`
+    const el = `${bootstrapLoaderName}?extractStyles&configFilePath=${configFilePath}`
     if (current.entry.vendor.some(item => item === el)) {
       current.entry.vendor = current.entry.vendor.filter(item => item !== el)
       current.entry.vendor.unshift(el)

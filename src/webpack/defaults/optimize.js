@@ -2,7 +2,10 @@ export default function(webpack, opts, config) {
 
   // TODO(vjpr): Use proper config var.
   if (opts.minifyJs) {
-    config.plugin('DedupePlugin', webpack.optimize.DedupePlugin)
+
+    // Removed in webpack@2.
+    //config.plugin('DedupePlugin', webpack.optimize.DedupePlugin)
+
     // TODO(vjpr): Review issue with `__.type.global()` bug.
     config.plugin('UglifyJsPlugin', webpack.optimize.UglifyJsPlugin, [{
       sourcemap: true,
