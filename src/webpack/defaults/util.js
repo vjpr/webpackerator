@@ -20,6 +20,7 @@ export function addVendor(config, obj) {
 
       return out
     } catch (e) {
+      // TODO(vjpr): Maybe instead of throwing an error immediately, count them up and show all at once.
       throw new Error(`Could not resolve module '${p}' from context '${module.filename}'`)
     }
   })

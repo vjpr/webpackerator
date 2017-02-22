@@ -44,6 +44,7 @@ module.exports = (webpack, opts, config) => {
 
   })
 
+  // TODO(vjpr): This means there is a peer dependency on it?
   addVendor(config, 'babel-preset-react-hmre')
 
   addVendor(config, [
