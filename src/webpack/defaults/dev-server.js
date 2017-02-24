@@ -61,6 +61,9 @@ module.exports = function(webpack, opts, config) {
       watchOptions: {
         //aggregateTimeout: 300,
         poll: undefined, // Use native watching methods.
+        // Don't watch node_modules when we are using vendor dll.
+        // TODO(vjpr): Use something better than the environment variable.
+        ignored: process.env.CHUNK ? undefined : /node_modules/
       },
 
       // E.g.
