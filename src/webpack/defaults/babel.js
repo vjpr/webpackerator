@@ -2,6 +2,7 @@ const _ = require('lodash')
 const qs = require('qs')
 const cwd = require('cwd')
 const {addVendor} = require('./util')
+import path, {join} from 'path'
 
 function getOpts(opts) {
   return _.defaults({}, opts, {
@@ -35,7 +36,8 @@ module.exports = (webpack, opts, config) => {
     ].filter(Boolean),
 
     //exclude: /(bower_components|node_modules)/,
-    exclude: 'node_modules',
+    // NOTE: Must be absolute path.
+    exclude: join(process.cwd(), 'node_modules'),
 
     // We must manually include when using `npm link`ed packages,
     // otherwise it will attempt to transpile these linked packages.
