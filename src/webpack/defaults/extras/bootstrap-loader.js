@@ -71,7 +71,11 @@ export default function(webpack, opts, config) {
   function getBootstrapPath() {
     const pkgDir = require('pkg-dir')
     const resolveFrom = require('resolve-from')
-    const webpackeratorPath = pkgDir.sync(require.resolve('webpackerator'))
+
+    const webpackeratorPath = pkgDir.sync(resolveFrom(process.cwd(), 'webpackerator'))
+    // NOTE: This doesn't work when symlinked.
+    //const webpackeratorPath = pkgDir.sync(require.resolve('webpackerator'))
+
     const bootstrapPath = pkgDir.sync(
       resolveFrom(webpackeratorPath, 'bootstrap-sass'))
     return bootstrapPath

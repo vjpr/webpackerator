@@ -1,4 +1,6 @@
 const _ = require('lodash')
+const safeResolve = require('safe-resolve')
+const resolveFrom = require('resolve-from')
 
 export function addVendor(config, obj) {
   if (!Array.isArray(obj)) obj = [obj]
@@ -13,7 +15,15 @@ export function addVendor(config, obj) {
       // TODO(vjpr): Remove query string.
       const [a, b] = p.split('?')
 
-      let out = require.resolve(a)
+      let out = safeResolve(a)
+
+      if (!out) {
+        // TODO(vjpr): process.cwd() should be replaced with resolve.fallback.
+        out = resolveFrom(process.cwd(), a)
+      }
+
+      if (!out) throw new Error()
+
       global.__live_perf_dedupe_disable__ = false
 
       if (b) out = out + '?' + b

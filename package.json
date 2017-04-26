@@ -59,12 +59,13 @@
     "qs": "6.2.0",
     "resolve-from": "^2.0.0",
     "resolve-url-loader": "^1.6.1",
+    "safe-resolve": "^1.0.0",
     "sass-loader": "^5.0.1",
     "sass-resources-loader": "^1.2.0",
     "source-map-loader": "0.1.5",
     "string": "3.3.1",
     "url-loader": "0.5.7",
-    "webpack": "^2.2.1",
+    "webpack": "^2.4.1",
     "webpack-dev-server": "1.14.1",
     "yargs": "4.7.1",
     "zog": "0.1.2"
@@ -75,8 +76,8 @@
     "gulp4": "^4.0.1"
   },
   "peerDependencies": {
-    "redux-devtools": "*",
-    "babel-preset-react-hmre": "*"
+    "babel-preset-react-hmre": "*",
+    "redux-devtools": "*"
   },
   "pre-push": [],
   "shipmate": {
