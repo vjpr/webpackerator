@@ -15,14 +15,24 @@ export function addVendor(config, obj) {
       // TODO(vjpr): Remove query string.
       const [a, b] = p.split('?')
 
-      let out = safeResolve(a)
+      let out
+
+      // NOTE: This was not working on Ubuntu 16.04 in a capistrano-like deploy. Strange.
+      //out = safeResolve(a)
+
+      try {
+        out = require.resolve(a)
+      } catch (err) {
+        // TODO(vjpr): Check for module not found error.
+        return null
+      }
 
       if (!out) {
         // TODO(vjpr): process.cwd() should be replaced with resolve.fallback.
         out = resolveFrom(process.cwd(), a)
       }
 
-      if (!out) throw new Error()
+      if (!out) throw new Error('Cannot resolve module.')
 
       global.__live_perf_dedupe_disable__ = false
 
@@ -30,6 +40,7 @@ export function addVendor(config, obj) {
 
       return out
     } catch (e) {
+      console.log({e})
       // TODO(vjpr): Maybe instead of throwing an error immediately, count them up and show all at once.
       throw new Error(`Could not resolve module '${p}' from context '${module.filename}'`)
     }
