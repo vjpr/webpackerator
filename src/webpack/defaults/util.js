@@ -18,6 +18,7 @@ export function addVendor(config, obj) {
       let out
 
       // NOTE: This was not working on Ubuntu 16.04 in a capistrano-like deploy. Strange.
+      //   Probably to do with pnpm's dir structure. Maybe use resolveFrom(__dirname).
       //out = safeResolve(a)
 
       try {
