@@ -38,7 +38,6 @@
     "file-loader": "0.9.0",
     "findup-sync": "^0.4.3",
     "fs-extra": "0.30.0",
-    "fsevents": "^1.1.1",
     "gulp-util": "3.0.7",
     "imports-loader": "0.6.5",
     "jquery": "^2.2.4",
@@ -69,6 +68,9 @@
     "webpack-dev-server": "1.14.1",
     "yargs": "4.7.1",
     "zog": "0.1.2"
+  },
+  "optionalDependencies": {
+    "fsevents": "^1.1.1"
   },
   "devDependencies": {
     "babel-preset-live": "0.0.6",
