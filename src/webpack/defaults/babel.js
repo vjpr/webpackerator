@@ -30,6 +30,9 @@ module.exports = (webpack, opts, config) => {
 
     test: [/\.js$/, /\.browser\.js$/],
 
+    // TODO(vjpr): Not sure if we should add `js.flow`.
+    //test: [/\.js$/, /\.browser\.js$/, /\.js\.flow$/],
+
     loaders: [
       opts.hotReload ? 'react-hot' : null,
       'babel-loader?' + getBabelQueryString(opts),
