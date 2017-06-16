@@ -41,7 +41,6 @@ export function addVendor(config, obj) {
       if (!out) {
         // TODO(vjpr): process.cwd() should be replaced with resolve.fallback.
         out = resolveFrom(process.cwd(), a)
-        console.log({out})
       }
 
       if (!out) throw new Error('Cannot resolve module.')

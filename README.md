@@ -37,3 +37,7 @@ require('webpackerator/defaults/gulp')(gulp)
 
 - `babel-core` is required as a `devDep` because it is a peer on `babel-loader`.
     - Should also be a peer dep.
+
+- `chokidar` is pegged to dep while waiting for vjprs commit to go through.
+
+Might have to run `pnpm rebuild fsevents --build-from-source` to get fsevents to not show `failed to self-register` message.

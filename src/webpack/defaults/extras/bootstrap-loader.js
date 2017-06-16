@@ -1,12 +1,13 @@
 const {addVendor} = require('../util')
 import path, {join} from 'path'
+import {getConfigPath} from 'modules/root-config'
 
 // For the `bootstrap-loader` module.
 
 const boostrapLoaderModuleName = '@vjpr/bootstrap-loader'
 const bootstrapLoaderName = `${boostrapLoaderModuleName}/lib/bootstrap.loader`
 
-const configFilePath = join(process.cwd(), '.bootstraprc')
+let configFilePath = getConfigPath('bootstraprc', '')
 
 export default function(webpack, opts, config) {
 

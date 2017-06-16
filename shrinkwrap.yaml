@@ -10,9 +10,8 @@ dependencies:
   babel-runtime: 6.23.0
   bootstrap-sass: 3.3.6
   chalk: 1.1.3
-  chokidar: 1.7.0
+  chokidar: github.com/paulmillr/chokidar/3d917818c957088b62c160e426c1a99787ae6319
   component-emitter: 1.2.1
-  configurize: 0.0.8
   core-js: 2.4.0
   css-loader: 0.26.4
   cwd: 0.10.0
@@ -51,7 +50,7 @@ dependencies:
   string: 3.3.1
   url-loader: 0.5.7
   webpack: 2.6.1
-  webpack-dev-server: 1.14.1
+  webpack-dev-server: 2.4.5
   yargs: 4.7.1
   zog: 0.1.2
 devDependencies:
@@ -150,6 +149,9 @@ packages:
   /ansi-escapes/1.4.0:
     resolution:
       integrity: sha1-06ioOzGapneTZisT52HHkRQiMG4=
+  /ansi-html/0.0.7:
+    resolution:
+      integrity: sha1-gTWEAhliqenm/QOflA0S9WynhZ4=
   /ansi-regex/0.2.1:
     resolution:
       integrity: sha1-DY6UaWej2BQ/k+JOKYUl/BsiNfk=
@@ -332,7 +334,6 @@ packages:
     resolution:
       integrity: sha1-rqdNXmHB+JlhO/ZL2mbUx48v0X0=
   /async/1.5.2:
-    dev: true
     resolution:
       integrity: sha1-7GphrlZIDAw8skHJVhjiCJL5Zyo=
   /async/2.4.1:
@@ -1115,12 +1116,6 @@ packages:
       regenerator-runtime: 0.10.5
     resolution:
       integrity: sha1-CpSJ8UTecO+zzkMArM2zKeL8VDs=
-  /babel-runtime/6.9.2:
-    dependencies:
-      core-js: 2.4.1
-      regenerator-runtime: 0.9.6
-    resolution:
-      integrity: sha1-1/45G8LMKbgIfB2bOYeJEun8/Vk=
   /babel-template/6.25.0:
     dependencies:
       babel-runtime: 6.23.0
@@ -1672,18 +1667,9 @@ packages:
     dev: true
     resolution:
       integrity: sha1-w1eB0FAdJowlxUuLF/YkDopPsCE=
-  /configurize/0.0.8:
-    dependencies:
-      babel-runtime: 6.9.2
-      cwd: 0.10.0
-      eventemitter3: 1.2.0
-      lodash: 4.13.1
-      prettyjson: 1.1.3
+  /connect-history-api-fallback/1.3.0:
     resolution:
-      integrity: sha1-Za1eaGu0dU4nNVAN/03VbZ2xYq0=
-  /connect-history-api-fallback/1.1.0:
-    resolution:
-      integrity: sha1-Wm3ugtmmSMspEx0/ndQA/6RZN0I=
+      integrity: sha1-5R0X+PDvDbkKZP20feMFFVbp8Wk=
   /console-browserify/1.1.0:
     dependencies:
       date-now: 0.1.4
@@ -3190,6 +3176,9 @@ packages:
       glogg: 1.0.0
     resolution:
       integrity: sha1-4oxNRdBey77YGDY86PnFkmIp/+U=
+  /handle-thing/1.2.5:
+    resolution:
+      integrity: sha1-/Xqtcmvxpf0W38KbL3pmAdJxOcQ=
   /handlebars/4.0.10:
     dependencies:
       async: 1.5.2
@@ -3292,9 +3281,23 @@ packages:
   /hosted-git-info/2.4.2:
     resolution:
       integrity: sha1-AHa59GonBQbduq6lZJaJdGBhKmc=
+  /hpack.js/2.1.6:
+    dependencies:
+      inherits: 2.0.3
+      obuf: 1.1.1
+      readable-stream: 2.2.11
+      wbuf: 1.7.2
+    resolution:
+      integrity: sha1-h3dMCUnlE/QuhFdbPEVoH63ioLI=
   /html-comment-regex/1.1.1:
     resolution:
       integrity: sha1-ZouTd26q5V696POtRkswekljYl4=
+  /html-entities/1.2.1:
+    resolution:
+      integrity: sha1-DfKTUfByEWNRXfueVUPl9u7VFi8=
+  /http-deceiver/1.2.7:
+    resolution:
+      integrity: sha1-+nFolEq5pRnTN8sL7HKE3D5yPYc=
   /http-errors/1.6.1:
     dependencies:
       depd: 1.1.0
@@ -3303,6 +3306,14 @@ packages:
       statuses: 1.3.1
     resolution:
       integrity: sha1-X4uO2YrKVFZWv1cplzh/kEpyIlc=
+  /http-proxy-middleware/0.17.4:
+    dependencies:
+      http-proxy: 1.16.2
+      is-glob: 3.1.0
+      lodash: 4.17.4
+      micromatch: 2.3.11
+    resolution:
+      integrity: sha1-ZC6ISIUdZvCdTxJJEoRtuutBuDM=
   /http-proxy/1.16.2:
     dependencies:
       eventemitter3: 1.2.0
@@ -3457,7 +3468,6 @@ packages:
     resolution:
       integrity: sha1-rEaBd8SUNAWgkvyPKXYMb/xiBsA=
   /is-extglob/2.1.1:
-    dev: true
     resolution:
       integrity: sha1-qIwCU1eR8C7TfHahueqXc8gz+MI=
   /is-finite/1.0.2:
@@ -3481,7 +3491,6 @@ packages:
   /is-glob/3.1.0:
     dependencies:
       is-extglob: 2.1.1
-    dev: true
     resolution:
       integrity: sha1-e6WuJCF4BKxwcHuWkiVnSGzD6Eo=
   /is-my-json-valid/2.16.0:
@@ -4319,6 +4328,7 @@ packages:
     resolution:
       integrity: sha1-UWbihkV/AzBgZL5Ul+jbsMPTIIM=
   /minimist/0.0.10:
+    dev: true
     resolution:
       integrity: sha1-3j+YVD2/lggr5IrRoMfNqDYwHc8=
   /minimist/0.0.8:
@@ -4646,6 +4656,9 @@ packages:
     dev: true
     resolution:
       integrity: sha1-0YDoT3LSGDSK9FNStVFlJGuVBG0=
+  /obuf/1.1.1:
+    resolution:
+      integrity: sha1-EEEktsYCxnlogaBCVB0220OlJk4=
   /on-finished/2.3.0:
     dependencies:
       ee-first: 1.1.1
@@ -4672,10 +4685,17 @@ packages:
     dev: true
     resolution:
       integrity: sha1-OHW0sO96UsFW8NtB1GCduw+Us4c=
+  /opn/4.0.2:
+    dependencies:
+      object-assign: 4.1.1
+      pinkie-promise: 2.0.1
+    resolution:
+      integrity: sha1-erwi5kTf9jsKltWrfyeQwPAavJU=
   /optimist/0.6.1:
     dependencies:
       minimist: 0.0.10
       wordwrap: 0.0.3
+    dev: true
     resolution:
       integrity: sha1-2j6nRob6IaGaERwybpDrFaAZZoY=
   /optionator/0.8.2:
@@ -4874,6 +4894,13 @@ packages:
   /pluralize/1.2.1:
     resolution:
       integrity: sha1-0aIUg/0iu0HlihL6NCGCMUCJfEU=
+  /portfinder/1.0.13:
+    dependencies:
+      async: 1.5.2
+      debug: 2.6.8
+      mkdirp: 0.5.1
+    resolution:
+      integrity: sha1-uzLs2HwnEErm7kS1o8y/Drsa7ek=
   /postcss-calc/5.3.1:
     dependencies:
       postcss: 5.2.17
@@ -5346,9 +5373,6 @@ packages:
   /regenerator-runtime/0.10.5:
     resolution:
       integrity: sha1-M2w+/BIgrc7dosn6tntaeVWjNlg=
-  /regenerator-runtime/0.9.6:
-    resolution:
-      integrity: sha1-0z65XQ0gAaS+OWWXB8UbDLcc4Ck=
   /regenerator-transform/0.9.11:
     dependencies:
       babel-runtime: 6.23.0
@@ -5617,6 +5641,9 @@ packages:
       source-map: 0.4.4
     resolution:
       integrity: sha1-jrBtualyMzOCTT9VMGQRSYR85dE=
+  /select-hose/2.0.0:
+    resolution:
+      integrity: sha1-Yl2GWPhlr0Psliv8N2o3NZpJlMo=
   /semver-diff/2.1.0:
     dependencies:
       semver: 5.3.0
@@ -5767,7 +5794,7 @@ packages:
       hoek: 2.16.3
     resolution:
       integrity: sha1-ZUEYTMkK7qbG57NeJlkIJEPGYZg=
-  /sockjs-client/1.1.4:
+  /sockjs-client/1.1.2:
     dependencies:
       debug: 2.6.8
       eventsource: 0.1.6
@@ -5776,7 +5803,7 @@ packages:
       json3: 3.3.2
       url-parse: 1.1.9
     resolution:
-      integrity: sha1-W6vjhrd15M8U51IJEUUmVAFsixI=
+      integrity: sha1-8CEqhVDkyUaMjM6u79LjSTwDOtU=
   /sockjs/0.3.18:
     dependencies:
       faye-websocket: 0.10.0
@@ -5863,6 +5890,27 @@ packages:
   /spdx-license-ids/1.2.2:
     resolution:
       integrity: sha1-yd96NCRZSt5r0RkA1ZZpbcBrrFc=
+  /spdy-transport/2.0.20:
+    dependencies:
+      debug: 2.6.8
+      detect-node: 2.0.3
+      hpack.js: 2.1.6
+      obuf: 1.1.1
+      readable-stream: 2.2.11
+      safe-buffer: 5.1.0
+      wbuf: 1.7.2
+    resolution:
+      integrity: sha1-c15yBUxIayNU/onnAiVgBKOazk0=
+  /spdy/3.4.7:
+    dependencies:
+      debug: 2.6.8
+      handle-thing: 1.2.5
+      http-deceiver: 1.2.7
+      safe-buffer: 5.1.0
+      select-hose: 2.0.0
+      spdy-transport: 2.0.20
+    resolution:
+      integrity: sha1-Qv9B7OXMD5mjpsKKq7c/XDsDrLw=
   /split/0.3.3:
     dependencies:
       through: 2.3.8
@@ -5926,9 +5974,6 @@ packages:
       readable-stream: 2.2.11
     resolution:
       integrity: sha1-ZiZu5fm9uZQKTkUUyvtDu3Hlyds=
-  /stream-cache/0.0.2:
-    resolution:
-      integrity: sha1-GsWtaDJCjKVWZ9ve45Xa1ObbEY8=
   /stream-combiner/0.0.4:
     dependencies:
       duplexer: 0.1.1
@@ -6450,6 +6495,11 @@ packages:
       graceful-fs: 4.1.11
     resolution:
       integrity: sha1-fYaTkHsozmAT5/NhCqKhrPB9rYc=
+  /wbuf/1.7.2:
+    dependencies:
+      minimalistic-assert: 1.0.0
+    resolution:
+      integrity: sha1-1pe5nx9ZUS3ydRvkJ2nBWAtYAf4=
   /webpack-dev-middleware/1.10.2:
     dependencies:
       memory-fs: 0.4.1
@@ -6458,22 +6508,27 @@ packages:
       range-parser: 1.2.0
     resolution:
       integrity: sha1-LiUs4d+wINvaHMs33ybzCrAU29E=
-  /webpack-dev-server/1.14.1:
+  /webpack-dev-server/2.4.5:
     dependencies:
+      ansi-html: 0.0.7
+      chokidar: 1.7.0
       compression: 1.6.2
-      connect-history-api-fallback: 1.1.0
+      connect-history-api-fallback: 1.3.0
       express: 4.15.3
-      http-proxy: 1.16.2
-      optimist: 0.6.1
+      html-entities: 1.2.1
+      http-proxy-middleware: 0.17.4
+      opn: 4.0.2
+      portfinder: 1.0.13
       serve-index: 1.9.0
       sockjs: 0.3.18
-      sockjs-client: 1.1.4
-      stream-cache: 0.0.2
+      sockjs-client: 1.1.2
+      spdy: 3.4.7
       strip-ansi: 3.0.1
       supports-color: 3.2.3
       webpack-dev-middleware: 1.10.2
+      yargs: 6.6.0
     resolution:
-      integrity: sha1-5R3iKAcSWLDbbVXg9f7lXuxnVd4=
+      integrity: sha1-MThM6BE2vhCAtLTN4OubkOVO5s8=
   /webpack-sources/0.1.5:
     dependencies:
       source-list-map: 0.1.8
@@ -6549,6 +6604,7 @@ packages:
     resolution:
       integrity: sha1-t5Zpu0LstAn4PVg8rVLKF+qhZD8=
   /wordwrap/0.0.3:
+    dev: true
     resolution:
       integrity: sha1-o9XabNXAvAAI03I0u68b7WMFkQc=
   /wordwrap/1.0.0:
@@ -6742,6 +6798,20 @@ packages:
     dev: true
     resolution:
       tarball: 'https://codeload.github.com/chmontgomery/gulp-help/tar.gz/0dee14e99f7a8433b868024e066a990a61f96a99'
+  github.com/paulmillr/chokidar/3d917818c957088b62c160e426c1a99787ae6319:
+    dependencies:
+      anymatch: 1.3.0
+      async-each: 1.0.1
+      glob-parent: 2.0.0
+      inherits: 2.0.3
+      is-binary-path: 1.0.1
+      is-glob: 2.0.1
+      path-is-absolute: 1.0.1
+      readdirp: 2.1.0
+    optionalDependencies:
+      fsevents: 1.1.2
+    resolution:
+      tarball: 'https://codeload.github.com/paulmillr/chokidar/tar.gz/3d917818c957088b62c160e426c1a99787ae6319'
   github.com/webpack/loader-utils/3799fdba68992fcba0d45cff0d270dd0cd40da59:
     dependencies:
       big.js: 3.1.3
@@ -6765,7 +6835,7 @@ specifiers:
   babelator: ^0.2.21
   bootstrap-sass: 3.3.6
   chalk: 1.1.3
-  chokidar: ^1.7.0
+  chokidar: 'github:paulmillr/chokidar#3d917818c957088b62c160e426c1a99787ae6319'
   component-emitter: 1.2.1
   configurize: ^0.0.8
   core-js: 2.4.0
@@ -6779,7 +6849,7 @@ specifiers:
   file-loader: 0.9.0
   findup-sync: ^0.4.3
   fs-extra: 0.30.0
-  fsevents: ^1.1.1
+  fsevents: ^1.1.2
   gulp-util: 3.0.7
   gulp4: ^4.0.1
   imports-loader: 0.6.5
@@ -6808,7 +6878,7 @@ specifiers:
   string: 3.3.1
   url-loader: 0.5.7
   webpack: ^2.4.1
-  webpack-dev-server: 1.14.1
+  webpack-dev-server: ^2.4.5
   yargs: 4.7.1
   zog: 0.1.2
 version: 3

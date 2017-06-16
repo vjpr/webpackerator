@@ -46,6 +46,8 @@ function watchLiveFiles(glob, loadPlugins) {
   const log = console.log.bind(console)
   //const log = debug.bind(debug)
 
+  // TODO(vjpr): This causes too many files to be watched and throw nasty uncatcheable errors like `FSEventStreamStart: register_with_server: ERROR: f2d_register_rpc()`.
+  //   See https://github.com/strongloop/fsevents/issues/129.
   const watcher = chokidar.watch(glob, {ignoreInitial: true})
   watcher.on('add', path => {
     log(`Live plugin ${path} has been added`)

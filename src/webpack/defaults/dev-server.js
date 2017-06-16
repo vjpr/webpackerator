@@ -13,6 +13,7 @@ module.exports = function(webpack, opts, config) {
 
   config.merge({
 
+    // TODO(vjpr): In webpack-dev-server@2 there is now a schema.
     devServer: {
 
       // http server options
@@ -20,7 +21,7 @@ module.exports = function(webpack, opts, config) {
 
       port: opts.devServerPort,
       host: opts.devServerHost,
-      displayUrl: opts.devServerDisplayUrl,
+      //displayUrl: opts.devServerDisplayUrl,
 
       // general options
       ////////////////////////////////////////////////////////////////////////////

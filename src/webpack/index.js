@@ -7,7 +7,7 @@ const chalk = require('chalk')
 const debug = require('debug')('webpackerator:debug')
 const log = require('debug')('webpackerator:log')
 const gutil = require('gulp-util')
-const getConfig = require('../root-config/getConfig')
+const getConfig = require('modules/root-config').default
 const getEnvironment = require('./util/getEnvironment')
 
 class WebpackeratorUtils {
@@ -164,13 +164,18 @@ class WebpackeratorUtils {
     //   This breaks clickable terminal links. We should override it.
     //   Actually, its okay, it provides un unshortened link too.
 
-    new WebpackDevServer(compiler, devServerConfig)
-      .listen(devServerConfig.port, devServerConfig.host, (e, stats) => {
-        if (e) throw new gutil.PluginError('webpack:dev-server', e)
-        return log('[webpack-dev-server]',
-          `http://${devServerConfig.host}:${devServerConfig.port}/${devServerConfig.displayUrl}`)
-        //done() // Never finish.
-      })
+    try {
+      new WebpackDevServer(compiler, devServerConfig)
+        .listen(devServerConfig.port, devServerConfig.host, (e, stats) => {
+          if (e) throw new gutil.PluginError('webpack:dev-server', e)
+          return log('[webpack-dev-server]',
+            `http://${devServerConfig.host}:${devServerConfig.port}/${devServerConfig.displayUrl}`)
+          //done() // Never finish.
+        })
+    } catch (e) {
+      console.log(e.message)
+      console.log(e)
+    }
 
   }
 
