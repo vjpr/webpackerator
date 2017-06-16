@@ -17,20 +17,31 @@ export function addVendor(config, obj) {
 
       let out
 
+      //////////////////////////////////////////////////////////////////////////
+
+      // a.
+
       // NOTE: This was not working on Ubuntu 16.04 in a capistrano-like deploy. Strange.
       //   Probably to do with pnpm's dir structure. Maybe use resolveFrom(__dirname).
       //out = safeResolve(a)
+
+      // b.
+
+      // This doesn't work when we symlink `webpackerator`.
 
       try {
         out = require.resolve(a)
       } catch (err) {
         // TODO(vjpr): Check for module not found error.
-        return null
+        out = null
       }
+
+      //////////////////////////////////////////////////////////////////////////
 
       if (!out) {
         // TODO(vjpr): process.cwd() should be replaced with resolve.fallback.
         out = resolveFrom(process.cwd(), a)
+        console.log({out})
       }
 
       if (!out) throw new Error('Cannot resolve module.')

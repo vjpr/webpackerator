@@ -30,3 +30,10 @@ require('webpackerator/defaults/gulp')(gulp)
 ```
 
 - `webpackerator.js` is different to `webpack.config.js` in that it accepts a function with opts and returns a config. This allows you to return a different config depending on some settings (e.g. environment vars, cli args, etc.).
+
+---
+
+# Dependencies
+
+- `babel-core` is required as a `devDep` because it is a peer on `babel-loader`.
+    - Should also be a peer dep.

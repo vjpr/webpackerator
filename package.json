@@ -73,6 +73,7 @@
     "fsevents": "^1.1.1"
   },
   "devDependencies": {
+    "babel-core": "^6.25.0",
     "babel-preset-live": "0.0.6",
     "babelator": "^0.2.21",
     "gulp4": "^4.0.1"
