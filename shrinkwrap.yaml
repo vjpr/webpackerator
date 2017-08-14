@@ -9,11 +9,13 @@ dependencies:
   babel-polyfill: 6.23.0
   babel-runtime: 6.23.0
   bootstrap-sass: 3.3.6
+  caniuse-db: 1.0.30000692
   chalk: 1.1.3
   chokidar: github.com/paulmillr/chokidar/3d917818c957088b62c160e426c1a99787ae6319
   component-emitter: 1.2.1
+  configurize: 0.0.10
   core-js: 2.4.0
-  css-loader: 0.26.4
+  css-loader: 0.28.4
   cwd: 0.10.0
   debug: 2.2.0
   dedent-js: 1.0.1
@@ -37,7 +39,9 @@ dependencies:
   object-hash: 1.1.2
   parent-require: 1.0.0
   pkg-dir: 1.0.0
-  postcss-loader: 0.9.1
+  postcss-cssnext: 2.11.0
+  postcss-loader: 2.0.6
+  postcss-modules-values: 1.3.0
   prettyjson: 1.1.3
   progress-bar-webpack-plugin: 1.8.0
   qs: 6.2.0
@@ -50,11 +54,11 @@ dependencies:
   string: 3.3.1
   url-loader: 0.5.7
   webpack: 2.6.1
-  webpack-dev-server: 2.4.5
+  webpack-dev-server: 2.5.0
   yargs: 4.7.1
   zog: 0.1.2
 devDependencies:
-  babel-preset-live: 0.1.0
+  babel-preset-live: 0.1.1
   babelator: 0.2.26
   gulp4: 4.0.1
 optionalDependencies:
@@ -133,6 +137,14 @@ packages:
       json-stable-stringify: 1.0.1
     resolution:
       integrity: sha1-gv+wKynmYq5TvcIK8VlHcGc5xTY=
+  /ajv/5.2.0:
+    dependencies:
+      co: 4.6.0
+      fast-deep-equal: 0.1.0
+      json-schema-traverse: 0.3.0
+      json-stable-stringify: 1.0.1
+    resolution:
+      integrity: sha1-wXNQJMXaLvdcwZBxMHPUTwmL9IY=
   /align-text/0.1.4:
     dependencies:
       kind-of: 3.2.2
@@ -155,10 +167,6 @@ packages:
   /ansi-regex/0.2.1:
     resolution:
       integrity: sha1-DY6UaWej2BQ/k+JOKYUl/BsiNfk=
-  /ansi-regex/2.0.0:
-    dev: true
-    resolution:
-      integrity: sha1-xQYbbg74qBd15Q9dZhUb9r83EQc=
   /ansi-regex/2.1.1:
     resolution:
       integrity: sha1-w7M6te42DYbg5ijwRorn7yfWVN8=
@@ -168,6 +176,11 @@ packages:
   /ansi-styles/2.2.1:
     resolution:
       integrity: sha1-tDLdM1i2NM914eRmQ2gkBTPB3b4=
+  /ansi-styles/3.2.0:
+    dependencies:
+      color-convert: 1.9.0
+    resolution:
+      integrity: sha512-NnSOmMEYtVR2JVMIGTzynRkkaxtiq1xnFBcdQD/DnNCYPoEPsVJhM98BDyaoNOQIi7p4okdi3E27eN7GQbsUug==
   /ansicolors/0.2.1:
     dev: true
     resolution:
@@ -188,7 +201,7 @@ packages:
   /are-we-there-yet/1.1.4:
     dependencies:
       delegates: 1.0.0
-      readable-stream: 2.2.11
+      readable-stream: 2.3.1
     resolution:
       integrity: sha1-u13KOCu5TwXhUZQ3PRb9O6HKEQ0=
   /argparse/1.0.9:
@@ -233,6 +246,9 @@ packages:
   /array-flatten/1.1.1:
     resolution:
       integrity: sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=
+  /array-flatten/2.1.1:
+    resolution:
+      integrity: sha1-Qmu52oQJDBg42BLIFQryCoMx4pY=
   /array-initial/1.0.0:
     dependencies:
       array-slice: 0.2.3
@@ -274,7 +290,7 @@ packages:
       integrity: sha1-UidltQw1EEkOUtfc/ghe+bqWlY8=
   /asn1.js/4.9.1:
     dependencies:
-      bn.js: 4.11.6
+      bn.js: 4.11.7
       inherits: 2.0.3
       minimalistic-assert: 1.0.0
     resolution:
@@ -350,7 +366,7 @@ packages:
   /autoprefixer/6.3.6:
     dependencies:
       browserslist: 1.3.6
-      caniuse-db: 1.0.30000686
+      caniuse-db: 1.0.30000692
       normalize-range: 0.1.2
       num2fraction: 1.2.2
       postcss: 5.2.17
@@ -360,7 +376,7 @@ packages:
   /autoprefixer/6.7.7:
     dependencies:
       browserslist: 1.7.7
-      caniuse-db: 1.0.30000686
+      caniuse-db: 1.0.30000692
       normalize-range: 0.1.2
       num2fraction: 1.2.2
       postcss: 5.2.17
@@ -391,7 +407,7 @@ packages:
       babel-template: 6.25.0
       babel-traverse: 6.25.0
       babel-types: 6.25.0
-      babylon: 6.17.3
+      babylon: 6.17.4
       convert-source-map: 1.5.0
       debug: 2.6.8
       json5: 0.4.0
@@ -417,7 +433,7 @@ packages:
       babel-template: 6.25.0
       babel-traverse: 6.25.0
       babel-types: 6.25.0
-      babylon: 6.17.3
+      babylon: 6.17.4
       convert-source-map: 1.5.0
       debug: 2.6.8
       json5: 0.5.1
@@ -433,7 +449,7 @@ packages:
     dependencies:
       babel-traverse: 6.25.0
       babel-types: 6.25.0
-      babylon: 6.17.3
+      babylon: 6.17.4
       lodash.assign: 4.2.0
       lodash.pickby: 4.6.0
     resolution:
@@ -442,7 +458,7 @@ packages:
     dependencies:
       babel-traverse: 6.25.0
       babel-types: 6.25.0
-      babylon: 6.17.3
+      babylon: 6.17.4
       lodash.assign: 4.2.0
       lodash.pickby: 4.6.0
     dev: true
@@ -568,16 +584,6 @@ packages:
     dev: true
     resolution:
       integrity: sha1-XsWBgnrXI/7N04HxySg5BnbkVRs=
-  /babel-helper-remap-async-to-generator/6.8.0:
-    dependencies:
-      babel-helper-function-name: 6.24.1
-      babel-runtime: 6.23.0
-      babel-template: 6.25.0
-      babel-traverse: 6.25.0
-      babel-types: 6.25.0
-    dev: true
-    resolution:
-      integrity: sha1-tkxe+gGQVXkAJ++zlo9tWawUIOw=
   /babel-helper-replace-supers/6.24.1:
     dependencies:
       babel-helper-optimise-call-expression: 6.24.1
@@ -617,20 +623,18 @@ packages:
     dev: true
     resolution:
       integrity: sha1-NRV7EBQm/S/9PaP3XH0ekYNbv4o=
-  /babel-plugin-module-alias/1.6.0:
+  /babel-plugin-module-resolver/2.7.1:
+    dependencies:
+      find-babel-config: 1.1.0
+      glob: 7.1.2
+      resolve: 1.3.3
     dev: true
     resolution:
-      integrity: sha1-3346q6NUT0wGqdMxSia7v/bYe2E=
+      integrity: sha1-GL48Qt31n3pFbJ4FEs2ROU9uS+E=
   /babel-plugin-syntax-async-functions/6.13.0:
     dev: true
     resolution:
       integrity: sha1-ytnK0RkbWtY0vzCuCHI5HgZHvpU=
-  /babel-plugin-syntax-async-functions/6.8.0:
-    dependencies:
-      babel-runtime: 6.23.0
-    dev: true
-    resolution:
-      integrity: sha1-2HLKNQhjNVt4QqtHyAlK/xLb68g=
   /babel-plugin-syntax-async-generators/6.13.0:
     dev: true
     resolution:
@@ -647,12 +651,6 @@ packages:
     dev: true
     resolution:
       integrity: sha1-MSVjtNvePMgGzuPkFszurd0RrAs=
-  /babel-plugin-syntax-decorators/6.8.0:
-    dependencies:
-      babel-runtime: 6.23.0
-    dev: true
-    resolution:
-      integrity: sha1-9bCj0tjObfBEHHyOVENcffunRjU=
   /babel-plugin-syntax-do-expressions/6.13.0:
     dev: true
     resolution:
@@ -823,6 +821,14 @@ packages:
     dev: true
     resolution:
       integrity: sha1-T1SgLWzWbPkVKAAZox0xklN3yi4=
+  /babel-plugin-transform-es2015-modules-amd/6.24.1:
+    dependencies:
+      babel-plugin-transform-es2015-modules-commonjs: 6.24.1
+      babel-runtime: 6.23.0
+      babel-template: 6.25.0
+    dev: true
+    resolution:
+      integrity: sha1-Oz5UAXI5hC1tGcMBHEvS8AoA0VQ=
   /babel-plugin-transform-es2015-modules-commonjs/6.24.1:
     dependencies:
       babel-plugin-transform-strict-mode: 6.24.1
@@ -832,6 +838,22 @@ packages:
     dev: true
     resolution:
       integrity: sha1-0+MQtA72ZKNmIiAAl8bUQCmPK/4=
+  /babel-plugin-transform-es2015-modules-systemjs/6.24.1:
+    dependencies:
+      babel-helper-hoist-variables: 6.24.1
+      babel-runtime: 6.23.0
+      babel-template: 6.25.0
+    dev: true
+    resolution:
+      integrity: sha1-/4mhQrkRmpBhlfXxBuzzBdlAfSM=
+  /babel-plugin-transform-es2015-modules-umd/6.24.1:
+    dependencies:
+      babel-plugin-transform-es2015-modules-amd: 6.24.1
+      babel-runtime: 6.23.0
+      babel-template: 6.25.0
+    dev: true
+    resolution:
+      integrity: sha1-rJl+YoXNGO1hdq22B9YCNErThGg=
   /babel-plugin-transform-es2015-object-super/6.24.1:
     dependencies:
       babel-helper-replace-supers: 6.24.1
@@ -933,6 +955,13 @@ packages:
     dev: true
     resolution:
       integrity: sha1-Z+K/Hx6ck6sI25Z5LgU5K/LMKNE=
+  /babel-plugin-transform-react-jsx-self/6.22.0:
+    dependencies:
+      babel-plugin-syntax-jsx: 6.18.0
+      babel-runtime: 6.23.0
+    dev: true
+    resolution:
+      integrity: sha1-322AqdomEqEh5t3XVYvL7PBuY24=
   /babel-plugin-transform-react-jsx-source/6.22.0:
     dependencies:
       babel-plugin-syntax-jsx: 6.18.0
@@ -954,12 +983,12 @@ packages:
     dev: true
     resolution:
       integrity: sha1-uNowWtQ8PJm0hI5P5AN7dw0jxBg=
-  /babel-plugin-transform-runtime/6.9.0:
+  /babel-plugin-transform-runtime/6.23.0:
     dependencies:
       babel-runtime: 6.23.0
     dev: true
     resolution:
-      integrity: sha1-k5rHJnBJR3ZPQa+Gdl0IQCZoN2s=
+      integrity: sha1-iEkNRGUC6puOfvsP4J7E2ZR5se4=
   /babel-plugin-transform-strict-mode/6.24.1:
     dependencies:
       babel-runtime: 6.23.0
@@ -974,7 +1003,7 @@ packages:
       regenerator-runtime: 0.10.5
     resolution:
       integrity: sha1-g2TKYt+Or7gwSZ9pkXdGbDsDSZ0=
-  /babel-preset-es2015/6.9.0:
+  /babel-preset-es2015/6.24.1:
     dependencies:
       babel-plugin-check-es2015-constants: 6.22.0
       babel-plugin-transform-es2015-arrow-functions: 6.22.0
@@ -987,7 +1016,10 @@ packages:
       babel-plugin-transform-es2015-for-of: 6.23.0
       babel-plugin-transform-es2015-function-name: 6.24.1
       babel-plugin-transform-es2015-literals: 6.22.0
+      babel-plugin-transform-es2015-modules-amd: 6.24.1
       babel-plugin-transform-es2015-modules-commonjs: 6.24.1
+      babel-plugin-transform-es2015-modules-systemjs: 6.24.1
+      babel-plugin-transform-es2015-modules-umd: 6.24.1
       babel-plugin-transform-es2015-object-super: 6.24.1
       babel-plugin-transform-es2015-parameters: 6.24.1
       babel-plugin-transform-es2015-shorthand-properties: 6.24.1
@@ -999,66 +1031,45 @@ packages:
       babel-plugin-transform-regenerator: 6.24.1
     dev: true
     resolution:
-      integrity: sha1-leRxasRIHfswmZy1wRGBThraD0E=
-  /babel-preset-live/0.1.0:
+      integrity: sha1-1EBQ1rwsn+6nAqrzjXJ6AhBTiTk=
+  /babel-preset-flow/6.23.0:
     dependencies:
-      ansi-regex: 2.0.0
-      babel-code-frame: 6.22.0
-      babel-generator: 6.25.0
-      babel-helper-builder-binary-assignment-operator-visitor: 6.24.1
-      babel-helper-call-delegate: 6.24.1
-      babel-helper-define-map: 6.24.1
-      babel-helper-function-name: 6.24.1
-      babel-helper-get-function-arity: 6.24.1
-      babel-helper-optimise-call-expression: 6.24.1
-      babel-helper-regex: 6.24.1
-      babel-helper-remap-async-to-generator: 6.8.0
-      babel-helper-replace-supers: 6.24.1
-      babel-messages: 6.23.0
-      babel-plugin-add-module-exports: 0.2.1
-      babel-plugin-module-alias: 1.6.0
-      babel-plugin-syntax-async-functions: 6.8.0
-      babel-plugin-syntax-decorators: 6.8.0
-      babel-plugin-transform-decorators-legacy: 1.3.4
-      babel-plugin-transform-runtime: 6.9.0
-      babel-preset-es2015: 6.9.0
-      babel-preset-react: 6.5.0
-      babel-preset-stage-0: 6.5.0
-      babel-runtime: 6.23.0
-      babel-template: 6.25.0
-      babel-traverse: 6.25.0
-      babel-types: 6.25.0
-      babylon: 6.17.3
-      bluebird: 3.5.0
-      core-js: 2.4.0
-      debug: 2.6.8
-      esutils: 2.0.2
-      is-finite: 1.0.2
-      js-tokens: 1.0.3
-      lodash: 4.17.4
-      repeating: 2.0.1
+      babel-plugin-transform-flow-strip-types: 6.22.0
     dev: true
     resolution:
-      integrity: sha1-3wS57wNINBLxs75Cbr99xvNPO8s=
-  /babel-preset-react/6.5.0:
+      integrity: sha1-5xIYiHCFrpoktb5Baa/7WZgWxJ0=
+  /babel-preset-live/0.1.1:
     dependencies:
-      babel-plugin-syntax-flow: 6.18.0
+      babel-plugin-add-module-exports: 0.2.1
+      babel-plugin-module-resolver: 2.7.1
+      babel-plugin-transform-class-properties: 6.24.1
+      babel-plugin-transform-decorators-legacy: 1.3.4
+      babel-plugin-transform-runtime: 6.23.0
+      babel-preset-es2015: 6.24.1
+      babel-preset-react: 6.24.1
+      babel-preset-stage-0: 6.24.1
+    dev: true
+    resolution:
+      integrity: sha1-0cDr/aLQqQBAQEIIgfVgXrs/C8Q=
+  /babel-preset-react/6.24.1:
+    dependencies:
       babel-plugin-syntax-jsx: 6.18.0
-      babel-plugin-transform-flow-strip-types: 6.22.0
       babel-plugin-transform-react-display-name: 6.25.0
       babel-plugin-transform-react-jsx: 6.24.1
+      babel-plugin-transform-react-jsx-self: 6.22.0
       babel-plugin-transform-react-jsx-source: 6.22.0
+      babel-preset-flow: 6.23.0
     dev: true
     resolution:
-      integrity: sha1-0yiaoOMI29SLchD5l3EB8Pluvh8=
-  /babel-preset-stage-0/6.5.0:
+      integrity: sha1-umnfrqRfw+xjm2pOzqbhdwLJE4A=
+  /babel-preset-stage-0/6.24.1:
     dependencies:
       babel-plugin-transform-do-expressions: 6.22.0
       babel-plugin-transform-function-bind: 6.22.0
       babel-preset-stage-1: 6.24.1
     dev: true
     resolution:
-      integrity: sha1-i4R5sgd0grjz3I+PXwyceXiM3iI=
+      integrity: sha1-VkLRUEL5E4TX5a+LyIsduVsDnmo=
   /babel-preset-stage-1/6.24.1:
     dependencies:
       babel-plugin-transform-class-constructor-call: 6.24.1
@@ -1116,12 +1127,18 @@ packages:
       regenerator-runtime: 0.10.5
     resolution:
       integrity: sha1-CpSJ8UTecO+zzkMArM2zKeL8VDs=
+  /babel-runtime/6.9.2:
+    dependencies:
+      core-js: 2.4.1
+      regenerator-runtime: 0.9.6
+    resolution:
+      integrity: sha1-1/45G8LMKbgIfB2bOYeJEun8/Vk=
   /babel-template/6.25.0:
     dependencies:
       babel-runtime: 6.23.0
       babel-traverse: 6.25.0
       babel-types: 6.25.0
-      babylon: 6.17.3
+      babylon: 6.17.4
       lodash: 4.17.4
     resolution:
       integrity: sha1-ZlJBFmt8KqTGGdceGSlpVSsQwHE=
@@ -1131,7 +1148,7 @@ packages:
       babel-messages: 6.23.0
       babel-runtime: 6.23.0
       babel-types: 6.25.0
-      babylon: 6.17.3
+      babylon: 6.17.4
       debug: 2.6.8
       globals: 9.18.0
       invariant: 2.2.2
@@ -1187,9 +1204,9 @@ packages:
     dev: true
     resolution:
       integrity: sha1-r9x2zU5AJvt5eUfx+FoHqo8G+ew=
-  /babylon/6.17.3:
+  /babylon/6.17.4:
     resolution:
-      integrity: sha1-EyfXCZULVY8gTlNSWH/QKQ+Njkg=
+      integrity: sha1-Pot0AriNIsNCPhN6FXeIOxX/hpo=
   /bach/1.1.0:
     dependencies:
       arr-filter: 1.1.2
@@ -1204,6 +1221,12 @@ packages:
     dev: true
     resolution:
       integrity: sha1-z+VC25Jcs3BR/EkK0QLHO8slioQ=
+  /balanced-match/0.1.0:
+    resolution:
+      integrity: sha1-tQS9BYabOSWd0MXvw12EMXbczEo=
+  /balanced-match/0.2.1:
+    resolution:
+      integrity: sha1-e8ZYtL7WHu5CStdPdfXD4sTfPMc=
   /balanced-match/0.4.2:
     resolution:
       integrity: sha1-yz8+PHMtwPAe5wtAPzAuYddwmDg=
@@ -1247,9 +1270,19 @@ packages:
   /bluebird/3.5.0:
     resolution:
       integrity: sha1-eRQg1/VR7qKJdFOop3ZT+WYG1nw=
-  /bn.js/4.11.6:
+  /bn.js/4.11.7:
     resolution:
-      integrity: sha1-UzRK2xRhehP26N0s4okF0cC6MhU=
+      integrity: sha1-3bBI5Q2UgnkAlME+s/z8gzznq0Y=
+  /bonjour/3.5.0:
+    dependencies:
+      array-flatten: 2.1.1
+      deep-equal: 1.0.1
+      dns-equal: 1.0.0
+      dns-txt: 2.0.2
+      multicast-dns: 6.1.1
+      multicast-dns-service-types: 1.1.0
+    resolution:
+      integrity: sha1-jokKGD2O6aI5OzhExpGkK897yfU=
   /boom/2.10.1:
     dependencies:
       hoek: 2.16.3
@@ -1303,13 +1336,13 @@ packages:
       integrity: sha1-2qJ3cXRwki7S/hhZQRihdUOXId0=
   /browserify-rsa/4.0.1:
     dependencies:
-      bn.js: 4.11.6
+      bn.js: 4.11.7
       randombytes: 2.0.5
     resolution:
       integrity: sha1-IeCr+vbyApzy+vsTNWenAdQTVSQ=
   /browserify-sign/4.0.4:
     dependencies:
-      bn.js: 4.11.6
+      bn.js: 4.11.7
       browserify-rsa: 4.0.1
       create-hash: 1.1.3
       create-hmac: 1.1.6
@@ -1325,15 +1358,18 @@ packages:
       integrity: sha1-uzX4pRn2AOD6a4SFJByXnQFB+y0=
   /browserslist/1.3.6:
     dependencies:
-      caniuse-db: 1.0.30000686
+      caniuse-db: 1.0.30000692
     resolution:
       integrity: sha1-lS/0jVZGPTtTj4XvL46t39KEsTM=
   /browserslist/1.7.7:
     dependencies:
-      caniuse-db: 1.0.30000686
+      caniuse-db: 1.0.30000692
       electron-to-chromium: 1.3.14
     resolution:
       integrity: sha1-C9dnBCWL6CmyOYu1Dkti0aFmsLk=
+  /buffer-indexof/1.1.0:
+    resolution:
+      integrity: sha1-9U9kfE9OJSKLqmVqLlfkPV8nCYI=
   /buffer-xor/1.0.3:
     resolution:
       integrity: sha1-JuYe0UIvtw3ULm42cp7VHYVf6Nk=
@@ -1346,7 +1382,7 @@ packages:
       integrity: sha1-bRu2AbB6TvztlwlBMgkwJ8lbwpg=
   /bufferstreams/1.1.1:
     dependencies:
-      readable-stream: 2.2.11
+      readable-stream: 2.3.1
     dev: true
     resolution:
       integrity: sha1-AWE3MGCsWYjv+ZBYcxEU9uGV1R4=
@@ -1402,14 +1438,14 @@ packages:
   /caniuse-api/1.6.1:
     dependencies:
       browserslist: 1.7.7
-      caniuse-db: 1.0.30000686
+      caniuse-db: 1.0.30000692
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
     resolution:
       integrity: sha1-tTTnxzTE+B7F++isoq0kNUuWLGw=
-  /caniuse-db/1.0.30000686:
+  /caniuse-db/1.0.30000692:
     resolution:
-      integrity: sha1-1VtHntbmQCwf0/H9j0bmlNhupGQ=
+      integrity: sha1-Pampk1OtvOoeFCuZ9g7MYhbfR6U=
   /cardinal/1.0.0:
     dependencies:
       ansicolors: 0.2.1
@@ -1462,6 +1498,13 @@ packages:
       supports-color: 2.0.0
     resolution:
       integrity: sha1-qBFcVeSnAv5NFQq9OHKCKn4J/Jg=
+  /chalk/2.1.0:
+    dependencies:
+      ansi-styles: 3.2.0
+      escape-string-regexp: 1.0.5
+      supports-color: 4.2.1
+    resolution:
+      integrity: sha512-LUHGS/dge4ujbXMJrnihYMcL4AoOweGnw9Tp3kQuqy1Kx5c1qKjqvMJZ6nVJPMWJtKCTN72ZogH3oeSO9g9rXQ==
   /chalkline/0.0.5:
     dependencies:
       ansi-styles: 2.2.1
@@ -1569,19 +1612,31 @@ packages:
     dev: true
     resolution:
       integrity: sha1-TP+R0lEI159O3uzObs7j5IjyZ8I=
+  /color-convert/0.5.3:
+    resolution:
+      integrity: sha1-vbbGnOZg+t/+CwAHzER+G59ygr0=
   /color-convert/1.9.0:
     dependencies:
-      color-name: 1.1.2
+      color-name: 1.1.3
     resolution:
       integrity: sha1-Gsz5fdc5uYO/mU1W/sj5WFNkG3o=
   /color-name/1.1.2:
     resolution:
       integrity: sha1-XIq3K2S9IhXWF66VWeuxSEdc+Y0=
+  /color-name/1.1.3:
+    resolution:
+      integrity: sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=
   /color-string/0.3.0:
     dependencies:
       color-name: 1.1.2
     resolution:
       integrity: sha1-J9RvtnAlxcL6JZk7+/V55HhBuZE=
+  /color/0.10.1:
+    dependencies:
+      color-convert: 0.5.3
+      color-string: 0.3.0
+    resolution:
+      integrity: sha1-wEGI34KiCd3rzOzazT7DIPGTc58=
   /color/0.11.4:
     dependencies:
       clone: 1.0.2
@@ -1650,7 +1705,7 @@ packages:
   /concat-stream/1.6.0:
     dependencies:
       inherits: 2.0.3
-      readable-stream: 2.2.11
+      readable-stream: 2.3.1
       typedarray: 0.0.6
     resolution:
       integrity: sha1-CqxmL9Ur54lk1VMvaUeE5wEQrPc=
@@ -1667,6 +1722,15 @@ packages:
     dev: true
     resolution:
       integrity: sha1-w1eB0FAdJowlxUuLF/YkDopPsCE=
+  /configurize/0.0.10:
+    dependencies:
+      babel-runtime: 6.9.2
+      cwd: 0.10.0
+      eventemitter3: 1.2.0
+      lodash: 4.13.1
+      prettyjson: 1.1.3
+    resolution:
+      integrity: sha1-T3U+em+5js81Udr57U8bfsW1woU=
   /connect-history-api-fallback/1.3.0:
     resolution:
       integrity: sha1-5R0X+PDvDbkKZP20feMFFVbp8Wk=
@@ -1711,9 +1775,20 @@ packages:
   /core-util-is/1.0.2:
     resolution:
       integrity: sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
+  /cosmiconfig/2.1.3:
+    dependencies:
+      is-directory: 0.3.1
+      js-yaml: 3.8.4
+      minimist: 1.2.0
+      object-assign: 4.1.1
+      os-homedir: 1.0.2
+      parse-json: 2.2.0
+      require-from-string: 1.2.1
+    resolution:
+      integrity: sha1-lSdx6w3dwcs/ovb75RpSLpOz7go=
   /create-ecdh/4.0.0:
     dependencies:
-      bn.js: 4.11.6
+      bn.js: 4.11.7
       elliptic: 6.4.0
     resolution:
       integrity: sha1-iIxyNZbN92EvZJgjPuvXo1MBc30=
@@ -1731,7 +1806,7 @@ packages:
       create-hash: 1.1.3
       inherits: 2.0.3
       ripemd160: 2.0.1
-      safe-buffer: 5.1.0
+      safe-buffer: 5.1.1
       sha.js: 2.4.8
     resolution:
       integrity: sha1-rLniIaThe9sHbpBlfEK5PjcmzwY=
@@ -1760,14 +1835,23 @@ packages:
       randombytes: 2.0.5
     resolution:
       integrity: sha1-NlKgkGq5sqfgw85mpAjpV6JIVSI=
+  /css-color-function/1.3.0:
+    dependencies:
+      balanced-match: 0.1.0
+      color: 0.11.4
+      debug: 0.7.4
+      rgb: 0.1.0
+    resolution:
+      integrity: sha1-csdnuvl48BuKipT0Lxe6XSKndvw=
   /css-color-names/0.0.4:
     resolution:
       integrity: sha1-gIrcLnnPhHOAabZGyyDsJ762KeA=
-  /css-loader/0.26.4:
+  /css-loader/0.28.4:
     dependencies:
       babel-code-frame: 6.22.0
       css-selector-tokenizer: 0.7.0
       cssnano: 3.10.0
+      icss-utils: 2.1.0
       loader-utils: 1.1.0
       lodash.camelcase: 4.3.0
       object-assign: 4.1.1
@@ -1776,9 +1860,10 @@ packages:
       postcss-modules-local-by-default: 1.2.0
       postcss-modules-scope: 1.1.0
       postcss-modules-values: 1.3.0
+      postcss-value-parser: 3.3.0
       source-list-map: 0.1.8
     resolution:
-      integrity: sha1-th6eMNuUMD5v/IkvEOzQmtAlof0=
+      integrity: sha1-bPNXkZLONV6LONX0Ldeh8uyJjQ8=
   /css-selector-tokenizer/0.7.0:
     dependencies:
       cssesc: 0.1.0
@@ -1881,6 +1966,9 @@ packages:
     dev: true
     resolution:
       integrity: sha1-+gccXYdIRoVCSAdCHKSxawsaB2M=
+  /debug/0.7.4:
+    resolution:
+      integrity: sha1-BuHqgILCyxTjmAbiLi9vdX+Srzk=
   /debug/2.2.0:
     dependencies:
       ms: 0.7.1
@@ -1911,6 +1999,9 @@ packages:
     dev: true
     resolution:
       integrity: sha1-71WKyrjeJSBs1xOQbXTlaTDrafI=
+  /deep-equal/1.0.1:
+    resolution:
+      integrity: sha1-9dJgKStmDghO/0zbyfCK0yR0SLU=
   /deep-extend/0.4.2:
     dev: true
     resolution:
@@ -1948,6 +2039,16 @@ packages:
       rimraf: 2.6.1
     resolution:
       integrity: sha1-wSyYHQZ4RshLyvhiz/kw2Qf/0ag=
+  /del/3.0.0:
+    dependencies:
+      globby: 6.1.0
+      is-path-cwd: 1.0.0
+      is-path-in-cwd: 1.0.0
+      p-map: 1.1.1
+      pify: 3.0.0
+      rimraf: 2.6.1
+    resolution:
+      integrity: sha1-U+z2mf/LyzljdpGrE7rxYIGXZuU=
   /delayed-stream/1.0.0:
     resolution:
       integrity: sha1-3zrhmayt+31ECqrgsp4icrJOxhk=
@@ -1999,11 +2100,25 @@ packages:
       integrity: sha1-fyjS657nsVqX79ic5j3P2qPMur8=
   /diffie-hellman/5.0.2:
     dependencies:
-      bn.js: 4.11.6
+      bn.js: 4.11.7
       miller-rabin: 4.0.0
       randombytes: 2.0.5
     resolution:
       integrity: sha1-tYNXOScM/ias9jIJn97SoH8gnl4=
+  /dns-equal/1.0.0:
+    resolution:
+      integrity: sha1-s55/HabrCnW6nBcySzR1PEfgZU0=
+  /dns-packet/1.1.1:
+    dependencies:
+      ip: 1.1.5
+      safe-buffer: 5.1.0
+    resolution:
+      integrity: sha1-I2nUUDivBF84mOb6VoYq7T9AKWw=
+  /dns-txt/2.0.2:
+    dependencies:
+      buffer-indexof: 1.1.0
+    resolution:
+      integrity: sha1-uR2Ab10nGI5Ks+fRB9iBocxGQrY=
   /doctrine/1.5.0:
     dependencies:
       esutils: 2.0.2
@@ -2039,7 +2154,7 @@ packages:
     dependencies:
       end-of-stream: 1.0.0
       inherits: 2.0.3
-      readable-stream: 2.2.11
+      readable-stream: 2.3.1
       stream-shift: 1.0.0
     dev: true
     resolution:
@@ -2058,9 +2173,9 @@ packages:
       integrity: sha1-ZK8Pnv08PGrNV9cfg7Scp+6cS0M=
   /elliptic/6.4.0:
     dependencies:
-      bn.js: 4.11.6
+      bn.js: 4.11.7
       brorand: 1.1.0
-      hash.js: 1.0.3
+      hash.js: 1.1.1
       hmac-drbg: 1.0.1
       inherits: 2.0.3
       minimalistic-assert: 1.0.0
@@ -2199,7 +2314,7 @@ packages:
     dependencies:
       es6-map: 0.1.5
       es6-weak-map: 2.0.2
-      esrecurse: 4.1.0
+      esrecurse: 4.2.0
       estraverse: 4.2.0
     resolution:
       integrity: sha1-4Bl16BJ4GhY6ba392AOY3GTIicM=
@@ -2355,19 +2470,16 @@ packages:
     dev: true
     resolution:
       integrity: sha1-z7qLV9f7qT8XKYqKAGoEzaE9gPo=
-  /esrecurse/4.1.0:
+  /esrecurse/4.2.0:
     dependencies:
-      estraverse: 4.1.1
+      estraverse: 4.2.0
       object-assign: 4.1.1
     resolution:
-      integrity: sha1-RxO2U2rffyrE8yfVWed1a/9kgiA=
+      integrity: sha1-+pVo2Y04I/mkHZHpAtyrnqblsWM=
   /estraverse/1.9.3:
     dev: true
     resolution:
       integrity: sha1-r2fy3JIlgkFZUJJgkaQAXSnJu0Q=
-  /estraverse/4.1.1:
-    resolution:
-      integrity: sha1-9srKcokzqFDvkGYdDheYK6RxEaI=
   /estraverse/4.2.0:
     resolution:
       integrity: sha1-De4/7TH81GlhjOc0IJn8GvoL2xM=
@@ -2432,6 +2544,12 @@ packages:
       os-homedir: 1.0.2
     resolution:
       integrity: sha1-C4HrqJflo9MdHD0QL48BRB5VlEk=
+  /expand-tilde/2.0.2:
+    dependencies:
+      homedir-polyfill: 1.0.1
+    dev: true
+    resolution:
+      integrity: sha1-l+gBqgUt8CRU3kawK/YhZCzchQI=
   /exports-loader/0.6.4:
     dependencies:
       loader-utils: 1.1.0
@@ -2501,6 +2619,9 @@ packages:
       time-stamp: 1.1.0
     resolution:
       integrity: sha1-Rb4X0Cu5kX1gzP/UmVyZnmyMmUg=
+  /fast-deep-equal/0.1.0:
+    resolution:
+      integrity: sha1-XG9FmaumszPuM0Li7ZeGcvEAH40=
   /fast-levenshtein/2.0.6:
     resolution:
       integrity: sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
@@ -2564,6 +2685,13 @@ packages:
       unpipe: 1.0.0
     resolution:
       integrity: sha1-70fneVDpmXgOhgIqVg4yF+DQzIk=
+  /find-babel-config/1.1.0:
+    dependencies:
+      json5: 0.5.1
+      path-exists: 3.0.0
+    dev: true
+    resolution:
+      integrity: sha1-rMAQQ6Z0n+w0Qpvmtk9ULrtdY1U=
   /find-file-up/0.1.3:
     dependencies:
       fs-exists-sync: 0.1.0
@@ -2599,18 +2727,16 @@ packages:
       resolve-dir: 0.1.1
     resolution:
       integrity: sha1-QAQ5Kee8YK3wt/SCfExudaDeyhI=
-  /fined/1.0.2:
+  /fined/1.1.0:
     dependencies:
-      expand-tilde: 1.2.2
-      lodash.assignwith: 4.2.0
-      lodash.isempty: 4.4.0
-      lodash.isplainobject: 4.0.6
-      lodash.isstring: 4.0.1
-      lodash.pick: 4.4.0
+      expand-tilde: 2.0.2
+      is-plain-object: 2.0.3
+      object.defaults: 1.1.0
+      object.pick: 1.2.0
       parse-filepath: 1.0.1
     dev: true
     resolution:
-      integrity: sha1-WyhCS3YNdZiWC374SA3/itNmDpc=
+      integrity: sha1-s33IRLdqL15wgeiE98CuNE8VNHY=
   /first-chunk-stream/1.0.0:
     dev: true
     resolution:
@@ -2913,6 +3039,15 @@ packages:
       pinkie-promise: 2.0.1
     resolution:
       integrity: sha1-69hGZ8oNuzMLmbz8aOrCvFQ3Dg0=
+  /globby/6.1.0:
+    dependencies:
+      array-union: 1.0.2
+      glob: 7.1.2
+      object-assign: 4.1.1
+      pify: 2.3.0
+      pinkie-promise: 2.0.1
+    resolution:
+      integrity: sha1-9abXDoOV4hyFj7BInWTfAkJNUGw=
   /globule/0.1.0:
     dependencies:
       glob: 3.1.21
@@ -3219,6 +3354,9 @@ packages:
   /has-flag/1.0.0:
     resolution:
       integrity: sha1-nZ55MWXOAXoA8AQYxD+UKnsdEfo=
+  /has-flag/2.0.0:
+    resolution:
+      integrity: sha1-6CB68cx7MNRGzHC3NLXovhj4jVE=
   /has-gulplog/0.1.0:
     dependencies:
       sparkles: 1.0.0
@@ -3237,11 +3375,12 @@ packages:
       inherits: 2.0.3
     resolution:
       integrity: sha1-ZuodhW206KVHDK32/OI65SRO8uE=
-  /hash.js/1.0.3:
+  /hash.js/1.1.1:
     dependencies:
       inherits: 2.0.3
+      minimalistic-assert: 1.0.0
     resolution:
-      integrity: sha1-EzL/ABVsCg/92CNgE9B7d6BFFXM=
+      integrity: sha1-XLLnlkmSJOaf0LAO0B0tShbnoyM=
   /hawk/3.1.3:
     dependencies:
       boom: 2.10.1
@@ -3252,7 +3391,7 @@ packages:
       integrity: sha1-B4REvXwWQLD+VA0sm3PVlnjo4cQ=
   /hmac-drbg/1.0.1:
     dependencies:
-      hash.js: 1.0.3
+      hash.js: 1.1.1
       minimalistic-assert: 1.0.0
       minimalistic-crypto-utils: 1.0.1
     resolution:
@@ -3285,7 +3424,7 @@ packages:
     dependencies:
       inherits: 2.0.3
       obuf: 1.1.1
-      readable-stream: 2.2.11
+      readable-stream: 2.3.1
       wbuf: 1.7.2
     resolution:
       integrity: sha1-h3dMCUnlE/QuhFdbPEVoH63ioLI=
@@ -3336,6 +3475,11 @@ packages:
   /icss-replace-symbols/1.1.0:
     resolution:
       integrity: sha1-Bupvg2ead0njhs/h/oEq5dsiPe0=
+  /icss-utils/2.1.0:
+    dependencies:
+      postcss: 6.0.2
+    resolution:
+      integrity: sha1-g/Cg7DeL8yRheLbCrZE28TWxyWI=
   /ieee754/1.1.8:
     resolution:
       integrity: sha1-vjPUCsEO8ZJnAfbwii2G+/0a0+Q=
@@ -3413,6 +3557,11 @@ packages:
       through: 2.3.8
     resolution:
       integrity: sha1-HvK/1jUE3wvHV4X/+MLEHfEvB34=
+  /internal-ip/1.2.0:
+    dependencies:
+      meow: 3.7.0
+    resolution:
+      integrity: sha1-rp+/k7mEh4eF1QqN4bNWlWBYz1w=
   /interpret/1.0.3:
     resolution:
       integrity: sha1-y8NcYu7uc/Gat7EKgBURQBr8D5A=
@@ -3424,6 +3573,9 @@ packages:
   /invert-kv/1.0.0:
     resolution:
       integrity: sha1-EEqOSqym09jNFXqO+L+rLXo//bY=
+  /ip/1.1.5:
+    resolution:
+      integrity: sha1-vd7XARQpCCjAoDnnLvJfWq7ENUo=
   /ipaddr.js/1.3.0:
     resolution:
       integrity: sha1-HgOlL9rYOou7KyXL9JmLTP/NPew=
@@ -3453,6 +3605,9 @@ packages:
       builtin-modules: 1.1.1
     resolution:
       integrity: sha1-VAVy0096wxGfj3bDDLwbHgN6/74=
+  /is-directory/0.3.1:
+    resolution:
+      integrity: sha1-YTObbyR1/Hcv2cnYP1yFddwVSuE=
   /is-dotfile/1.0.3:
     resolution:
       integrity: sha1-pqLzL/0t+wT1yiXs0Pa4PPeYoeE=
@@ -3605,6 +3760,9 @@ packages:
   /isexe/2.0.0:
     resolution:
       integrity: sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
+  /isnumeric/0.2.0:
+    resolution:
+      integrity: sha1-ojR7o2DeGeM9D/1ZD933dVy/LmQ=
   /isobject/1.0.2:
     dev: true
     resolution:
@@ -3645,10 +3803,6 @@ packages:
   /js-base64/2.1.9:
     resolution:
       integrity: sha1-8OgK4DmkvWVLXygfyT8EqRSn/M4=
-  /js-tokens/1.0.3:
-    dev: true
-    resolution:
-      integrity: sha1-FOVutoyPGpLEPVn1AU7CncIPKuE=
   /js-tokens/3.0.1:
     resolution:
       integrity: sha1-COnxMkhKLEWjCQfp3E1VZ7fxFNc=
@@ -3677,6 +3831,9 @@ packages:
   /json-loader/0.5.4:
     resolution:
       integrity: sha1-i6oTZaYy9Yo8RtIBdfxgAsluN94=
+  /json-schema-traverse/0.3.0:
+    resolution:
+      integrity: sha1-ABbAscoe/kbUTTdUG838Gdz64Ns=
   /json-schema/0.2.3:
     resolution:
       integrity: sha1-tIDIkuWaLwWVTOcnvT8qTogvnhM=
@@ -3779,7 +3936,7 @@ packages:
       integrity: sha1-U3cWwHduTPeePtG2IfdljCkRsbE=
   /lazystream/1.0.0:
     dependencies:
-      readable-stream: 2.2.11
+      readable-stream: 2.3.1
     dev: true
     resolution:
       integrity: sha1-9plf4PggOS9hOWvolGJAe7dxaOQ=
@@ -3800,7 +3957,7 @@ packages:
       image-size: 0.5.5
       mime: 1.3.6
       mkdirp: 0.5.1
-      promise: 7.2.0
+      promise: 7.3.1
       source-map: 0.5.6
     resolution:
       integrity: sha1-bL/qIrO4MDBOml+zcdVPpIDJ188=
@@ -3814,7 +3971,7 @@ packages:
     dependencies:
       extend: 3.0.1
       findup-sync: 0.4.3
-      fined: 1.0.2
+      fined: 1.1.0
       flagged-respawn: 0.3.2
       lodash.isplainobject: 4.0.6
       lodash.isstring: 4.0.1
@@ -3952,10 +4109,6 @@ packages:
   /lodash.assign/4.2.0:
     resolution:
       integrity: sha1-DZnzzNem0mHRm9rrkkUAXShYCOc=
-  /lodash.assignwith/4.2.0:
-    dev: true
-    resolution:
-      integrity: sha1-EnqX8CrcQXUalU0ksN4X4QDgOOs=
   /lodash.camelcase/4.3.0:
     resolution:
       integrity: sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
@@ -3998,10 +4151,6 @@ packages:
   /lodash.isarray/3.0.4:
     resolution:
       integrity: sha1-eeTriMNqgSKvhvhEqpvNhRtfu1U=
-  /lodash.isempty/4.4.0:
-    dev: true
-    resolution:
-      integrity: sha1-b4bL7di+TsmHvpqvM8loTbGzHn4=
   /lodash.isequal/4.5.0:
     dev: true
     resolution:
@@ -4070,10 +4219,6 @@ packages:
   /lodash.mergewith/4.6.0:
     resolution:
       integrity: sha1-FQzwoWeR9ZA7iJHqsVRgknS96lU=
-  /lodash.pick/4.4.0:
-    dev: true
-    resolution:
-      integrity: sha1-UvBWEP/53tQiYRRB7R/BI6AwAbM=
   /lodash.pickby/4.6.0:
     resolution:
       integrity: sha1-feoh2MGNdwOifHBMFdO4SmfjOv8=
@@ -4100,12 +4245,23 @@ packages:
       lodash.templatesettings: 3.1.1
     resolution:
       integrity: sha1-+M3sxhaaJVvpCYrosMU9N4kx0U8=
+  /lodash.template/4.4.0:
+    dependencies:
+      lodash._reinterpolate: 3.0.0
+      lodash.templatesettings: 4.1.0
+    resolution:
+      integrity: sha1-5zoDhcg1VZF0bgILmWecaQ5o+6A=
   /lodash.templatesettings/3.1.1:
     dependencies:
       lodash._reinterpolate: 3.0.0
       lodash.escape: 3.2.0
     resolution:
       integrity: sha1-+zB4RHU7Zrnxr6VOJix0UwfbqOU=
+  /lodash.templatesettings/4.1.0:
+    dependencies:
+      lodash._reinterpolate: 3.0.0
+    resolution:
+      integrity: sha1-K01OlbpEDZFf8IvImeRVNmZxMxY=
   /lodash.toplainobject/3.0.0:
     dependencies:
       lodash._basecopy: 3.0.1
@@ -4231,7 +4387,7 @@ packages:
   /memory-fs/0.4.1:
     dependencies:
       errno: 0.1.4
-      readable-stream: 2.2.11
+      readable-stream: 2.3.1
     resolution:
       integrity: sha1-OpoguEYlI+RHz7x+i7gO1me/xVI=
   /meow/3.7.0:
@@ -4253,7 +4409,7 @@ packages:
       integrity: sha1-sAqqVW3YtEVoFQ7J0blT8/kMu2E=
   /merge-stream/1.0.1:
     dependencies:
-      readable-stream: 2.2.11
+      readable-stream: 2.3.1
     dev: true
     resolution:
       integrity: sha1-QEEgLVCKNCugAXQAjfDCUbjBNeE=
@@ -4279,7 +4435,7 @@ packages:
       integrity: sha1-hmd8l9FyCzY0MdBNDRUpO9OMFWU=
   /miller-rabin/4.0.0:
     dependencies:
-      bn.js: 4.11.6
+      bn.js: 4.11.7
       brorand: 1.1.0
     resolution:
       integrity: sha1-SmL7HUKTPAVYOYL0xxb2+55sbT0=
@@ -4377,6 +4533,15 @@ packages:
   /ms/2.0.0:
     resolution:
       integrity: sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=
+  /multicast-dns-service-types/1.1.0:
+    resolution:
+      integrity: sha1-iZ8R2WhuXgXLkbNdXw5jt3PPyQE=
+  /multicast-dns/6.1.1:
+    dependencies:
+      dns-packet: 1.1.1
+      thunky: 0.1.0
+    resolution:
+      integrity: sha1-bn3oalcIcqsXBYrepxYLvsqBTd4=
   /multipipe/0.1.2:
     dependencies:
       duplexer2: 0.0.2
@@ -4436,6 +4601,9 @@ packages:
     dev: true
     resolution:
       integrity: sha1-/ZGOQSdpv4xEgFEjgjOECyr/FqE=
+  /node-forge/0.6.33:
+    resolution:
+      integrity: sha1-RjgRh59XPUUVWtap9D3ClujoXrw=
   /node-gyp/3.6.2:
     dependencies:
       fstream: 1.0.11
@@ -4469,7 +4637,7 @@ packages:
       process: 0.11.10
       punycode: 1.4.1
       querystring-es3: 0.2.1
-      readable-stream: 2.2.11
+      readable-stream: 2.3.1
       stream-browserify: 2.0.1
       stream-http: 2.7.2
       string_decoder: 0.10.31
@@ -4650,6 +4818,12 @@ packages:
       is-extendable: 0.1.1
     resolution:
       integrity: sha1-Gpx0SCnznbuFjHbKNXmuKlTr0fo=
+  /object.pick/1.2.0:
+    dependencies:
+      isobject: 2.1.0
+    dev: true
+    resolution:
+      integrity: sha1-tTkr7peC2m2ft9avr1OXefEjTCs=
   /object.reduce/0.1.7:
     dependencies:
       for-own: 0.1.5
@@ -4678,6 +4852,9 @@ packages:
       wrappy: 1.0.2
     resolution:
       integrity: sha1-WDsap3WWHUsROsF9nFC6753Xa9E=
+  /onecolor/2.4.2:
+    resolution:
+      integrity: sha1-pT7D/xccNEYBbdUhDRobVEv32HQ=
   /onetime/1.1.0:
     resolution:
       integrity: sha1-ofeDj4MUxRbwXs78vEzP4EtO14k=
@@ -4723,7 +4900,7 @@ packages:
   /ordered-read-streams/0.3.0:
     dependencies:
       is-stream: 1.1.0
-      readable-stream: 2.2.11
+      readable-stream: 2.3.1
     dev: true
     resolution:
       integrity: sha1-cTfmmzKYuzQiR6G77jiByA4v14s=
@@ -4752,6 +4929,9 @@ packages:
       os-tmpdir: 1.0.2
     resolution:
       integrity: sha1-Qv5tWVPfBsgGS+bxdsPQWqqjRkQ=
+  /p-map/1.1.1:
+    resolution:
+      integrity: sha1-BfXkrpegaDcbwqXMhr+9vBnErno=
   /package-json/1.2.0:
     dependencies:
       got: 3.3.1
@@ -4817,6 +4997,10 @@ packages:
       pinkie-promise: 2.0.1
     resolution:
       integrity: sha1-D+tsZPD8UY2adU3V77YscCJ2H0s=
+  /path-exists/3.0.0:
+    dev: true
+    resolution:
+      integrity: sha1-zg6+ql94yxiSXqfYENe1mwEP1RU=
   /path-is-absolute/1.0.1:
     resolution:
       integrity: sha1-F0uSaHNVNP+8es5r9TpanhtcX18=
@@ -4857,7 +5041,7 @@ packages:
       create-hash: 1.1.3
       create-hmac: 1.1.6
       ripemd160: 2.0.1
-      safe-buffer: 5.1.0
+      safe-buffer: 5.1.1
       sha.js: 2.4.8
     resolution:
       integrity: sha1-vjZ4XFBn6kjYBv+SMojF91C2uKI=
@@ -4878,6 +5062,13 @@ packages:
   /pinkie/2.0.4:
     resolution:
       integrity: sha1-clVrgM+g1IqXToDnckjoDtT3+HA=
+  /pixrem/3.0.2:
+    dependencies:
+      browserslist: 1.7.7
+      postcss: 5.2.17
+      reduce-css-calc: 1.3.0
+    resolution:
+      integrity: sha1-MNG6+0w73Ojpu0vVahOYVhkyDDQ=
   /pkg-conf/1.1.3:
     dependencies:
       find-up: 1.1.2
@@ -4891,6 +5082,12 @@ packages:
       find-up: 1.1.2
     resolution:
       integrity: sha1-ektQio1bstYp1EcFb/TpyTFM89Q=
+  /pleeease-filters/3.0.1:
+    dependencies:
+      onecolor: 2.4.2
+      postcss: 5.2.17
+    resolution:
+      integrity: sha1-Tf4OjxBGYTUXxktyi8gGCKfr8i8=
   /pluralize/1.2.1:
     resolution:
       integrity: sha1-0aIUg/0iu0HlihL6NCGCMUCJfEU=
@@ -4901,6 +5098,18 @@ packages:
       mkdirp: 0.5.1
     resolution:
       integrity: sha1-uzLs2HwnEErm7kS1o8y/Drsa7ek=
+  /postcss-apply/0.3.0:
+    dependencies:
+      balanced-match: 0.4.2
+      postcss: 5.2.17
+    resolution:
+      integrity: sha1-ovN8W9+ogeTBX08kXsDNlt0ucNU=
+  /postcss-attribute-case-insensitive/1.0.1:
+    dependencies:
+      postcss: 5.2.17
+      postcss-selector-parser: 2.2.3
+    resolution:
+      integrity: sha1-zrc3d+EGFn6yM/GTjJvZ8uaXMI0=
   /postcss-calc/5.3.1:
     dependencies:
       postcss: 5.2.17
@@ -4908,6 +5117,63 @@ packages:
       reduce-css-calc: 1.3.0
     resolution:
       integrity: sha1-d7rnypKK2FcW4v2kLyYb98HWW14=
+  /postcss-color-function/2.0.1:
+    dependencies:
+      css-color-function: 1.3.0
+      postcss: 5.2.17
+      postcss-message-helpers: 2.0.0
+      postcss-value-parser: 3.3.0
+    resolution:
+      integrity: sha1-mtIm9VDop8f4uKd4YFRbbdf1UkE=
+  /postcss-color-gray/3.0.1:
+    dependencies:
+      color: 0.11.4
+      postcss: 5.2.17
+      postcss-message-helpers: 2.0.0
+      reduce-function-call: 1.0.2
+    resolution:
+      integrity: sha1-dEMu3mbdg7HRNjVlxos3bhj/Z3A=
+  /postcss-color-hex-alpha/2.0.0:
+    dependencies:
+      color: 0.10.1
+      postcss: 5.2.17
+      postcss-message-helpers: 2.0.0
+    resolution:
+      integrity: sha1-RP1uyt5mAoZIyIHLZQTNy/3GzQk=
+  /postcss-color-hsl/1.0.5:
+    dependencies:
+      postcss: 5.2.17
+      postcss-value-parser: 3.3.0
+      units-css: 0.4.0
+    resolution:
+      integrity: sha1-9Tuxw0gxDOMHrYnjGBqGRzi15oc=
+  /postcss-color-hwb/2.0.1:
+    dependencies:
+      color: 0.11.4
+      postcss: 5.2.17
+      postcss-message-helpers: 2.0.0
+      reduce-function-call: 1.0.2
+    resolution:
+      integrity: sha1-1jr6+bcMtZX5AKKcn+V78qMvq+w=
+  /postcss-color-rebeccapurple/2.0.1:
+    dependencies:
+      color: 0.11.4
+      postcss: 5.2.17
+    resolution:
+      integrity: sha1-dMZETny7fYVhO19yht96SRYIRRw=
+  /postcss-color-rgb/1.1.4:
+    dependencies:
+      postcss: 5.2.17
+      postcss-value-parser: 3.3.0
+    resolution:
+      integrity: sha1-8pJD4i6OjBNDRHQJI3LUzmBb6Lw=
+  /postcss-color-rgba-fallback/2.2.0:
+    dependencies:
+      postcss: 5.2.17
+      postcss-value-parser: 3.3.0
+      rgb-hex: 1.0.0
+    resolution:
+      integrity: sha1-bSlJG+WZCpMXPUfnx29YELCUAro=
   /postcss-colormin/2.2.2:
     dependencies:
       colormin: 1.1.2
@@ -4921,6 +5187,59 @@ packages:
       postcss-value-parser: 3.3.0
     resolution:
       integrity: sha1-u9hZPFwf0uPRwyK7kl3K6Nrk1i0=
+  /postcss-cssnext/2.11.0:
+    dependencies:
+      autoprefixer: 6.7.7
+      caniuse-api: 1.6.1
+      chalk: 1.1.3
+      pixrem: 3.0.2
+      pleeease-filters: 3.0.1
+      postcss: 5.2.17
+      postcss-apply: 0.3.0
+      postcss-attribute-case-insensitive: 1.0.1
+      postcss-calc: 5.3.1
+      postcss-color-function: 2.0.1
+      postcss-color-gray: 3.0.1
+      postcss-color-hex-alpha: 2.0.0
+      postcss-color-hsl: 1.0.5
+      postcss-color-hwb: 2.0.1
+      postcss-color-rebeccapurple: 2.0.1
+      postcss-color-rgb: 1.1.4
+      postcss-color-rgba-fallback: 2.2.0
+      postcss-custom-media: 5.0.1
+      postcss-custom-properties: 5.0.2
+      postcss-custom-selectors: 3.0.0
+      postcss-font-family-system-ui: 1.0.2
+      postcss-font-variant: 2.0.1
+      postcss-image-set-polyfill: 0.3.5
+      postcss-initial: 1.5.3
+      postcss-media-minmax: 2.1.2
+      postcss-nesting: 2.3.1
+      postcss-pseudo-class-any-link: 1.0.0
+      postcss-pseudoelements: 3.0.0
+      postcss-replace-overflow-wrap: 1.0.0
+      postcss-selector-matches: 2.0.5
+      postcss-selector-not: 2.0.0
+    resolution:
+      integrity: sha1-MeaPAB5AlgTacDtm3hS4uMjJ8rE=
+  /postcss-custom-media/5.0.1:
+    dependencies:
+      postcss: 5.2.17
+    resolution:
+      integrity: sha1-E40loYS/LrVN4S1VpsAcMKnYvYE=
+  /postcss-custom-properties/5.0.2:
+    dependencies:
+      balanced-match: 0.4.2
+      postcss: 5.2.17
+    resolution:
+      integrity: sha1-lxnXjy2pz59TgQrrwj1GVhMKzrE=
+  /postcss-custom-selectors/3.0.0:
+    dependencies:
+      balanced-match: 0.2.1
+      postcss: 5.2.17
+      postcss-selector-matches: 2.0.5
+    resolution:
+      integrity: sha1-j4Ekn17Qeo0JF89qOf5bBWt/lqw=
   /postcss-discard-comments/2.0.4:
     dependencies:
       postcss: 5.2.17
@@ -4953,12 +5272,66 @@ packages:
       uniqid: 4.1.1
     resolution:
       integrity: sha1-bYWGJTTXNaxCDkqFgG4fXUKG2Ew=
-  /postcss-loader/0.9.1:
+  /postcss-font-family-system-ui/1.0.2:
     dependencies:
-      loader-utils: 0.2.17
+      lodash: 4.17.4
+      postcss: 5.2.17
+      postcss-value-parser: 3.3.0
+    resolution:
+      integrity: sha1-PhpeP7fjHl6ecUOcyw6AFFVpJ8c=
+  /postcss-font-variant/2.0.1:
+    dependencies:
       postcss: 5.2.17
     resolution:
-      integrity: sha1-h6PnD1jkbWinW63Gcl2epHc/0dc=
+      integrity: sha1-fKKRA/WfoCyjrOLKIrL3VoU9Tvg=
+  /postcss-image-set-polyfill/0.3.5:
+    dependencies:
+      postcss: 6.0.2
+      postcss-media-query-parser: 0.2.3
+    resolution:
+      integrity: sha1-Dxk0E3AM8fgr05Bm7wFtZaShgYE=
+  /postcss-initial/1.5.3:
+    dependencies:
+      lodash.template: 4.4.0
+      postcss: 5.2.17
+    resolution:
+      integrity: sha1-IMPpHJaCLdsb7UlQjbltVrrDd9A=
+  /postcss-load-config/1.2.0:
+    dependencies:
+      cosmiconfig: 2.1.3
+      object-assign: 4.1.1
+      postcss-load-options: 1.2.0
+      postcss-load-plugins: 2.3.0
+    resolution:
+      integrity: sha1-U56a/J3chiASHr+djDZz4M5Q0oo=
+  /postcss-load-options/1.2.0:
+    dependencies:
+      cosmiconfig: 2.1.3
+      object-assign: 4.1.1
+    resolution:
+      integrity: sha1-sJixVZ3awt8EvAuzdfmaXP4rbYw=
+  /postcss-load-plugins/2.3.0:
+    dependencies:
+      cosmiconfig: 2.1.3
+      object-assign: 4.1.1
+    resolution:
+      integrity: sha1-dFdoEWWZrKLwCfrUJrABdQSdjZI=
+  /postcss-loader/2.0.6:
+    dependencies:
+      loader-utils: 1.1.0
+      postcss: 6.0.2
+      postcss-load-config: 1.2.0
+      schema-utils: 0.3.0
+    resolution:
+      integrity: sha1-jH4AVaPfGImrxrrVLdRbL0G7xvw=
+  /postcss-media-minmax/2.1.2:
+    dependencies:
+      postcss: 5.2.17
+    resolution:
+      integrity: sha1-RExc+JJqteT9iiUJ6Sl+dRZJzfg=
+  /postcss-media-query-parser/0.2.3:
+    resolution:
+      integrity: sha1-J7Ocb02U+Bsac7j3Y1HGCeXO8kQ=
   /postcss-merge-idents/2.1.7:
     dependencies:
       has: 1.0.1
@@ -5032,9 +5405,14 @@ packages:
   /postcss-modules-values/1.3.0:
     dependencies:
       icss-replace-symbols: 1.1.0
-      postcss: 6.0.2
+      postcss: 6.0.8
     resolution:
       integrity: sha1-7P+p1+GSUYOJ9CrQ6D9yrsRW6iA=
+  /postcss-nesting/2.3.1:
+    dependencies:
+      postcss: 5.2.17
+    resolution:
+      integrity: sha1-lKa2pO9wf77CCof+5clXdZtOAc8=
   /postcss-normalize-charset/1.1.1:
     dependencies:
       postcss: 5.2.17
@@ -5054,6 +5432,17 @@ packages:
       postcss-value-parser: 3.3.0
     resolution:
       integrity: sha1-7sbCpntsQSqNsgQud/6NpD+VwR0=
+  /postcss-pseudo-class-any-link/1.0.0:
+    dependencies:
+      postcss: 5.2.17
+      postcss-selector-parser: 1.3.3
+    resolution:
+      integrity: sha1-kDI5GWQB0zX+c6x1YYb6YuaTryY=
+  /postcss-pseudoelements/3.0.0:
+    dependencies:
+      postcss: 5.2.17
+    resolution:
+      integrity: sha1-bGghd8eQC6BTtt8X+MWQKEx7i7w=
   /postcss-reduce-idents/2.4.0:
     dependencies:
       postcss: 5.2.17
@@ -5072,6 +5461,30 @@ packages:
       postcss-value-parser: 3.3.0
     resolution:
       integrity: sha1-/3b02CEkN7McKYpC0uFEQCV3GuE=
+  /postcss-replace-overflow-wrap/1.0.0:
+    dependencies:
+      postcss: 5.2.17
+    resolution:
+      integrity: sha1-8KA7Meq5Y2ppNr/SEOKu8bQ0pkM=
+  /postcss-selector-matches/2.0.5:
+    dependencies:
+      balanced-match: 0.4.2
+      postcss: 5.2.17
+    resolution:
+      integrity: sha1-+g9Dvle2jneqTNEYBwI0kqExAn8=
+  /postcss-selector-not/2.0.0:
+    dependencies:
+      balanced-match: 0.2.1
+      postcss: 5.2.17
+    resolution:
+      integrity: sha1-xzrSGj91I0vuf+4mnhVP1qhpeY0=
+  /postcss-selector-parser/1.3.3:
+    dependencies:
+      flatten: 1.0.2
+      indexes-of: 1.0.1
+      uniq: 1.0.1
+    resolution:
+      integrity: sha1-0u4Z33pk+O8hwacchvfUg1yIwoE=
   /postcss-selector-parser/2.2.3:
     dependencies:
       flatten: 1.0.2
@@ -5119,6 +5532,13 @@ packages:
       supports-color: 3.2.3
     resolution:
       integrity: sha1-XE/qWJ8Kw7AMqnWxy8OihBlbfl0=
+  /postcss/6.0.8:
+    dependencies:
+      chalk: 2.1.0
+      source-map: 0.5.6
+      supports-color: 4.2.1
+    resolution:
+      integrity: sha512-G6WnRmdTt2jvJvY+aY+M0AO4YlbxE+slKPZb+jG2P2U9Tyxi3h1fYZ/DgiFU6DC6bv3XIEJoZt+f/kNh8BrWFw==
   /prelude-ls/1.1.2:
     resolution:
       integrity: sha1-IZMqVJ9eUv/ZqCf1cOBL5iqX2lQ=
@@ -5164,12 +5584,12 @@ packages:
   /progress/1.1.8:
     resolution:
       integrity: sha1-4mDHj2Fhzdmw5WzD4Khd4Xx6V74=
-  /promise/7.2.0:
+  /promise/7.3.1:
     dependencies:
       asap: 2.0.5
     optional: true
     resolution:
-      integrity: sha1-ZwdaX8U3s51muHzes3Ms91hn2+I=
+      integrity: sha1-BktyYCsY+Q8pGSuLG8QY/9Hr078=
   /proxy-addr/1.1.4:
     dependencies:
       forwarded: 0.1.0
@@ -5190,7 +5610,7 @@ packages:
       integrity: sha1-8FKijacOYYkX7wqKw0wa5aaChrM=
   /public-encrypt/4.0.0:
     dependencies:
-      bn.js: 4.11.6
+      bn.js: 4.11.7
       browserify-rsa: 4.0.1
       create-hash: 1.1.3
       parse-asn1: 5.1.0
@@ -5241,7 +5661,7 @@ packages:
       integrity: sha1-x6vpzIuHwLqodrGf3oP9RkeX44w=
   /randombytes/2.0.5:
     dependencies:
-      safe-buffer: 5.1.0
+      safe-buffer: 5.1.1
     resolution:
       integrity: sha1-3ACaJGuNCaF3tLegrne8Vw9LG3k=
   /range-parser/1.2.0:
@@ -5259,7 +5679,7 @@ packages:
   /read-all-stream/3.1.0:
     dependencies:
       pinkie-promise: 2.0.1
-      readable-stream: 2.2.11
+      readable-stream: 2.3.1
     dev: true
     resolution:
       integrity: sha1-NcPhd/IHjveJ7kv6+kNzB06u9Po=
@@ -5303,22 +5723,22 @@ packages:
       util-deprecate: 1.0.2
     resolution:
       integrity: sha1-j5A0HmilPMySh4jaz80Rs265t44=
-  /readable-stream/2.2.11:
+  /readable-stream/2.3.1:
     dependencies:
       core-util-is: 1.0.2
       inherits: 2.0.3
       isarray: 1.0.0
       process-nextick-args: 1.0.7
-      safe-buffer: 5.0.1
+      safe-buffer: 5.1.1
       string_decoder: 1.0.2
       util-deprecate: 1.0.2
     resolution:
-      integrity: sha1-B5azH412iAB/8Lk6gIjTSqF8D3I=
+      integrity: sha1-hOJpZbueeFU17SVujTjpLGnwnRA=
   /readdirp/2.1.0:
     dependencies:
       graceful-fs: 4.1.11
       minimatch: 3.0.4
-      readable-stream: 2.2.11
+      readable-stream: 2.3.1
       set-immediate-shim: 1.0.1
     resolution:
       integrity: sha1-TtCtBg3zBzMAxIRANz9y0cxkLXg=
@@ -5373,6 +5793,9 @@ packages:
   /regenerator-runtime/0.10.5:
     resolution:
       integrity: sha1-M2w+/BIgrc7dosn6tntaeVWjNlg=
+  /regenerator-runtime/0.9.6:
+    resolution:
+      integrity: sha1-0z65XQ0gAaS+OWWXB8UbDLcc4Ck=
   /regenerator-transform/0.9.11:
     dependencies:
       babel-runtime: 6.23.0
@@ -5487,12 +5910,15 @@ packages:
       stringstream: 0.0.5
       tough-cookie: 2.3.2
       tunnel-agent: 0.6.0
-      uuid: 3.0.1
+      uuid: 3.1.0
     resolution:
       integrity: sha1-xpKJRqDgbF+Nb4qTM0af/aRimKA=
   /require-directory/2.1.1:
     resolution:
       integrity: sha1-jGStX9MNqxyXbiNE/+f3kqam30I=
+  /require-from-string/1.2.1:
+    resolution:
+      integrity: sha1-UpyczvJzgK3+yaL5ZbZJu+5jZBg=
   /require-main-filename/1.0.1:
     resolution:
       integrity: sha1-l/cXtp1IeE9fUmpsWqj/3aBVpNE=
@@ -5556,6 +5982,12 @@ packages:
       css: 2.2.1
     resolution:
       integrity: sha1-MIBqhBNCtUUQqkEQhQzUhTQUSqc=
+  /rgb-hex/1.0.0:
+    resolution:
+      integrity: sha1-v6+M2c2RZLWibXHrTxWgllMks8E=
+  /rgb/0.1.0:
+    resolution:
+      integrity: sha1-vieykej+/+rBvZlylyG/pA/AN7U=
   /right-align/0.1.3:
     dependencies:
       align-text: 0.1.4
@@ -5592,6 +6024,9 @@ packages:
   /safe-buffer/5.1.0:
     resolution:
       integrity: sha1-/kyEYDl/nqqqWOc75GJzQIpF4iM=
+  /safe-buffer/5.1.1:
+    resolution:
+      integrity: sha1-iTMSr2myEj3vcfV4iQAWce6yyFM=
   /safe-json-stringify/1.0.4:
     optional: true
     resolution:
@@ -5635,6 +6070,11 @@ packages:
   /sax/1.2.2:
     resolution:
       integrity: sha1-/YYxojvHgmvvXYcb24c3jJVkeCg=
+  /schema-utils/0.3.0:
+    dependencies:
+      ajv: 5.2.0
+    resolution:
+      integrity: sha1-9YdyIs4+kx7a4DnxfrNxbnE3+M8=
   /scss-tokenizer/0.2.3:
     dependencies:
       js-base64: 2.1.9
@@ -5644,6 +6084,11 @@ packages:
   /select-hose/2.0.0:
     resolution:
       integrity: sha1-Yl2GWPhlr0Psliv8N2o3NZpJlMo=
+  /selfsigned/1.9.1:
+    dependencies:
+      node-forge: 0.6.33
+    resolution:
+      integrity: sha1-zdpEktcNSGVw+HxlVGAjVY4d+lo=
   /semver-diff/2.1.0:
     dependencies:
       semver: 5.3.0
@@ -5896,7 +6341,7 @@ packages:
       detect-node: 2.0.3
       hpack.js: 2.1.6
       obuf: 1.1.1
-      readable-stream: 2.2.11
+      readable-stream: 2.3.1
       safe-buffer: 5.1.0
       wbuf: 1.7.2
     resolution:
@@ -5965,13 +6410,13 @@ packages:
       integrity: sha1-+vUbnrdKrvOzrPStX2Gr8ky3uT4=
   /stdout-stream/1.4.0:
     dependencies:
-      readable-stream: 2.2.11
+      readable-stream: 2.3.1
     resolution:
       integrity: sha1-osfIWH5U2UJ+qe2zrD8s1SLfN4s=
   /stream-browserify/2.0.1:
     dependencies:
       inherits: 2.0.3
-      readable-stream: 2.2.11
+      readable-stream: 2.3.1
     resolution:
       integrity: sha1-ZiZu5fm9uZQKTkUUyvtDu3Hlyds=
   /stream-combiner/0.0.4:
@@ -5992,7 +6437,7 @@ packages:
     dependencies:
       builtin-status-codes: 3.0.0
       inherits: 2.0.3
-      readable-stream: 2.2.11
+      readable-stream: 2.3.1
       to-arraybuffer: 1.0.1
       xtend: 4.0.1
     resolution:
@@ -6101,6 +6546,11 @@ packages:
       has-flag: 1.0.0
     resolution:
       integrity: sha1-ZawFBLOVQXHYpklGsq48u4pfVPY=
+  /supports-color/4.2.1:
+    dependencies:
+      has-flag: 2.0.0
+    resolution:
+      integrity: sha512-qxzYsob3yv6U+xMzPrv170y8AwGP7i74g+pbixCfD6rgso8BscLT2qXIuz6TpOaiJZ3mFgT5O9lyT9nMU4LfaA==
   /svgo/0.7.2:
     dependencies:
       coa: 1.0.3
@@ -6166,10 +6616,13 @@ packages:
       integrity: sha1-QaucZ7KdVyCQcUEOHXp6lozTrUg=
   /through2/2.0.3:
     dependencies:
-      readable-stream: 2.2.11
+      readable-stream: 2.3.1
       xtend: 4.0.1
     resolution:
       integrity: sha1-AARWmzfHx0ujnEPzzteNGtlBQL4=
+  /thunky/0.1.0:
+    resolution:
+      integrity: sha1-vzAUaCTituZ7Dy16Ssi+smkIaE4=
   /tildify/1.2.0:
     dependencies:
       os-homedir: 1.0.2
@@ -6325,6 +6778,12 @@ packages:
     dev: true
     resolution:
       integrity: sha1-WqADz76Uxf+GbE59ZouxxNuts2k=
+  /units-css/0.4.0:
+    dependencies:
+      isnumeric: 0.2.0
+      viewport-dimensions: 0.2.0
+    resolution:
+      integrity: sha1-1iKGU6UZg9fBb/KPi53Dsf/tOgc=
   /unpipe/1.0.0:
     resolution:
       integrity: sha1-sr9O6FFKrmFltIF4KdIbLvSZBOw=
@@ -6390,9 +6849,9 @@ packages:
   /uuid/2.0.3:
     resolution:
       integrity: sha1-Z+LoY3lyFVMN/zGOW/nc6/1Hsho=
-  /uuid/3.0.1:
+  /uuid/3.1.0:
     resolution:
-      integrity: sha1-ZUS7ot/ajBzxfmKaOjBeK7H+5sE=
+      integrity: sha1-PdPT55Crwk17DToDT/q6vijrvAQ=
   /v8flags/2.1.1:
     dependencies:
       user-home: 1.1.1
@@ -6420,6 +6879,9 @@ packages:
       extsprintf: 1.0.2
     resolution:
       integrity: sha1-z/XfEpRtKX0rqu+qJoniW+AcAFw=
+  /viewport-dimensions/0.2.0:
+    resolution:
+      integrity: sha1-3nQHR9tTh/0XJfUXXpG6x2r982w=
   /vinyl-fs/0.3.14:
     dependencies:
       defaults: 1.0.3
@@ -6445,7 +6907,7 @@ packages:
       merge-stream: 1.0.1
       mkdirp: 0.5.1
       object-assign: 4.1.1
-      readable-stream: 2.2.11
+      readable-stream: 2.3.1
       strip-bom: 2.0.0
       strip-bom-stream: 1.0.0
       through2: 2.0.3
@@ -6508,17 +6970,21 @@ packages:
       range-parser: 1.2.0
     resolution:
       integrity: sha1-LiUs4d+wINvaHMs33ybzCrAU29E=
-  /webpack-dev-server/2.4.5:
+  /webpack-dev-server/2.5.0:
     dependencies:
       ansi-html: 0.0.7
+      bonjour: 3.5.0
       chokidar: 1.7.0
       compression: 1.6.2
       connect-history-api-fallback: 1.3.0
+      del: 3.0.0
       express: 4.15.3
       html-entities: 1.2.1
       http-proxy-middleware: 0.17.4
+      internal-ip: 1.2.0
       opn: 4.0.2
       portfinder: 1.0.13
+      selfsigned: 1.9.1
       serve-index: 1.9.0
       sockjs: 0.3.18
       sockjs-client: 1.1.2
@@ -6528,7 +6994,7 @@ packages:
       webpack-dev-middleware: 1.10.2
       yargs: 6.6.0
     resolution:
-      integrity: sha1-MThM6BE2vhCAtLTN4OubkOVO5s8=
+      integrity: sha1-TTanKLA7iyr6SO0wJCiEfOooQK0=
   /webpack-sources/0.1.5:
     dependencies:
       source-list-map: 0.1.8
@@ -6821,6 +7287,7 @@ packages:
     resolution:
       tarball: 'https://codeload.github.com/webpack/loader-utils/tar.gz/3799fdba68992fcba0d45cff0d270dd0cd40da59'
 registry: 'https://registry.npmjs.org/'
+shrinkwrapVersion: 3
 specifiers:
   '@vjpr/bootstrap-loader': ^2.0.0-beta.19-vjpr.5
   '@vjpr/style-loader': 0.13.1-vjpr.1
@@ -6834,12 +7301,13 @@ specifiers:
   babel-runtime: ^6.22.0
   babelator: ^0.2.21
   bootstrap-sass: 3.3.6
+  caniuse-db: ^1.0.30000692
   chalk: 1.1.3
   chokidar: 'github:paulmillr/chokidar#3d917818c957088b62c160e426c1a99787ae6319'
   component-emitter: 1.2.1
-  configurize: ^0.0.8
+  configurize: ^0.0.10
   core-js: 2.4.0
-  css-loader: ^0.26.1
+  css-loader: ^0.28.4
   cwd: 0.10.0
   debug: 2.2.0
   dedent-js: 1.0.1
@@ -6865,20 +7333,21 @@ specifiers:
   object-hash: 1.1.2
   parent-require: 1.0.0
   pkg-dir: ^1.0.0
-  postcss-loader: 0.9.1
+  postcss-cssnext: ^2.11.0
+  postcss-loader: ^2.0.6
+  postcss-modules-values: ^1.3.0
   prettyjson: 1.1.3
   progress-bar-webpack-plugin: 1.8.0
   qs: 6.2.0
   resolve-from: ^2.0.0
   resolve-url-loader: ^1.6.1
   safe-resolve: ^1.0.0
-  sass-loader: ^6.0.5
+  sass-loader: ^6.0.6
   sass-resources-loader: ^1.2.0
   source-map-loader: 0.1.5
   string: 3.3.1
   url-loader: 0.5.7
-  webpack: ^2.4.1
+  webpack: ^2.6.1
   webpack-dev-server: ^2.4.5
   yargs: 4.7.1
   zog: 0.1.2
-version: 3

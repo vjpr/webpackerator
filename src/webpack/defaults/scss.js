@@ -35,6 +35,7 @@ export default function(webpack, opts, config) {
       //'node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins',
       join(process.cwd(), './modules/bootstrap-config/variables.scss'), // TODO(vjpr): Remove this.
       join(process.cwd(), './modules/bootstrap-config/customizations.scss'),
+      join(process.cwd(), './modules/react-toolbox-config/index.scss'),
     ]
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -49,9 +50,11 @@ export default function(webpack, opts, config) {
     //
     // TODO(vjpr): importLoaders might have to be adjusted if we remove loaders.
     ['css-loader', _.merge({}, cssOpts, {importLoaders: 3})],
-    ['postcss-loader', {}],
+    ['postcss-loader', {config: {path: join(process.cwd(), 'tools/postcss.config.js')}}],
     ['sass-loader', {}],
     // TODO(vjpr): Not sure...
+    // TODO(vjpr): Different resources should be used for different contexts/files.
+    // E.g. bootstrap vs. react-toolbox.
     ['sass-resources-loader', {resources: sassResources}],
   ]
 
@@ -59,13 +62,22 @@ export default function(webpack, opts, config) {
     queries = changeLoaderOpts(queries, 'sass-resources-loader', null)
   }
 
+  // TODO(vjpr): Not sure this will work with latest postcss-loader.
   if (opts.usePostCss) {
+    const postCssCssNext = require('postcss-cssnext')
     config.merge({
-      postcss: function() { return [autoprefixer] },
+      postcss: function() { return [autoprefixer, postCssCssNext] },
     })
   } else {
     queries = changeLoaderOpts(queries, 'postcss-loader', null)
   }
+
+  // TODO(vjpr): Move to separate file.
+  //config.loader('react-toolbox css', {
+  //  test: /\.css$/,
+  //  include: [/node_modules\/react-toolbox/],
+  //  queries: changeLoaderOpts(queries, 'css-loader', [null, {module: true}]),
+  //}, parseStyleLoaders({useExtractTextPlugin: opts.useExtractTextPlugin}))
 
   config.loader('global.scss', {
     test: /\.scss$/,
@@ -85,7 +97,6 @@ export default function(webpack, opts, config) {
     exclude: undefined,
     queries: changeLoaderOpts(queries, styleLoaderName, [`${styleLoaderName}/useable`, {}]),
   }, parseStyleLoaders({useExtractTextPlugin: opts.useExtractTextPlugin}))
-
 
 }
 

@@ -138,6 +138,9 @@ class WebpackeratorUtils {
     const {configPath} = getConfig('webpackerator')
 
     const module = require(configPath)
+
+    console.log(opts, require.resolve('webpack'))
+
     const webpackConfig = module(webpack, opts)
 
     // Print resolved config.

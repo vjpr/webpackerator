@@ -11,10 +11,13 @@ export default function(webpack, opts, config) {
     //'redux-devtools-dock-monitor',
     //'redux-devtools-diff-monitor',
     //'redux-devtools-filterable-log-monitor',
-    'react-router',
     //'history',
     'react-bootstrap',
     'reselect',
+
+    // NOTE: If we are using a resolver plugin, we want to choose which versions to load...
+    //'react-router',
+
     'react-router-redux',
     'react-router-bootstrap',
   ])

@@ -73,6 +73,10 @@ module.exports = function(webpack, opts, config) {
 
       headers: {'X-Custom-Header': 'yes'},
 
+      //////////////////////////////////////////////////////////////////////////
+
+      // See https://webpack.js.org/configuration/stats/#stats.
+
       // Config for minimal console.log mess.
       //stats: 'errors-only',
 
@@ -96,8 +100,13 @@ module.exports = function(webpack, opts, config) {
 
       },
 
+      // TODO(vjpr)
+      //stats: 'verbose',
+
+      stats: {maxModules: Infinity, exclude: undefined}
+
       // other options
-      ////////////////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////////////
 
       //compress
       //setup
